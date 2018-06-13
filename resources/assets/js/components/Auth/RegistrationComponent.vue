@@ -1,7 +1,6 @@
 <template>
-    <div class="container" style="margin-top: 50px">
+    <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-9">
 
                 <user-info
                         v-show="page == 1"
@@ -20,7 +19,6 @@
                         @continueBtn="continueBtn">
                 </choose-plan>
 
-            </div>
         </div>
     </div>
 </template>
@@ -37,7 +35,7 @@
         },
         data() {
             return {
-                page: 3
+                page: 1
             }
         },
         methods: {

@@ -1104,6 +1104,13 @@ h2.title {
     color: #FFFFFF;
 }
 
+.btn.btn-outline-info, .btn.btn-outline-primary, .btn.btn-outline-success,
+.btn.btn-outline-danger, .btn.btn-outline-secondary, .btn.btn-outline-dark,
+.btn.btn-outline-warning, .btn.btn-outline-light {
+    background-color: inherit;
+    color: inherit;
+}
+
 .btn:focus,
 .btn:active,
 .btn:hover,
@@ -3953,11 +3960,11 @@ fieldset[disabled] .form-group.is-focused .radio label {
 }
 
 .radio input[type=radio]:checked~.check {
-    background-color: #9c27b0;
+    background-color: #00bcd4;
 }
 
 .radio input[type=radio]:checked~.circle {
-    border-color: #9c27b0;
+    border-color: #00bcd4;
 }
 
 .radio input[type=radio]:checked~.check {

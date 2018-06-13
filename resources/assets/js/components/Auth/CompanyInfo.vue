@@ -1,5 +1,5 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml">
-    <div class="card">
+    <div class="card col-md-7">
         <div class="card-header font-weight-bold" data-background-color="blue">
             <h3 class="title">Company Information</h3>
         </div>
@@ -44,7 +44,7 @@
                 <label for="businessSector" class="col-md-4 col-form-label text-md-right">Business Sector</label>
 
                 <div class="col-md-6">
-                    <select class="custom-select " name="businessSector" id="businessSector">
+                    <select class="custom-select" name="businessSector" id="businessSector">
                         <option value="" selected disabled>Choose the business sector</option>
 
                     </select>
@@ -73,10 +73,9 @@
                 </div>
             </div>
 
-
             <div class="form-group row mb-0">
                 <div class="col-md-6">
-                    <button class="btn btn-lg btn-block" data-background-color v-on:click="backBtn">
+                    <button class="btn btn-lg btn-block btn-outline-secondary border-secondary" v-on:click="backBtn">
                         Back
                     </button>
 

@@ -1,5 +1,5 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml">
-    <div class="card">
+    <div class="card col-md-7">
         <div class="card-header font-weight-bold" data-background-color="blue">
             <h3 class="title">User Information</h3>
         </div>
@@ -54,8 +54,8 @@
             </div>
 
             <div class="form-group row mb-0">
-                <div class="col-md-6 offset-md-4">
-                    <button class="btn btn-lg btn-block" data-background-color="blue" v-on:click="continueRegistration">
+                <div class="col-md-6 col-md-offset-3 text-center">
+                    <button class="btn btn-lg btn-block" data-background-color="blue" v-on:click="continueBtn">
                         Continue
                     </button>
                 </div>
@@ -80,7 +80,7 @@
             }
         },
         methods: {
-            continueRegistration() {
+            continueBtn() {
                 let self = this;
 
                 this.$emit('continueBtn');
