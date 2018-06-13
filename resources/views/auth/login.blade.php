@@ -12,17 +12,17 @@
                         @csrf
 
                         <div class="form-group row">
-                            <div class="col-md-6 col-md-offset-3">
-                                <div class="form-group label-floating is-empty" on-click="console.log(2323)">
-                                    <label class="control-label">{{ __('E-Mail Address') }}</label>
-                                    <input type="email" name="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                           value="{{ old('email') }}" required />
-                                    @if ($errors->has('email'))
-                                        <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                            <div class="col-md-6">
+                                <input type="email" name="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}"
+                                       value="{{ old('email') }}" required />
+
+                                @if ($errors->has('email'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -44,7 +44,7 @@
                             <div class="col-md-6 offset-md-4">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Remember Me') }}
+                                        <input type="checkbox" name="remember" checked> {{ __('Remember Me') }}
                                     </label>
                                 </div>
                             </div>

@@ -133,7 +133,7 @@
                         <div class="nav-tabs-navigation">
                             <div class="nav-tabs-wrapper">
                                 <ul class="nav nav-tabs" data-tabs="tabs">
-                                    <li class="">
+                                    <li class="active">
                                         <a href="#candidates" data-toggle="tab">
                                             <i class="material-icons"></i> Candidates
                                         </a>

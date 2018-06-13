@@ -10,9 +10,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
@@ -42,7 +39,7 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                                {{ Auth::user()->name }}
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -75,5 +72,17 @@
             </div>
         </footer>
     </div>
+
+    <script src="{{ asset('js/jquery-3.2.1.min.js') }}" defer></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}" defer></script>
+    <script src="{{ asset('js/material.min.js') }}" defer></script>
+    <script src="{{ asset('js/chartist.min.js') }}" defer></script>
+    <script src="{{ asset('js/arrive.min.js') }}" defer></script>
+    <script src="{{ asset('js/perfect-scrollbar.jquery.min.js') }}" defer></script>
+    <script src="{{ asset('js/material-dashboard.js') }}" defer></script>
+    <script src="{{ asset('js/demo.js') }}" defer></script>
+
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
 </body>
 </html>

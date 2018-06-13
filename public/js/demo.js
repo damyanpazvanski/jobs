@@ -1,6 +1,6 @@
 type = ['', 'info', 'success', 'warning', 'danger'];
 
-
+Chartist = Chartist || {};
 demo = {
     initPickColor: function() {
         $('.pick-class-label').click(function() {

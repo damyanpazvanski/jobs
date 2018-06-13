@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\CompanyAdmin;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -49,9 +50,14 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
+            'first_name' => 'required|string|min:2|max:255',
+            'last_name' => 'required|string|min:2|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'phone' => 'required|string|min:8|max:20',
+            'card_brand' => 'nullable|string|min:2|max:255',
+            'card_last_four' => 'nullable|integer|digits:4',
+            'trial' => 'nullable|integer|between:0,1'
         ]);
     }
 
@@ -63,8 +69,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        $trialEndAt = null;
+        if ($data['trial'] == 1) {
+            $trialEndAt = Carbon::now()->addMonth(1);
+        }
+
+        return CompanyAdmin::create([
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'phone' => $data['phone'],
+            'card_brand' => $data['card_brand'],
+            'trial_ends_at' => $trialEndAt,
+            'card_last_four' => $data['card_last_four'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
