@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Ajax;
 
-use App\BusinessSector;
 use App\CompanyAdmin;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegistrationRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -40,18 +40,6 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
-    }
-
-    /**
-     * Show the application registration form.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function showRegistrationForm()
-    {
-        $businessSectors = BusinessSector::all();
-
-        return view('auth.register', compact('businessSectors'));
     }
 
     /**
@@ -97,5 +85,15 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function userInformation(RegistrationRequest $request)
+    {
+        return response()->json([]);
+    }
+
+    public function companyInformation(RegistrationRequest $request)
+    {
+        return response()->json([]);
     }
 }

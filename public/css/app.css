@@ -17400,3 +17400,23 @@ a.text-dark:focus {
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
+.fade:not(.show) {
+  opacity: 1 !important;
+}
+
+.fade.in {
+  background: rgba(0, 0, 0, 0.5) !important;
+}
+
+body,
+input {
+  font-size: 1.2em !important;
+  line-height: 1 !important;
+}
+
+.invalid-input {
+  background: rgba(255, 41, 43, 0.2) !important;
+  border: 1px solid #ff3e3e !important;
+  color: red !important;
+}
+

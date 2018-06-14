@@ -9,6 +9,7 @@
 
                 <company-info
                         v-show="page == 2"
+                        :business-sectors="businessSectors"
                         @backBtn="backBtn"
                         @continueBtn="continueBtn">
                 </company-info>
@@ -28,6 +29,7 @@
     import choosePlan from './ChoosePlan.vue';
 
     export default {
+        props: ['businessSectors'],
         components: {
             userInfo,
             companyInfo,
@@ -35,7 +37,7 @@
         },
         data() {
             return {
-                page: 1
+                page: 2
             }
         },
         methods: {

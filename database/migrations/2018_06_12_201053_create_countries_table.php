@@ -16,14 +16,6 @@ class CreateCompaniesTable extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('website')->nullable();
-            $table->integer('business_sector_id')->references('id')->on('business_sectors')->onDelete('SET NULL')->nullable();
-            $table->string('image_id')->references('id')->on('images')->onDelete('SET NULL')->nullable();
-            $table->string('address');
-            $table->string('city');
-            $table->integer('country')->references('id')->on('countries')->onDelete('SET NULL')->nullable();;
-            $table->string('phone');
-            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

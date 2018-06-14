@@ -21,9 +21,7 @@ class CreateCompanyAdminsTable extends Migration
             $table->string('email')->unique();
             $table->integer('role_id')->references('id')->on('roles')->onDelete('SET NULL')->nullable();
             $table->string('phone');
-            $table->string('stripe_id')->nullable();
-            $table->string('card_brand')->nullable();
-            $table->string('card_last_four')->nullable();
+            $table->boolean('trial')->default(false);
             $table->date('trial_ends_at')->nullable();
             $table->string('password');
             $table->rememberToken();
