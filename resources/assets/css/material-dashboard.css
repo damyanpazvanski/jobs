@@ -1,28 +1,14 @@
-/*!
-
- =========================================================
- * Material Dashboard - v1.2.0
- =========================================================
-
- * Product Page: http://www.creative-tim.com/product/material-dashboard
- * Copyright 2017 Creative Tim (http://www.creative-tim.com)
- * Licensed under MIT (https://github.com/creativetimofficial/material-dashboard/blob/master/LICENSE.md)
-
- =========================================================
-
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
- */
-
-
-/* ANIMATION */
-
-
-/* SHADOWS */
-
-
-/* Shadows (from mdl http://www.getmdl.io/) */
-
+body {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}
 .noUi-target,
 .noUi-target * {
     -webkit-touch-callout: none;
@@ -941,7 +927,7 @@ h2.title {
 
 .main-panel>.content {
     margin-top: 70px;
-    padding: 30px 15px;
+    padding: 0px 15px;
     min-height: calc(100% - 123px);
 }
 
@@ -3597,7 +3583,7 @@ fieldset[disabled] .form-group.is-focused .checkbox label {
 }
 
 .checkbox input[type=checkbox]:checked+.checkbox-material .check {
-    background: #9c27b0;
+    background: #0092b3;
 }
 
 .checkbox input[type=checkbox]:checked+.checkbox-material .check:before {
@@ -6347,7 +6333,39 @@ footer .btn {
 .ct-rose {
     stroke: #e91e63 !important;
 }
+.invalid {
+    color: #ff6347;
+}
+.card-header .btn-outline-secondary:hover {
+    background-color: #6c757d !important;
+    color: #ffffff !important;
+}
 
+.card-header .btn-outline-secondary {
+    background-color: #FFFFFF !important;
+    color: #6c757d !important;
+}
+
+.card-header .btn-outline-success {
+    color: #6c757d !important;
+    background-color: #ffffff !important;
+}
+
+.card-header .btn-outline-success:hover {
+    background-color: #28a745 !important;
+    color: #ffffff !important;
+}
+.btn-outline-info {
+    background-color: #ffffff;
+    border: 1.5px solid rgba(0,200,200,0.5);
+}
+.btn-outline-info:hover {
+    background-color: #00c2d7;
+    color: #ffffff !important;
+}
+.wrapper .navbar.navbar-transparent.navbar-absolute {
+    padding: 0;
+}
 @media (min-width: 992px) {
     .navbar-form {
         margin-top: 21px;
@@ -6389,7 +6407,7 @@ footer .btn {
 
 /*          Changes for small display      */
 
-@media (max-width: 991px) {
+@media (max-width: 1100px) {
     .sidebar {
         display: none;
         box-shadow: none;

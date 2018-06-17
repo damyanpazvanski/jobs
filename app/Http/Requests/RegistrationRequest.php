@@ -23,7 +23,7 @@ class RegistrationRequest extends FormRequest
      */
     public function rules()
     {
-        switch ($this->route()->getAction()) {
+        switch ($this->route()->getActionMethod()) {
             case 'userInformation':
                 return [
                     'firstName' => 'required|string|min:2|max:255',
@@ -36,10 +36,12 @@ class RegistrationRequest extends FormRequest
                 return [
                     'image' => 'nullable|image|mime:png,jpg,jpeg,gif|max:1024',
                     'name' => 'required|string|min:2|max:255',
-                    'website' => 'nullable|string|min:2|max:255',
-                    'business_sector_id' => 'required|integer|exists:business_sectors,id',
+                    'website' => 'nullable|active_url',
+                    'business_sector' => 'required|integer|exists:business_sectors,id',
+                    'country' => 'required|integer|exists:countries,id',
+                    'city' => 'required|string|min:2|max:255',
                     'address' => 'required|string|min:2|max:255',
-                    'phone' => 'required|integer'
+                    'phone' => ['required', 'string', 'min:8', 'max:15', 'regex:/^([\+]{1}[0-9]{5}|[0-9]{3})+([\-])([0-9]{3})([\-])([0-9]{3,8})$/u']
                 ];
                 break;
         }

@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Company;
+use App\Country;
 use Illuminate\Console\Command;
 
 class AddCountries extends Command
@@ -222,9 +222,7 @@ class AddCountries extends Command
     ];
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
+     * AddCountries constructor.
      */
     public function __construct()
     {
@@ -239,7 +237,7 @@ class AddCountries extends Command
         $this->info('------------------------- START ADDING -------------------------');
 
         foreach ($this->countries as $country) {
-            Company::firstOrNew([
+            Country::firstOrNew([
                 'name' => $country
             ])->save();
         }

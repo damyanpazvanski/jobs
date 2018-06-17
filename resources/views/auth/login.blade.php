@@ -44,7 +44,7 @@
                             <div class="col-md-6 offset-md-4">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="remember" checked> {{ __('Remember Me') }}
+                                        <input type="checkbox" name="remember" data-background-color="blue" data-color="blue" checked> {{ __('Remember Me') }}
                                     </label>
                                 </div>
                             </div>

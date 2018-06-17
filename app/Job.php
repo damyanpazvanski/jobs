@@ -16,12 +16,18 @@ class Job extends Authenticatable
     protected $fillable = [
         'position',
         'city',
+        'company_id',
         'description',
     ];
 
     public function company()
     {
         return $this->belongsTo(Company::class, 'company_id');
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id');
     }
 
     public function workTime()

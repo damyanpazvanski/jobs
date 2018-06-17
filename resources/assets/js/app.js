@@ -14,10 +14,14 @@ window.Vue = require('vue');
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
+
 Vue.component('registration-user-info', require('./components/Auth/UserInfo.vue'));
 Vue.component('registration-company-info', require('./components/Auth/CompanyInfo.vue'));
 Vue.component('choose-plan', require('./components/Auth/ChoosePlan.vue'));
 Vue.component('registration', require('./components/Auth/RegistrationComponent.vue'));
+
+Vue.component('add-candidates', require('./components/Job/AddCandidates.vue'));
+Vue.component('send-emails', require('./components/Job/SendEmails.vue'));
 
 const app = new Vue({
     el: '#app'

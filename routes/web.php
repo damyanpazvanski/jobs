@@ -11,15 +11,21 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/jobs', 'JobsController@index')->name('jobs');
-Route::get('/jobs/1', 'JobsController@show')->name('show-job');
+//Route::middleware(['auth'])->group(function () {
 
-Route::post('/ajax/register/user-information', 'Ajax\RegisterController@userInformation');
-Route::post('/ajax/register/company-information', 'Ajax\RegisterController@companyInformation');
+    Route::get('/', function () {
+        return view('welcome');
+    });
+
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/job', 'JobsController@create')->name('create-job');
+    Route::post('/job', 'JobsController@store')->name('store-job');
+    Route::get('/jobs', 'JobsController@index')->name('jobs');
+    Route::get('/jobs/1', 'JobsController@show')->name('show-job');
+
+    Route::post('/ajax/register/user-information', 'Ajax\RegisterController@userInformation');
+    Route::post('/ajax/register/company-information', 'Ajax\RegisterController@companyInformation');
+//});

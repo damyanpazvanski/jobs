@@ -15,7 +15,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-info" data-dismiss="modal">Send</button>
+                        <button type="button" class="btn btn-info" data-dismiss="modal" v-on:click="sendMessage">Send</button>
                     </div>
                 </div>
             </div>
@@ -123,6 +123,11 @@
                             </div>
                         </div>
                     </div>
+                    <div v-show="chosenPlan">
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" placeholder="Enter you card information" />
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-group mb-0">
@@ -158,6 +163,10 @@
             },
             register() {
                 this.$emit('register');
+            },
+            sendMessage() {
+                console.log(242);
+                window.location.replace("/");
             }
         }
     }

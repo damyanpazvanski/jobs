@@ -16,10 +16,11 @@ class CreateJobsTable extends Migration
         Schema::create('jobs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('company_id')->references('id')->on('companies')->onDelete('delete');
+            $table->integer('country_id')->references('id')->on('countries')->onDelete('SET NULL')->nullable();
             $table->string('position');
             $table->string('work_time_id')->references('id')->on('work_times')->onDelete('SET NULL')->nullable();
             $table->string('city');
-            $table->text('description');
+            $table->text('description')->nullable()->default(null);
             $table->timestamps();
         });
     }

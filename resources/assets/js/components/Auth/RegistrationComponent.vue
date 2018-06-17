@@ -37,7 +37,7 @@
         },
         data() {
             return {
-                page: 2
+                page: 3
             }
         },
         methods: {

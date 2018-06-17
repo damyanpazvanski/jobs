@@ -103,6 +103,7 @@
                     function (response) {
                         self.$emit('continueBtn', {user: self.user});
                     }, function (error) {
+                        console.log(self.errors, error.response.data.errors);
                         self.errors = error.response.data.errors;
                     });
             },
@@ -115,8 +116,3 @@
         }
     }
 </script>
-<style>
-    .invalid {
-        color: #ff6347;
-    }
-</style>
