@@ -29,3 +29,5 @@ Auth::routes();
     Route::post('/ajax/register/user-information', 'Ajax\RegisterController@userInformation');
     Route::post('/ajax/register/company-information', 'Ajax\RegisterController@companyInformation');
 //});
+
+Route::get('/jobs/1/test', 'TestsController@index');

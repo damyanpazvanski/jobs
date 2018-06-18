@@ -23,6 +23,10 @@ Vue.component('registration', require('./components/Auth/RegistrationComponent.v
 Vue.component('add-candidates', require('./components/Job/AddCandidates.vue'));
 Vue.component('send-emails', require('./components/Job/SendEmails.vue'));
 
+Vue.component('verify-email', require('./components/Test/VerifyEmail.vue'));
+Vue.component('questions', require('./components/Test/Questions.vue'));
+Vue.component('test', require('./components/Test/Test.vue'));
+
 const app = new Vue({
     el: '#app'
 });
