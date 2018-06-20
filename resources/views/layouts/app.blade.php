@@ -25,7 +25,7 @@
         <div class="sidebar-wrapper ps-container ps-theme-default">
             <ul class="nav">
                 <li class="active">
-                    <a href="/jobs">
+                    <a href="/">
                         <i class="material-icons">dashboard</i>
                         <p>Dashboard</p>
                     </a>
@@ -37,7 +37,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a href="./table.html">
+                    <a href="/jobs">
                         <i class="material-icons">content_paste</i>
                         <p>Jobs</p>
                     </a>
@@ -54,7 +54,7 @@
         <div class="sidebar-background"></div>
     </div>
 
-    {{--        @if(auth()->user())--}}
+            {{--@if(auth()->user())--}}
     {{--<nav class="navbar navbar-expand-md navbar-laravel"--}}
          {{--style="background: linear-gradient(60deg, #26c6da, #00acc1); box-shadow: 0 12px 20px -10px rgba(0, 188, 212, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(0, 188, 212, 0.2)">--}}
         {{--<div class="container" style="color: #ffffff">--}}
@@ -77,7 +77,7 @@
                     {{--<li class="nav-item dropdown">--}}
                         {{--<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"--}}
                            {{--data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>--}}
-                            {{--                                {{ Auth::user()->name }}--}}
+                                                            {{--{{ Auth::user()->name }}--}}
                             {{--User name--}}
                         {{--</a>--}}
 
@@ -123,7 +123,15 @@
                                     <a href="#">My account</a>
                                 </li>
                                 <li>
-                                    <a href="#">Logout</a>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                                 </li>
                             </ul>
                         </li>
@@ -142,8 +150,10 @@
             </div>
         </nav>
         <div class="content">
-            @yield('content')
-            <footer class="footer">
+            <div class="">
+                @yield('content')
+            </div>
+            <footer class="footer col-md-12">
                 <div class="container-fluid">
                     <p class="copyright text-center">
                         &copy 2018<span class="btn-link"> Pazvany Corporation</span>, made with love for a better web

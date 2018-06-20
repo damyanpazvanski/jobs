@@ -20,10 +20,10 @@
 </head>
 <body>
 <div id="app" class="wrapper">
-    <div class="content">
+    <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
         @yield('content')
         <footer class="footer">
-            <div class="container-fluid">
+            <div class="col-md-12">
                 <p class="copyright text-center">
                     &copy 2018<span class="btn-link"> Pazvany Corporation</span>, made with love for a better web
                 </p>

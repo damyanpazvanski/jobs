@@ -1,11 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.noMenuApp')
 
 @section('content')
-<div class="container" style="margin-top: 50px">
-    <div class="row justify-content-center">
+    <div class="justify-content-center" style="margin-top: 50px">
         <registration
-            :business-sectors="{{ $businessSectors }}"
+                :business-sectors="{{ $businessSectors }}"
+                :countries="{{ $countries }}"
         ></registration>
     </div>
-</div>
 @endsection

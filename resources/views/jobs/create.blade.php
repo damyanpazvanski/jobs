@@ -1,20 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <form method="POST" action="{{ route('store-job') }}">
-            @csrf
-            <div class="row justify-content-center">
-                <div class="col-md-9 card">
+    <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+
+        <div class="row justify-content-center">
+            <form method="POST" action="{{ route('store-job') }}">
+                @csrf
+                <div class="card">
                     <div class="card-header font-weight-bold" data-background-color="blue">
-                        <h3 class="title col-md-4">New Job</h3>
-                        <button type="button" class="btn btn-outline-secondary btn-lg col-md-4">Cancel</button>
-                        <button type="submit" class="btn btn-outline-success btn-lg col-md-4">Save</button>
+                        <h4 class="title">New Job</h4>
                     </div>
 
-                    <div class="card-body">
+                    <div class="card-body col-md-12">
                         <div class="form-group row form-info">
-                            <label for="position" class="col-md-4 col-form-label text-md-right">Position name</label>
+                            <label for="position" class="col-md-4 col-form-label text-right">Position name</label>
 
                             <div class="col-md-6">
                                 <input id="position" name="position" type="text" value="{{ old('position') }}"
@@ -29,7 +28,7 @@
                         </div>
 
                         <div class="form-group row form-info">
-                            <label for="country_id" class="col-md-4 col-form-label text-md-right">Country</label>
+                            <label for="country_id" class="col-md-4 col-form-label text-right">Country</label>
 
                             <div class="col-md-6">
                                 <select name="country_id" id="country_id"
@@ -51,7 +50,7 @@
                         </div>
 
                         <div class="form-group row form-info">
-                            <label for="city" class="col-md-4 col-form-label text-md-right">City</label>
+                            <label for="city" class="col-md-4 col-form-label text-right">City</label>
 
                             <div class="col-md-6">
                                 <input id="city" name="city" type="text" value="{{ old('city') }}"
@@ -66,7 +65,7 @@
                         </div>
 
                         <div class="form-group row form-info">
-                            <label for="work_time_id" class="col-md-4 col-form-label text-md-right">Work Time</label>
+                            <label for="work_time_id" class="col-md-4 col-form-label text-right">Work Time</label>
 
                             <div class="col-md-6">
                                 <select name="work_time_id" id="work_time_id"
@@ -87,60 +86,20 @@
                             </div>
                         </div>
 
-                    </div>
-
-                </div>
-
-                <div id="toolbar-container"></div>
-
-                <label for="" class="col-md-12">Description</label>
-                <div class="col-md-12">
-                    <div class="document-editor">
-                        <div class="document-editor__toolbar"></div>
-                        <div class="document-editor__editable-container">
-                            <div class="document-editor__editable">
-                                <p>Type your description here.</p>
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 col-md-offset-3 text-center">
+                                <button class="btn btn-lg btn-block" data-background-color="blue">
+                                    Create
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 @endsection
 <style>
-    .card-header {
-        padding: 0 !important;
-    }
-
-    .card-header .btn-outline-secondary:hover {
-        background-color: #6c757d !important;
-        color: #ffffff !important;
-    }
-
-    .card-header .btn-outline-secondary {
-        background-color: #FFFFFF !important;
-        color: #6c757d !important;
-    }
-
-    .card-header .btn-outline-success {
-        color: #6c757d !important;
-        background-color: #ffffff !important;
-    }
-
-    .card-header .btn-outline-success:hover {
-        background-color: #28a745 !important;
-        color: #ffffff !important;
-    }
-
-    .card-header .btn {
-        margin: 0 !important;
-    }
-
-    .card-header .title {
-        margin-top: 20px !important;
-    }
-
     .document-editor {
         border: 1px solid var(--ck-color-base-border);
         border-radius: var(--ck-border-radius);

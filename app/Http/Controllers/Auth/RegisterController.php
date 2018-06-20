@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\BusinessSector;
 use App\CompanyAdmin;
+use App\Country;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
@@ -30,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -50,8 +51,9 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         $businessSectors = BusinessSector::all();
+        $countries = Country::all();
 
-        return view('auth.register', compact('businessSectors'));
+        return view('auth.register', compact('businessSectors', 'countries'));
     }
 
     /**

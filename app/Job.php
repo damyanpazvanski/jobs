@@ -16,8 +16,8 @@ class Job extends Authenticatable
     protected $fillable = [
         'position',
         'city',
-        'company_id',
         'description',
+        'status'
     ];
 
     public function company()

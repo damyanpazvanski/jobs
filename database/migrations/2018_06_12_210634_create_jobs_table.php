@@ -20,6 +20,7 @@ class CreateJobsTable extends Migration
             $table->string('position');
             $table->string('work_time_id')->references('id')->on('work_times')->onDelete('SET NULL')->nullable();
             $table->string('city');
+            $table->enum('status', ['open', 'closed']);
             $table->text('description')->nullable()->default(null);
             $table->timestamps();
         });

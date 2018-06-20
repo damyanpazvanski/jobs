@@ -21,7 +21,7 @@ class CreateCompaniesTable extends Migration
             $table->string('image_id')->references('id')->on('images')->onDelete('SET NULL')->nullable();
             $table->string('address');
             $table->string('city');
-            $table->integer('country')->references('id')->on('countries')->onDelete('SET NULL')->nullable();;
+            $table->integer('country_id')->references('id')->on('countries')->onDelete('SET NULL')->nullable();;
             $table->string('phone');
             $table->string('description')->nullable();
             $table->timestamps();

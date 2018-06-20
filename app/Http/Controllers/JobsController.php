@@ -16,12 +16,14 @@ class JobsController extends Controller
      */
     public function index()
     {
-        return view('jobs.index');
+        $jobs = auth()->user()->company->jobs;
+
+        return view('jobs.index', compact('jobs'));
     }
 
-    public function show()
+    public function show(Job $job)
     {
-        return view('jobs.show');
+        return view('jobs.show', $job);
     }
 
     public function create()
@@ -36,9 +38,11 @@ class JobsController extends Controller
     {
         $job = new Job($request->all());
 
-        $job->country()->associate(Company::find($request->get('company_id')));
+        $job->status = 'open';
+        $job->company()->associate(auth()->user()->company);
+
+        $job->country()->associate(Country::find($request->get('country_id')));
         $job->workTime()->associate(WorkTime::find($request->get('work_time_id')));
-        $job->company_id = 1;
 
         $job->save();
 

@@ -6,7 +6,7 @@
 
         <div class="card-body">
             <div class="form-group row form-info">
-                <label for="first_name" class="col-md-4 col-form-label text-md-right">First name</label>
+                <label for="first_name" class="col-md-4 col-form-label text-right">First name</label>
 
                 <div class="col-md-6">
                     <input id="first_name" @blur="check(user.firstName, 'firstName')"
@@ -17,7 +17,7 @@
             </div>
 
             <div class="form-group row form-info">
-                <label for="last_name" class="col-md-4 col-form-label text-md-right">Last name</label>
+                <label for="last_name" class="col-md-4 col-form-label text-right">Last name</label>
 
                 <div class="col-md-6">
                     <input id="last_name" @blur="check(user.lastName, 'lastName')"
@@ -28,7 +28,7 @@
             </div>
 
             <div class="form-group row form-info">
-                <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address'</label>
+                <label for="email" class="col-md-4 col-form-label text-right">E-Mail Address'</label>
 
                 <div class="col-md-6">
                     <input id="email" @blur="check(emailRegex.test(user.email), 'email')"
@@ -39,7 +39,7 @@
             </div>
 
             <div class="form-group row form-info">
-                <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                <label for="password" class="col-md-4 col-form-label text-right">Password</label>
 
                 <div class="col-md-6">
                     <input id="password" @blur="check(passwordRegex.test(user.password), 'password')"
@@ -57,7 +57,7 @@
             </div>
 
             <div class="form-group row form-info">
-                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
+                <label for="password-confirm" class="col-md-4 col-form-label text-right">Confirm Password</label>
 
                 <div class="col-md-6">
                     <input id="password-confirm" @blur="check(user.confirmPassword == user.password, 'confirmPassword')"

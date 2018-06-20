@@ -13997,7 +13997,7 @@ var render = function() {
             _c(
               "label",
               {
-                staticClass: "col-md-4 col-form-label text-md-right",
+                staticClass: "col-md-4 col-form-label text-right",
                 attrs: { for: "first_name" }
               },
               [_vm._v("First name")]
@@ -14044,7 +14044,7 @@ var render = function() {
             _c(
               "label",
               {
-                staticClass: "col-md-4 col-form-label text-md-right",
+                staticClass: "col-md-4 col-form-label text-right",
                 attrs: { for: "last_name" }
               },
               [_vm._v("Last name")]
@@ -14086,7 +14086,7 @@ var render = function() {
             _c(
               "label",
               {
-                staticClass: "col-md-4 col-form-label text-md-right",
+                staticClass: "col-md-4 col-form-label text-right",
                 attrs: { for: "email" }
               },
               [_vm._v("E-Mail Address'")]
@@ -14133,7 +14133,7 @@ var render = function() {
             _c(
               "label",
               {
-                staticClass: "col-md-4 col-form-label text-md-right",
+                staticClass: "col-md-4 col-form-label text-right",
                 attrs: { for: "password" }
               },
               [_vm._v("Password")]
@@ -14185,7 +14185,7 @@ var render = function() {
             _c(
               "label",
               {
-                staticClass: "col-md-4 col-form-label text-md-right",
+                staticClass: "col-md-4 col-form-label text-right",
                 attrs: { for: "password-confirm" }
               },
               [_vm._v("Confirm Password")]
@@ -14413,7 +14413,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['businessSectors'],
+    props: ['businessSectors', 'countries'],
     data: function data() {
         return {
             company: {
@@ -14422,7 +14422,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 name: '',
                 website: '',
                 business_sector: '',
-                country: '',
+                country_id: '',
                 city: '',
                 address: '',
                 phone: ''
@@ -14435,7 +14435,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         register: function register() {},
         backBtn: function backBtn() {
-            this.$emit('backBtn');
+            this.$emit('backBtn', this.company);
         },
         continueBtn: function continueBtn() {
             var self = this;
@@ -14472,7 +14472,7 @@ var render = function() {
         _c(
           "label",
           {
-            staticClass: "col-md-4 col-form-label text-md-right",
+            staticClass: "col-md-4 col-form-label text-right",
             attrs: { for: "image" }
           },
           [_vm._v("Company Logo")]
@@ -14531,7 +14531,7 @@ var render = function() {
         _c(
           "label",
           {
-            staticClass: "col-md-4 col-form-label text-md-right",
+            staticClass: "col-md-4 col-form-label text-right",
             attrs: { for: "name" }
           },
           [_vm._v("Company name")]
@@ -14576,7 +14576,7 @@ var render = function() {
         _c(
           "label",
           {
-            staticClass: "col-md-4 col-form-label text-md-right",
+            staticClass: "col-md-4 col-form-label text-right",
             attrs: { for: "website" }
           },
           [_vm._v("Website")]
@@ -14624,7 +14624,7 @@ var render = function() {
         _c(
           "label",
           {
-            staticClass: "col-md-4 col-form-label text-md-right",
+            staticClass: "col-md-4 col-form-label text-right",
             attrs: { for: "business_sector" }
           },
           [_vm._v("Business Sector")]
@@ -14688,8 +14688,8 @@ var render = function() {
         _c(
           "label",
           {
-            staticClass: "col-md-4 col-form-label text-md-right",
-            attrs: { for: "country" }
+            staticClass: "col-md-4 col-form-label text-right",
+            attrs: { for: "country_id" }
           },
           [_vm._v("Country")]
         ),
@@ -14702,12 +14702,12 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.company.country,
-                  expression: "company.country"
+                  value: _vm.company.country_id,
+                  expression: "company.country_id"
                 }
               ],
               staticClass: "custom-select",
-              attrs: { name: "country", id: "country" },
+              attrs: { name: "country_id", id: "country_id" },
               on: {
                 change: function($event) {
                   var $$selectedVal = Array.prototype.filter
@@ -14720,7 +14720,7 @@ var render = function() {
                     })
                   _vm.$set(
                     _vm.company,
-                    "country",
+                    "country_id",
                     $event.target.multiple ? $$selectedVal : $$selectedVal[0]
                   )
                 }
@@ -14729,12 +14729,19 @@ var render = function() {
             [
               _c("option", { attrs: { value: "" } }, [
                 _vm._v("Choose the country")
-              ])
-            ]
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.countries, function(country) {
+                return _c("option", { domProps: { value: country.id } }, [
+                  _vm._v(_vm._s(country.name))
+                ])
+              })
+            ],
+            2
           ),
           _vm._v(" "),
           _c("strong", { staticClass: "invalid" }, [
-            _vm._v(_vm._s(_vm.errors["country"]))
+            _vm._v(_vm._s(_vm.errors["country_id"]))
           ])
         ])
       ]),
@@ -14743,7 +14750,7 @@ var render = function() {
         _c(
           "label",
           {
-            staticClass: "col-md-4 col-form-label text-md-right",
+            staticClass: "col-md-4 col-form-label text-right",
             attrs: { for: "city" }
           },
           [_vm._v("City")]
@@ -14787,7 +14794,7 @@ var render = function() {
         _c(
           "label",
           {
-            staticClass: "col-md-4 col-form-label text-md-right",
+            staticClass: "col-md-4 col-form-label text-right",
             attrs: { for: "address" }
           },
           [_vm._v("Company Address")]
@@ -14831,7 +14838,7 @@ var render = function() {
         _c(
           "label",
           {
-            staticClass: "col-md-4 col-form-label text-md-right",
+            staticClass: "col-md-4 col-form-label text-right",
             attrs: { for: "phone" }
           },
           [_vm._v("Phone")]
@@ -15790,12 +15797,14 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__UserInfo_vue__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__UserInfo_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__UserInfo_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CompanyInfo_vue__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__CompanyInfo_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__CompanyInfo_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ChoosePlan_vue__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ChoosePlan_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__ChoosePlan_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__UserInfo_vue__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__UserInfo_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__UserInfo_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CompanyInfo_vue__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__CompanyInfo_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__CompanyInfo_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ChoosePlan_vue__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ChoosePlan_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__ChoosePlan_vue__);
 //
 //
 //
@@ -15820,28 +15829,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
+
 
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['businessSectors'],
+    props: ['businessSectors', 'countries'],
     components: {
-        userInfo: __WEBPACK_IMPORTED_MODULE_0__UserInfo_vue___default.a,
-        companyInfo: __WEBPACK_IMPORTED_MODULE_1__CompanyInfo_vue___default.a,
-        choosePlan: __WEBPACK_IMPORTED_MODULE_2__ChoosePlan_vue___default.a
+        userInfo: __WEBPACK_IMPORTED_MODULE_1__UserInfo_vue___default.a,
+        companyInfo: __WEBPACK_IMPORTED_MODULE_2__CompanyInfo_vue___default.a,
+        choosePlan: __WEBPACK_IMPORTED_MODULE_3__ChoosePlan_vue___default.a
     },
     data: function data() {
         return {
-            page: 3
+            page: 1,
+            data: {}
         };
     },
 
     methods: {
-        continueBtn: function continueBtn() {
-            this.page++;
+        continueBtn: function continueBtn(data) {
+
+            if (this.page == 1) {
+                this.data['user'] = data.user;
+                this.page++;
+            } else if (this.page == 2) {
+                this.data['company'] = data.company;
+
+                console.log(this.data, this);
+
+                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/ajax/register/store', this.data);
+            }
         },
         backBtn: function backBtn() {
             this.page--;
@@ -15857,51 +15877,52 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c(
-      "div",
-      { staticClass: "row justify-content-center" },
-      [
-        _c("user-info", {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.page == 1,
-              expression: "page == 1"
-            }
-          ],
-          on: { continueBtn: _vm.continueBtn }
-        }),
-        _vm._v(" "),
-        _c("company-info", {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.page == 2,
-              expression: "page == 2"
-            }
-          ],
-          attrs: { "business-sectors": _vm.businessSectors },
-          on: { backBtn: _vm.backBtn, continueBtn: _vm.continueBtn }
-        }),
-        _vm._v(" "),
-        _c("choose-plan", {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.page == 3,
-              expression: "page == 3"
-            }
-          ],
-          on: { backBtn: _vm.backBtn, continueBtn: _vm.continueBtn }
-        })
-      ],
-      1
-    )
-  ])
+  return _c(
+    "div",
+    { staticClass: "row justify-content-center" },
+    [
+      _c("user-info", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.page == 1,
+            expression: "page == 1"
+          }
+        ],
+        on: { continueBtn: _vm.continueBtn }
+      }),
+      _vm._v(" "),
+      _c("company-info", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.page == 2,
+            expression: "page == 2"
+          }
+        ],
+        attrs: {
+          "business-sectors": _vm.businessSectors,
+          countries: _vm.countries
+        },
+        on: { backBtn: _vm.backBtn, continueBtn: _vm.continueBtn }
+      }),
+      _vm._v(" "),
+      _c("choose-plan", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.page == 3,
+            expression: "page == 3"
+          }
+        ],
+        on: { backBtn: _vm.backBtn, continueBtn: _vm.continueBtn }
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

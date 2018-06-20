@@ -2,89 +2,45 @@
 
 namespace App\Http\Controllers\Ajax;
 
+use App\Role;
+use App\Country;
+use App\Company;
 use App\CompanyAdmin;
+use App\BusinessSector;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegistrationRequest;
-use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
 
-    use RegistersUsers;
-
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function store(Request $request)
     {
-        $this->middleware('guest');
-    }
+        $userInformation = $request->get('user');
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'first_name' => 'required|string|min:2|max:255',
-            'last_name' => 'required|string|min:2|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-            'phone' => 'required|string|min:8|max:20',
-            'card_brand' => 'nullable|string|min:2|max:255',
-            'card_last_four' => 'nullable|integer|digits:4',
-            'trial' => 'nullable|integer|between:0,1'
+        $companyAdmin = new CompanyAdmin([
+            'first_name' => $userInformation['firstName'],
+            'last_name' => $userInformation['lastName'],
+            'email' => $userInformation['email'],
+            'phone' => $request->get('company')['phone'],
+            'password' => Hash::make($userInformation['password'])
         ]);
-    }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
-     */
-    protected function create(array $data)
-    {
-        $trialEndAt = null;
-        if ($data['trial'] == 1) {
-            $trialEndAt = Carbon::now()->addMonth(1);
-        }
+        $companyAdmin->role()->associate(Role::where('name', 'company_admin')->first());
 
-        return CompanyAdmin::create([
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'phone' => $data['phone'],
-            'card_brand' => $data['card_brand'],
-            'trial_ends_at' => $trialEndAt,
-            'card_last_four' => $data['card_last_four'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        $companyInformation = $request->get('company');
+
+        $company = new Company($companyInformation);
+
+        $company->businessSector()->associate(BusinessSector::find($companyInformation['business_sector']));
+        $company->country()->associate(Country::find($companyInformation['country_id']));
+        $company->save();
+
+        $companyAdmin->company()->associate($company);
+        $companyAdmin->save();
+
+        return $companyAdmin;
     }
 
     public function userInformation(RegistrationRequest $request)

@@ -7,7 +7,7 @@
         <div class="card-body">
 
             <div class="form-group row form-info">
-                <label for="image" class="col-md-4 col-form-label text-md-right">Company Logo</label>
+                <label for="image" class="col-md-4 col-form-label text-right">Company Logo</label>
 
                 <div class="col-md-6">
                     <p v-show="company.image">{{ company.imageName }}</p>
@@ -22,7 +22,7 @@
             </div>
 
             <div class="form-group row form-info">
-                <label for="name" class="col-md-4 col-form-label text-md-right">Company name</label>
+                <label for="name" class="col-md-4 col-form-label text-right">Company name</label>
 
                 <div class="col-md-6">
                     <input id="name" v-model="company.name" type="text" class="form-control" required autofocus placeholder="Enter the company name">
@@ -32,7 +32,7 @@
             </div>
 
             <div class="form-group row form-info">
-                <label for="website" class="col-md-4 col-form-label text-md-right">Website</label>
+                <label for="website" class="col-md-4 col-form-label text-right">Website</label>
 
                 <div class="col-md-6">
                     <input id="website" v-model="company.website" type="text" class="form-control" required placeholder="http://website.com">
@@ -42,7 +42,7 @@
             </div>
 
             <div class="form-group row form-info">
-                <label for="business_sector" class="col-md-4 col-form-label text-md-right">Business Sector</label>
+                <label for="business_sector" class="col-md-4 col-form-label text-right">Business Sector</label>
 
                 <div class="col-md-6">
                     <select class="custom-select" id="business_sector" name="business_sector" v-model="company.business_sector">
@@ -55,20 +55,20 @@
             </div>
 
             <div class="form-group row form-info">
-                <label for="country" class="col-md-4 col-form-label text-md-right">Country</label>
+                <label for="country_id" class="col-md-4 col-form-label text-right">Country</label>
 
                 <div class="col-md-6">
-                    <select name="country" id="country" class="custom-select" v-model="company.country">
+                    <select name="country_id" id="country_id" class="custom-select" v-model="company.country_id">
                         <option value="">Choose the country</option>
-
+                        <option v-for="country in countries" :value="country.id">{{ country.name }}</option>
                     </select>
 
-                    <strong class="invalid">{{ errors['country'] }}</strong>
+                    <strong class="invalid">{{ errors['country_id'] }}</strong>
                 </div>
             </div>
 
             <div class="form-group row form-info">
-                <label for="city" class="col-md-4 col-form-label text-md-right">City</label>
+                <label for="city" class="col-md-4 col-form-label text-right">City</label>
 
                 <div class="col-md-6">
                     <input id="city" v-model="company.city" type="text" class="form-control" required placeholder="Enter the city">
@@ -78,7 +78,7 @@
             </div>
 
             <div class="form-group row form-info">
-                <label for="address" class="col-md-4 col-form-label text-md-right">Company Address</label>
+                <label for="address" class="col-md-4 col-form-label text-right">Company Address</label>
 
                 <div class="col-md-6">
                     <input id="address" v-model="company.address" type="text" class="form-control" required placeholder="Enter the company address">
@@ -88,7 +88,7 @@
             </div>
 
             <div class="form-group row form-info">
-                <label for="phone" class="col-md-4 col-form-label text-md-right">Phone</label>
+                <label for="phone" class="col-md-4 col-form-label text-right">Phone</label>
 
                 <div class="col-md-6">
                     <input id="phone" v-model="company.phone" type="text" class="form-control" required placeholder="Enter the company phone">
@@ -118,7 +118,7 @@
     import axios from 'axios';
 
     export default {
-        props: ['businessSectors'],
+        props: ['businessSectors', 'countries'],
         data() {
             return {
                 company: {
@@ -127,7 +127,7 @@
                     name: '',
                     website: '',
                     business_sector: '',
-                    country: '',
+                    country_id: '',
                     city: '',
                     address: '',
                     phone: ''
@@ -141,7 +141,7 @@
 
             },
             backBtn() {
-                this.$emit('backBtn');
+                this.$emit('backBtn', this.company);
             },
             continueBtn() {
                 let self = this;

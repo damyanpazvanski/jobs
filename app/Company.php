@@ -18,6 +18,7 @@ class Company extends Authenticatable
         'website',
         'address',
         'phone',
+        'city',
         'description',
     ];
 
@@ -26,8 +27,18 @@ class Company extends Authenticatable
         return $this->belongsTo(BusinessSector::class, 'business_sector_id');
     }
 
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id');
+    }
+
     public function image()
     {
         return $this->belongsTo(Image::class, 'image_id');
+    }
+
+    public function jobs()
+    {
+        return $this->hasMany(Job::class);
     }
 }
