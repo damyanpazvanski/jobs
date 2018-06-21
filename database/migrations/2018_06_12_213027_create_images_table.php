@@ -15,9 +15,13 @@ class CreateImagesTable extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('company_id')->references('id')->on('companies')->onDelete('delete');
+            $table->unsignedInteger('company_id');
             $table->string('name');
             $table->timestamps();
+
+            $table->foreign('company_id')
+                ->references('id')->on('companies')
+                ->onDelete('delete');
         });
     }
 

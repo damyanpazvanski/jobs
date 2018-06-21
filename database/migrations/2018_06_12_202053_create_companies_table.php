@@ -17,14 +17,26 @@ class CreateCompaniesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('website')->nullable();
-            $table->integer('business_sector_id')->references('id')->on('business_sectors')->onDelete('SET NULL')->nullable();
-            $table->string('image_id')->references('id')->on('images')->onDelete('SET NULL')->nullable();
+            $table->unsignedInteger('business_sector_id')->nullable();
+            $table->unsignedInteger('image_id')->nullable();
             $table->string('address');
             $table->string('city');
-            $table->integer('country_id')->references('id')->on('countries')->onDelete('SET NULL')->nullable();;
+            $table->unsignedInteger('country_id')->nullable();;
             $table->string('phone');
             $table->string('description')->nullable();
             $table->timestamps();
+
+            $table->foreign('business_sector_id')
+                ->references('id')->on('business_sectors')
+                ->onDelete('SET NULL');
+
+            $table->foreign('image_id')
+                ->references('id')->on('images')
+                ->onDelete('SET NULL');
+
+            $table->foreign('country_id')
+                ->references('id')->on('countries')
+                ->onDelete('SET NULL');
         });
     }
 

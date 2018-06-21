@@ -15,11 +15,11 @@ class CreateCompanyAdminsTable extends Migration
     {
         Schema::create('company_admins', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('company_id')->references('id')->on('companies')->onDelete('SET NULL')->nullable();
+            $table->unsignedInteger('company_id')->nullable();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email')->unique();
-            $table->integer('role_id')->references('id')->on('roles')->onDelete('SET NULL')->nullable();
+            $table->unsignedInteger('role_id')->nullable();
             $table->string('phone');
             $table->string('braintree_id')->nullable();
             $table->string('paypal_email')->nullable();
@@ -30,6 +30,15 @@ class CreateCompanyAdminsTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+
+            $table->foreign('country_id')
+                ->references('id')->on('countries')
+                ->onDelete('SET NULL');
+
+            $table->foreign('role_id')
+                ->references('id')->on('roles')
+                ->onDelete('SET NULL');
+
         });
     }
 

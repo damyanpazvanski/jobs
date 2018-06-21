@@ -15,14 +15,26 @@ class CreateJobsTable extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('company_id')->references('id')->on('companies')->onDelete('delete');
-            $table->integer('country_id')->references('id')->on('countries')->onDelete('SET NULL')->nullable();
+            $table->unsignedInteger('company_id');
+            $table->unsignedInteger('country_id')->nullable();
             $table->string('position');
-            $table->string('work_time_id')->references('id')->on('work_times')->onDelete('SET NULL')->nullable();
+            $table->unsignedInteger('work_time_id')->nullable();
             $table->string('city');
             $table->enum('status', ['open', 'closed']);
-            $table->text('description')->nullable()->default(null);
+            $table->text('description')->nullable();
             $table->timestamps();
+
+            $table->foreign('company_id')
+                ->references('id')->on('companies')
+                ->onDelete('delete');
+
+            $table->foreign('country_id')
+                ->references('id')->on('countries')
+                ->onDelete('SET NULL');
+
+            $table->foreign('work_time_id')
+                ->references('id')->on('work_times')
+                ->onDelete('SET NULL');
         });
     }
 

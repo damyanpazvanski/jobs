@@ -22,7 +22,7 @@ class JobsController extends Controller
 
     public function show(Job $job)
     {
-        $candidates = $job->query()->candidates($job->id)->paginate(2);
+        $candidates = $job->query()->candidates($job->id)->paginate(10);
 
         return view('jobs.show', compact('job', 'candidates'));
     }

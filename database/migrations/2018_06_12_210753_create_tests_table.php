@@ -15,11 +15,15 @@ class CreateTestsTable extends Migration
     {
         Schema::create('tests', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('candidate_id')->references('id')->on('candidates')->onDelete('delete');
+            $table->unsignedInteger('candidate_id');
             $table->enum('status', ['hold', 'complete']);
             $table->enum('level', ['low', 'below middle', 'middle', 'above middle', 'high'])->nullable();
             $table->integer('result')->nullable();
             $table->timestamps();
+
+            $table->foreign('candidate_id')
+                ->references('id')->on('candidates')
+                ->onDelete('delete');
         });
     }
 

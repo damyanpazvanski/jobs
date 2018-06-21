@@ -17,8 +17,12 @@ class CreateQuestionsTable extends Migration
             $table->increments('id');
             $table->string('condition', 2000);
             $table->string('image');
-            $table->integer('answer_id')->references('id')->on('answers')->onDelete('SET NULL')->nullable();
+            $table->unsignedInteger('answer_id')->nullable();
             $table->timestamps();
+
+            $table->foreign('answer_id')
+                ->references('id')->on('answers')
+                ->onDelete('SET NULL');
         });
     }
 

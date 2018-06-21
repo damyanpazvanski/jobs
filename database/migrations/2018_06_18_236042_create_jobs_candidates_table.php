@@ -14,8 +14,16 @@ class CreateJobsCandidatesTable extends Migration
     public function up()
     {
         Schema::create('jobs_candidates', function (Blueprint $table) {
-            $table->integer('job_id')->references('id')->on('jobs')->onDelete('delete');
-            $table->integer('candidate_id')->references('id')->on('candidates')->onDelete('delete');
+            $table->integer('job_id');
+            $table->integer('candidate_id');
+
+            $table->foreign('job_id')
+                ->references('id')->on('jobs')
+                ->onDelete('delete');
+
+            $table->foreign('candidate_id')
+                ->references('id')->on('candidates')
+                ->onDelete('delete');
         });
     }
 

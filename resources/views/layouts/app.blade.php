@@ -24,19 +24,19 @@
         <div class="logo text-center" style="font-weight: bold">Hello Damyan Pazvanski</div>
         <div class="sidebar-wrapper ps-container ps-theme-default">
             <ul class="nav">
-                <li class="active">
+                <li class="{{ request()->is('/') ? 'active' : '' }}">
                     <a href="/">
                         <i class="material-icons">dashboard</i>
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li>
-                    <a href="/my-profile">
+                <li class="{{ request()->is('my-account') ? 'active' : '' }}">
+                    <a href="/my-account">
                         <i class="material-icons">person</i>
                         <p>User Profile</p>
                     </a>
                 </li>
-                <li class="">
+                <li class="{{ request()->is('jobs') ? 'active' : '' }}">
                     <a href="/jobs">
                         <i class="material-icons">content_paste</i>
                         <p>Jobs</p>
