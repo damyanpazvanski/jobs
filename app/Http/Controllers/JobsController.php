@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Company;
-use App\Country;
-use App\Http\Requests\JobRequest;
 use App\Job;
+use App\Country;
+use App\JobsCandidates;
 use App\WorkTime;
-use Illuminate\Http\Request;
+use App\Http\Requests\JobRequest;
 
 class JobsController extends Controller
 {
@@ -23,7 +22,9 @@ class JobsController extends Controller
 
     public function show(Job $job)
     {
-        return view('jobs.show', $job);
+        $candidates = $job->query()->candidates($job->id)->paginate(2);
+
+        return view('jobs.show', compact('job', 'candidates'));
     }
 
     public function create()

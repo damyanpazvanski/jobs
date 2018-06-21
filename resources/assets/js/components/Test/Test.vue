@@ -1,5 +1,5 @@
 <template>
-    <div class="col-sm-12 col-sm-offset-0 col-md-11 col-md-offset-1">
+    <div class="">
         <div v-if="page === 1">
             <verify-email @verifyEmail="verifyEmail"></verify-email>
         </div>

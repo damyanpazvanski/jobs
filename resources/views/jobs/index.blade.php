@@ -32,19 +32,21 @@
                         <a href="/jobs/{{ $job->id }}" class="col-md-3">
                             <div class="card card-profile {{ $job->status == 'open' ? 'open' : 'closed' }}">
                                 {{--<div class="card-avatar" style="height: 100px; width: 100px; background: lime"></div>--}}
-                                <div class="text-left">
+                                <div class="text-left" style="height: 20px">
                                     <img src="/images/pin.png"
                                          style="width: 80px; position: relative; top: -35px; left: -15px;">
                                 </div>
 
-                                <div class="content">
-                                    <h6 class="category text-gray">CEO / CO-FOUNDER</h6>
-                                    <h4 class="card-title">{{ $job->position }}</h4>
-                                    <p class="card-content">
-                                        Don't be scared of the truth because we need to restart the human foundation in
-                                        truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the
-                                        back is...
-                                    </p>
+                                <div class="content" style="padding-bottom: 10px">
+                                    {{--<h6 class="category text-gray">CEO / CO-FOUNDER</h6>--}}
+                                    <h4 class="category text-gray">{{ strtoupper($job->workTime->name) }}</h4>
+                                    <h4 class="alert card-title">{{ $job->position }}</h4>
+                                    <div>
+                                        <p>County: {{ $job->country->name }}</p></p>
+                                        <p>City: {{ $job->city }}</p></p>
+                                        <p>Created at: {{ $job->created_at->format('m/d/Y') }}</p></p>
+                                    </div>
+
                                     @if($job->status == 'open')
                                         <button class="btn btn-round" data-background-color="green">Open</button>
                                     @else

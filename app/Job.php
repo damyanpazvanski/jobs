@@ -2,10 +2,9 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class Job extends Authenticatable
+class Job extends Model
 {
 
     /**
@@ -33,5 +32,16 @@ class Job extends Authenticatable
     public function workTime()
     {
         return $this->belongsTo(WorkTime::class, 'work_time_id');
+    }
+
+    public function candidates()
+    {
+        return $this->hasMany(JobsCandidates::class, 'job_id', 'id');
+    }
+
+    public function scopeCandidates($query, $jobId)
+    {
+        return Candidate::join('jobs_candidates', 'jobs_candidates.candidate_id', '=', 'candidates.id')
+            ->where('job_id', $jobId);
     }
 }

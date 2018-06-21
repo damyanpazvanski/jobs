@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTestsTable extends Migration
+class CreateJobsCandidatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class CreateTestsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tests', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('jobs_candidates', function (Blueprint $table) {
+            $table->integer('job_id')->references('id')->on('jobs')->onDelete('delete');
             $table->integer('candidate_id')->references('id')->on('candidates')->onDelete('delete');
-            $table->enum('status', ['hold', 'complete']);
-            $table->enum('level', ['low', 'below middle', 'middle', 'above middle', 'high'])->nullable();
-            $table->integer('result')->nullable();
-            $table->timestamps();
         });
     }
 
@@ -30,6 +26,6 @@ class CreateTestsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tests');
+        Schema::dropIfExists('answers');
     }
 }

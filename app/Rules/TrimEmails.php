@@ -2,13 +2,8 @@
 
 namespace App\Rules;
 
-use App\Candidate;
-use App\Collaborator;
-use App\Manager;
-use App\Questionnaire;
-use function foo\func;
+use App\Http\Controllers\Ajax\CandidatesController;
 use Illuminate\Contracts\Validation\Rule;
-use Illuminate\Support\Facades\DB;
 
 class TrimEmails implements Rule
 {
@@ -22,16 +17,17 @@ class TrimEmails implements Rule
      */
     public function passes($attribute, $value)
     {
-        //TODO: prepare emails list
+        $emails = explode(',', $value);
 
-
-        foreach (trimEmails($value) as $email) {
-            $validator = filter_var($email, FILTER_VALIDATE_EMAIL);
+        foreach ($emails as &$email) {
+            $validator = filter_var(trim($email), FILTER_VALIDATE_EMAIL);
 
             if ($validator === false) {
                 return false;
             }
         }
+
+        CandidatesController::$EMAILS_LIST = $emails;
 
         return true;
     }
@@ -43,6 +39,6 @@ class TrimEmails implements Rule
      */
     public function message()
     {
-        return trans('validation.find_duplicate_emails');
+        return trans('validation.trim_candidates_emails');
     }
 }

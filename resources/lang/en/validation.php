@@ -143,4 +143,6 @@ return [
 
     'attributes' => [],
 
+    'find_duplicate_emails' => 'Duplicate emails.',
+    'trim_candidates_emails' => 'The list with emails has a problem.'
 ];

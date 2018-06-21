@@ -20,7 +20,7 @@
 </head>
 <body>
 <div id="app" class="wrapper">
-    <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+    <div class="">
         @yield('content')
         <footer class="footer">
             <div class="col-md-12">

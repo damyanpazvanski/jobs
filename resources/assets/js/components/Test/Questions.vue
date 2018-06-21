@@ -1,6 +1,6 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
-    <div class="col-md-10 col-md-offset-1">
-        <div class="row col-md-9 col-lg-9 col-xl-10">
+    <div class="col-md-12">
+        <div class="col-lg-5 col-lg-offset-3">
             <div class="card">
                 <div class="card-header" data-background-color="blue">Example Component</div>
 
@@ -12,10 +12,10 @@
                         </h5>
 
                         <div class="col-md-12">
-                            <div class="col-md-7 col-md-offset-1 text-center">
+                            <div class="col-md-7 text-center">
                                 <img v-bind:src="question.image" class="question-image">
                             </div>
-                            <div class="col-md-4 text-center">
+                            <div class="col-md-4 col-md-offset-1 text-center">
                                 <div class="form answers">
 
                                     <div class="radio radio-primary" v-for="answer in question.answers">
@@ -31,24 +31,25 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="col-md-6">
-                                    <button class="btn btn-block btn-lg btn-outline-secondary">Back</button>
+                                    <button class="btn btn-block btn-lg btn-outline-secondary" v-on:click="back">Back</button>
                                 </div>
                                 <div class="col-md-6">
-                                    <button class="btn btn-block btn-lg btn-info">Next</button>
+                                    <button class="btn btn-block btn-lg btn-info" v-on:click="nextQuestion">Next</button>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-3 col-lg-3 col-xl-2 legend text-center col-sm-12 col-xs-12">
-            <div class="col-md-offset-1">
-                <span class="on-question btn btn-not-answered col-md-2">1</span>
-                <span class="on-question btn btn-info col-md-2" v-for="i in 19">{{ i + 1 }}</span>
+        <div class="col-xl-1 col-lg-2 col-md-12 col-sm-12 col-xs-12 row legend">
+            <div class="text-center">
+                <!--btn-not-answered-->
+                <span class="on-question btn col-xl-2 col-lg-2 col-md-0"
+                      v-for="i in 19"
+                      v-bind:class="{'btn-warning': i === questionNumber, 'btn-info': i !== questionNumber}"
+                >{{ i + 1 }}</span>
             </div>
-
         </div>
     </div>
 </template>
@@ -89,7 +90,12 @@
             },
             chooseAnswer(questionId, answerId) {
                 console.log(questionId, answerId);
+            },
+            nextQuestion() {
                 this.questionNumber++;
+            },
+            back() {
+                this.questionNumber--;
             },
             timer(duration, display) {
                 let self = this;
@@ -119,37 +125,46 @@
         min-width: 80%;
         max-width: 80%;
     }
+
     .on-question {
         font-weight: bold;
         padding: 8px 7px;
         border-radius: 5px;
         margin: 1px 3px 3px 0;
     }
+
     .answers {
         margin-top: 50px;
     }
+
     .legend {
         margin-top: 25px;
         background-color: #FFFFFF;
         padding: 5px 0;
     }
+
     .legend span {
         margin-left: 2px;
     }
+
     .legend > .row {
         margin-top: 4px;
     }
+
     .btn-not-answered {
         color: #ffffff;
         background-color: #aebac2;
     }
+
     .btn-outline-secondary {
         border: 1px solid #aebac2;
     }
+
     .btn-outline-secondary:hover {
         background-color: #aebac2;
         color: #ffffff;
     }
+
     .timerWrapper {
         font-size: 17px;
         font-weight: bold;

@@ -2,20 +2,18 @@
 
 namespace App\Rules;
 
-use App\Candidate;
-use App\Collaborator;
-use App\Manager;
-use App\Questionnaire;
-use function foo\func;
+use App\Http\Controllers\Ajax\CandidatesController;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 
 class FindDuplicateEmails implements Rule
 {
 
-    public function __construct($job)
+    protected $jobId;
+
+    public function __construct($jobId)
     {
-        $this->job = $job;
+        $this->jobId = $jobId;
     }
 
     /**
@@ -27,9 +25,13 @@ class FindDuplicateEmails implements Rule
      */
     public function passes($attribute, $value)
     {
-        $emails = trimEmails($value);
+        $emails = CandidatesController::$EMAILS_LIST;
 
-        $duplicates = Candidate::where('email', '')->first();
+        $duplicates = DB::table('candidates')
+            ->join('jobs_candidates', 'jobs_candidates.candidate_id', '=', 'candidates.id')
+            ->whereIn('email', $emails)
+            ->orWhere('job_id', $this->jobId)
+            ->count();
 
         if ($duplicates) {
             return false;

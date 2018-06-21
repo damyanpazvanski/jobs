@@ -1,4 +1,4 @@
-<template>
+<template xmlns:v-on="http://www.w3.org/1999/xhtml">
     <span>
         <!-- Modal -->
         <div class="modal fade" id="addCandidatesModal" tabindex="-1" role="dialog" aria-labelledby="addCandidatesModalLabel" aria-hidden="true">
@@ -16,7 +16,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-info" data-dismiss="modal">Save</button>
+                        <button type="button" class="btn btn-info" data-dismiss="modal" v-on:click="addCandidates">Save</button>
                     </div>
                 </div>
             </div>
@@ -28,6 +28,7 @@
     import axios from 'axios';
 
     export default {
+        props: ['jobId'],
         data() {
             return {
                 candidates: ''
@@ -35,7 +36,7 @@
         },
         methods: {
             addCandidates() {
-                axios.post('', {
+                axios.post('/ajax/job/' + this.jobId + '/candidates', {
                     candidates: this.candidates
                 })
                     .then(function (response) {

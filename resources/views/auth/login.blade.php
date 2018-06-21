@@ -1,7 +1,7 @@
 @extends('layouts.noMenuApp')
 
 @section('content')
-    <div class="justify-content-center" style="margin-top: 50px">
+    <div class="justify-content-center col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2" style="margin-top: 50px">
         <div class="card">
             <div class="card-header" data-background-color="blue">{{ __('Login') }}</div>
             <div class="card-body">
