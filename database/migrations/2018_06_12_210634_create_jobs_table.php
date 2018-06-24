@@ -26,7 +26,7 @@ class CreateJobsTable extends Migration
 
             $table->foreign('company_id')
                 ->references('id')->on('companies')
-                ->onDelete('delete');
+                ->onDelete('cascade');
 
             $table->foreign('country_id')
                 ->references('id')->on('countries')

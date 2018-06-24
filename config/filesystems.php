@@ -64,6 +64,10 @@ return [
             'url' => env('AWS_URL'),
         ],
 
+        'questions' => [
+            'driver' => 'local',
+            'root' => resource_path('questions')
+        ]
     ],
 
 ];

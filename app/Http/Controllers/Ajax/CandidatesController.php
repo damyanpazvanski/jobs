@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Ajax;
 
+use App\IqResult;
 use App\Job;
 use App\Candidate;
 use App\JobsCandidates;
@@ -24,6 +25,13 @@ class CandidatesController extends Controller
             $relationship->job()->associate($job);
             $relationship->candidate()->associate($candidate);
             $relationship->save();
+
+            $result = new IqResult([
+                'status' => 'hold'
+            ]);
+
+            $result->candidate()->associate($candidate);
+            $result->save();
         }
 
         return response()->json([]);

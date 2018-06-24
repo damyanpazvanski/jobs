@@ -2,6 +2,7 @@
 
 namespace App\Rules;
 
+use App\Candidate;
 use App\Http\Controllers\Ajax\CandidatesController;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\DB;
@@ -27,13 +28,12 @@ class FindDuplicateEmails implements Rule
     {
         $emails = CandidatesController::$EMAILS_LIST;
 
-        $duplicates = DB::table('candidates')
-            ->join('jobs_candidates', 'jobs_candidates.candidate_id', '=', 'candidates.id')
+        $duplicatesInJob = Candidate::join('jobs_candidates', 'jobs_candidates.candidate_id', '=', 'candidates.id')
             ->whereIn('email', $emails)
             ->orWhere('job_id', $this->jobId)
             ->count();
 
-        if ($duplicates) {
+        if ($duplicatesInJob || Candidate::whereIn('email', $emails)->count()) {
             return false;
         }
 

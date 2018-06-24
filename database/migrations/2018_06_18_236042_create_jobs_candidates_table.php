@@ -19,11 +19,11 @@ class CreateJobsCandidatesTable extends Migration
 
             $table->foreign('job_id')
                 ->references('id')->on('jobs')
-                ->onDelete('delete');
+                ->onDelete('cascade');
 
             $table->foreign('candidate_id')
                 ->references('id')->on('candidates')
-                ->onDelete('delete');
+                ->onDelete('cascade');
         });
     }
 

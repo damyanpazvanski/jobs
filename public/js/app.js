@@ -13085,7 +13085,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/ajax/register/user-information', this.user).then(function (response) {
                 self.$emit('continueBtn', { user: self.user });
             }, function (error) {
-                console.log(self.errors, error.response.data.errors);
                 self.errors = error.response.data.errors;
             });
         },
@@ -16401,6 +16400,11 @@ if (false) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
+//
+//
 //
 //
 //
@@ -16415,10 +16419,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            email: '',
+            error: '',
+            emailRegex: /^\S+@\S+\.\S+$/
+        };
+    },
+
     methods: {
         verify: function verify() {
-            this.$emit('verifyEmail');
+            var self = this;
+
+            if (!self.emailRegex.test(self.email)) {
+                self.error = 'The email must be a valid email address.';
+                return;
+            }
+
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/ajax/test/email', { email: this.email }).then(function () {
+                self.$emit('verifyEmail', self.email);
+            }, function (error) {
+                self.error = error.response.data.errors.email[0];
+            });
         }
     }
 });
@@ -16431,28 +16456,56 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card" }, [
-    _c(
-      "div",
-      {
-        staticClass: "card-header",
-        attrs: { "data-background-color": "blue" }
-      },
-      [_vm._v("Example Component")]
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "card-body" }, [
-      _c("div", { staticClass: "col-md-6 col-md-offset-3" }, [
-        _c("input", { staticClass: "form-control", attrs: { type: "text" } }),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-block btn-lg btn-info",
-            on: { click: _vm.verify }
-          },
-          [_vm._v("VERIFY")]
-        )
+  return _c("div", { staticClass: "col-md-6 col-md-offset-3" }, [
+    _c("div", { staticClass: "card" }, [
+      _c(
+        "div",
+        {
+          staticClass: "card-header",
+          attrs: { "data-background-color": "blue" }
+        },
+        [_vm._v("Your Email")]
+      ),
+      _vm._v(" "),
+      _c("h5", { staticClass: "invalid text-center" }, [
+        _vm._v(_vm._s(_vm.error))
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" }, [
+        _c("div", { staticClass: "col-md-6 col-md-offset-3" }, [
+          _c("div", { staticClass: "form-group form-info" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.email,
+                  expression: "email"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "email", required: "", placeholder: "Your email" },
+              domProps: { value: _vm.email },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.email = $event.target.value
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-block btn-lg btn-info",
+                on: { click: _vm.verify }
+              },
+              [_vm._v("VERIFY")]
+            )
+          ])
+        ])
       ])
     ])
   ])
@@ -16553,7 +16606,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n.question-image {\n    min-width: 80%;\n    max-width: 80%;\n}\n.on-question {\n    font-weight: bold;\n    padding: 8px 7px;\n    border-radius: 5px;\n    margin: 1px 3px 3px 0;\n}\n.answers {\n    margin-top: 50px;\n}\n.legend {\n    margin-top: 25px;\n    background-color: #FFFFFF;\n    padding: 5px 0;\n}\n.legend span {\n    margin-left: 2px;\n}\n.legend > .row {\n    margin-top: 4px;\n}\n.btn-not-answered {\n    color: #ffffff;\n    background-color: #aebac2;\n}\n.btn-outline-secondary {\n    border: 1px solid #aebac2;\n}\n.btn-outline-secondary:hover {\n    background-color: #aebac2;\n    color: #ffffff;\n}\n.timerWrapper {\n    font-size: 17px;\n    font-weight: bold;\n    color: #87939b;\n}\n", ""]);
+exports.push([module.i, "\n.visible {\n    display: block !important;\n}\n.question-image {\n    min-width: 80%;\n    max-width: 80%;\n}\n.answers-wrapper {\n    padding: 0;\n}\n.answer {\n    margin: 20px 0;\n}\n.answer img {\n    cursor: pointer;\n}\n.on-question {\n    font-weight: bold;\n    padding: 8px 7px;\n    border-radius: 5px;\n    margin: 1px 3px 3px 0;\n}\n.legend {\n    margin-top: 25px;\n    background-color: #FFFFFF;\n    padding: 5px 0;\n}\n.legend span {\n    margin-left: 2px;\n}\n.btn-outline-secondary {\n    border: 1px solid #aebac2;\n}\n.btn-outline-secondary:hover {\n    background-color: #aebac2;\n    color: #ffffff;\n}\n.timerWrapper {\n    font-size: 17px;\n    font-weight: bold;\n    color: #87939b;\n}\n.action-buttons {\n    margin-top: 40px;\n}\n", ""]);
 
 // exports
 
@@ -16619,68 +16672,122 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['questions'],
     data: function data() {
         return {
-            questionNumber: 1,
+            questionNumber: 0,
             question: {
-                id: 2,
-                condition: 'asdas',
-                image: '/images/image.png',
-                answers: [{
-                    id: 1,
-                    content: 'Answer 1'
-                }, {
-                    id: 2,
-                    content: 'Answer 2'
-                }, {
-                    id: 3,
-                    content: 'Answer 3'
-                }, {
-                    id: 4,
-                    content: 'Answer 4'
-                }]
-            }
+                id: 0,
+                condition: '',
+                image: '',
+                answers: [],
+                answer: null
+            },
+            answeredQuestions: [],
+            bonus: 0,
+            minutes: 0
         };
     },
 
     methods: {
-        finishedQuestions: function finishedQuestions() {
-            this.$emit('finishedQuestions');
-        },
         chooseAnswer: function chooseAnswer(questionId, answerId) {
-            console.log(questionId, answerId);
+            this.answeredQuestions[this.questionNumber] = {
+                questionId: questionId,
+                answerId: answerId
+            };
+
+            this.next();
         },
-        nextQuestion: function nextQuestion() {
-            this.questionNumber++;
+        chooseNumber: function chooseNumber(index) {
+            this.questionNumber = index;
+            this.question = this.questions[this.questionNumber];
+        },
+        next: function next() {
+            if (this.questionNumber < 19) {
+                this.question = this.questions[++this.questionNumber];
+                return true;
+            }
+
+            this.$refs.modal.classList.add('visible');
+            return false;
         },
         back: function back() {
-            this.questionNumber--;
+            if (this.questionNumber > 0) {
+                this.question = this.questions[--this.questionNumber];
+                return true;
+            }
+        },
+        submit: function submit() {
+            if (this.minutes < 3) {
+                this.bonus = -2;
+            } else if (this.minutes < 5) {
+                this.bonus = -1;
+            } else if (this.minutes < 10) {
+                this.bonus = 1;
+            } else {
+                this.bonus = 2;
+            }
+
+            this.$emit('finishedQuestions', {
+                questions: this.answeredQuestions,
+                bonus: this.bonus
+            });
+        },
+        onSubmitCancel: function onSubmitCancel() {
+            this.$refs.modal.classList.remove('visible');
         },
         timer: function timer(duration, display) {
             var self = this;
             var timer = duration,
                 minutes = void 0,
                 seconds = void 0;
-            setInterval(function () {
+            var interval = setInterval(function () {
                 minutes = parseInt(timer / 60, 10);
                 seconds = parseInt(timer % 60, 10);
 
-                minutes = minutes < 10 ? "0" + minutes : minutes;
+                self.minutes = minutes < 10 ? "0" + minutes : minutes;
                 seconds = seconds < 10 ? "0" + seconds : seconds;
 
-                display.textContent = minutes + ":" + seconds;
+                display.textContent = self.minutes + ":" + seconds;
 
                 if (--timer < 0) {
-                    self.finishedQuestions();
+                    clearInterval(interval);
+                    self.submit();
                 }
             }, 1000);
         }
     },
     mounted: function mounted() {
         this.timer(20 * 60, this.$refs.timer);
+        this.question = this.questions[0];
     }
 });
 
@@ -16692,141 +16799,244 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "col-md-12" }, [
-    _c("div", { staticClass: "col-lg-5 col-lg-offset-3" }, [
-      _c("div", { staticClass: "card" }, [
-        _c(
-          "div",
-          {
-            staticClass: "card-header",
-            attrs: { "data-background-color": "blue" }
-          },
-          [_vm._v("Example Component")]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-body" }, [
-          _c("div", { staticClass: "form-group row form-info" }, [
-            _c("div", { staticClass: "col-md-11 text-right timerWrapper" }, [
-              _vm._v("Timer: "),
-              _c("span", { ref: "timer" })
-            ]),
-            _vm._v(" "),
-            _c(
-              "h5",
-              {
-                staticClass:
-                  "col-md-8 col-md-offset-2 text-center text-dark font-weight-bold"
-              },
-              [
-                _vm._v(
-                  "\n                        " +
-                    _vm._s(_vm.question.condition) +
-                    "\n                    "
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-12" }, [
-              _c("div", { staticClass: "col-md-7 text-center" }, [
-                _c("img", {
-                  staticClass: "question-image",
-                  attrs: { src: _vm.question.image }
-                })
+  return _c(
+    "div",
+    { staticClass: "col-md-12", staticStyle: { padding: "0" } },
+    [
+      _c("div", { staticClass: "col-lg-5 col-lg-offset-3" }, [
+        _c("div", { staticClass: "card" }, [
+          _c(
+            "div",
+            {
+              staticClass: "card-header",
+              attrs: { "data-background-color": "blue" }
+            },
+            [_vm._v("Intelligence")]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c("div", { staticClass: "form-group row form-info" }, [
+              _c("div", { staticClass: "col-md-11 text-right timerWrapper" }, [
+                _vm._v("Timer: "),
+                _c("span", { ref: "timer" })
               ]),
               _vm._v(" "),
               _c(
-                "div",
-                { staticClass: "col-md-4 col-md-offset-1 text-center" },
+                "h5",
+                {
+                  staticClass:
+                    "col-md-8 col-md-offset-2 text-center text-dark font-weight-bold"
+                },
                 [
-                  _c(
-                    "div",
-                    { staticClass: "form answers" },
-                    _vm._l(_vm.question.answers, function(answer) {
-                      return _c("div", { staticClass: "radio radio-primary" }, [
-                        _c("label", { staticClass: "font-weight-bold" }, [
-                          _c("input", {
-                            attrs: { type: "radio", name: "answer" },
-                            domProps: { value: true },
-                            on: {
-                              click: function($event) {
-                                _vm.chooseAnswer(_vm.question.id, answer.id)
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("span", { staticClass: "circle" }),
-                          _vm._v(" "),
-                          _c("span", { staticClass: "check" }),
-                          _vm._v(
-                            "\n                                        " +
-                              _vm._s(answer.content) +
-                              "\n                                    "
-                          )
-                        ])
-                      ])
-                    })
+                  _vm._v(
+                    "\n                        Press on the chosen option\n                    "
                   )
                 ]
               ),
               _vm._v(" "),
-              _c("div", { staticClass: "col-md-12" }, [
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-block btn-lg btn-outline-secondary",
-                      on: { click: _vm.back }
-                    },
-                    [_vm._v("Back")]
-                  )
+              _c("div", { staticClass: "col-md-12 row" }, [
+                _c("div", { staticClass: "col-md-7 text-center" }, [
+                  _c("img", {
+                    staticClass: "question-image",
+                    attrs: {
+                      src: "data:image/gif;base64," + _vm.question.image
+                    }
+                  })
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-md-6" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-block btn-lg btn-info",
-                      on: { click: _vm.nextQuestion }
-                    },
-                    [_vm._v("Next")]
-                  )
+                _c(
+                  "div",
+                  { staticClass: "text-center col-md-5 answers-wrapper" },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "form answers" },
+                      _vm._l(_vm.question.answers, function(answer) {
+                        return _c(
+                          "div",
+                          {
+                            staticClass:
+                              "radio-primary col-md-5 col-xs-3 answer"
+                          },
+                          [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "font-weight-bold",
+                                staticStyle: { padding: "0" }
+                              },
+                              [
+                                _c("input", {
+                                  attrs: {
+                                    type: "radio",
+                                    name: "answer",
+                                    hidden: ""
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.chooseAnswer(
+                                        _vm.question.id,
+                                        answer.id
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c("img", {
+                                  staticClass: "answer-image",
+                                  attrs: {
+                                    src: "data:image/gif;base64," + answer.image
+                                  }
+                                })
+                              ]
+                            )
+                          ]
+                        )
+                      })
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-12 action-buttons" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "btn btn-block btn-lg btn-outline-secondary",
+                        class: { disabled: _vm.questionNumber === 0 },
+                        on: { click: _vm.back }
+                      },
+                      [_vm._v("Back\n                                ")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-block btn-lg btn-info",
+                        on: { click: _vm.next }
+                      },
+                      [
+                        _vm.questionNumber < 19
+                          ? _c("span", [_vm._v("Next")])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.questionNumber === 19
+                          ? _c("span", [_vm._v("Submit")])
+                          : _vm._e()
+                      ]
+                    )
+                  ])
                 ])
               ])
             ])
           ])
         ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "col-xl-1 col-lg-2 col-md-12 col-sm-12 col-xs-12 row legend"
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "text-center" },
+            [
+              _vm._l(20, function(i) {
+                return _c(
+                  "span",
+                  {
+                    staticClass: "on-question btn col-xl-2 col-lg-2 col-md-0",
+                    class: {
+                      "btn-warning": i - 1 === _vm.questionNumber,
+                      "btn-info":
+                        _vm.answeredQuestions[i - 1] &&
+                        _vm.answeredQuestions[i - 1]["questionId"] ==
+                          _vm.questions[i - 1].id
+                    },
+                    on: {
+                      click: function($event) {
+                        _vm.chooseNumber(i - 1)
+                      }
+                    }
+                  },
+                  [_vm._v(_vm._s(i))]
+                )
+              }),
+              _vm._v(" "),
+              _vm.questionNumber === 19 &&
+              Object.keys(this.answeredQuestions).length < 19
+                ? _c("span", [
+                    _vm._v(
+                      "\n                You have answered " +
+                        _vm._s(Object.keys(this.answeredQuestions).length) +
+                        " questions\n            "
+                    )
+                  ])
+                : _vm._e()
+            ],
+            2
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { ref: "modal", staticClass: "modal" }, [
+        _c("div", { staticClass: "modal-dialog" }, [
+          _c("div", { staticClass: "modal-content text-center" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._m(1),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-info",
+                  attrs: { type: "button" },
+                  on: { click: _vm.submit }
+                },
+                [_vm._v("Submit")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-secondary",
+                  attrs: { type: "button" },
+                  on: { click: _vm.onSubmitCancel }
+                },
+                [_vm._v("Close")]
+              )
+            ])
+          ])
+        ])
       ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass:
-          "col-xl-1 col-lg-2 col-md-12 col-sm-12 col-xs-12 row legend"
-      },
-      [
-        _c(
-          "div",
-          { staticClass: "text-center" },
-          _vm._l(19, function(i) {
-            return _c(
-              "span",
-              {
-                staticClass: "on-question btn col-xl-2 col-lg-2 col-md-0",
-                class: {
-                  "btn-warning": i === _vm.questionNumber,
-                  "btn-info": i !== _vm.questionNumber
-                }
-              },
-              [_vm._v(_vm._s(i + 1))]
-            )
-          })
-        )
-      ]
-    )
-  ])
+    ]
+  )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h5", { staticClass: "modal-title" }, [_vm._v("Are you sure?")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-body" }, [
+      _c("p", [_vm._v("You are going to submit the test.")])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -16889,8 +17099,10 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__VerifyEmail_vue__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__VerifyEmail_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__VerifyEmail_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__VerifyEmail_vue__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__VerifyEmail_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__VerifyEmail_vue__);
 //
 //
 //
@@ -16901,24 +17113,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['questions'],
     data: function data() {
         return {
-            page: 2
+            page: 1,
+            email: ''
         };
     },
 
     components: {
-        verifyEmail: __WEBPACK_IMPORTED_MODULE_0__VerifyEmail_vue___default.a
+        verifyEmail: __WEBPACK_IMPORTED_MODULE_1__VerifyEmail_vue___default.a
     },
     methods: {
-        verifyEmail: function verifyEmail() {
+        verifyEmail: function verifyEmail(email) {
+            this.email = email;
             this.page++;
         },
-        finishedQuestions: function finishedQuestions() {}
+        finishedQuestions: function finishedQuestions(questions) {
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/ajax/test', {
+                email: this.email,
+                questions: questions.questions,
+                bonus: questions.bonus
+            }).then(function (response) {
+                this.page++;
+            }, function (error) {
+                console.log(error);
+            });
+        }
     }
 });
 
@@ -16944,12 +17173,15 @@ var render = function() {
           "div",
           [
             _c("questions", {
+              attrs: { questions: _vm.questions },
               on: { finishedQuestions: _vm.finishedQuestions }
             })
           ],
           1
         )
-      : _vm._e()
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.page === 3 ? _c("div", [_vm._v("\n        Success\n    ")]) : _vm._e()
   ])
 }
 var staticRenderFns = []

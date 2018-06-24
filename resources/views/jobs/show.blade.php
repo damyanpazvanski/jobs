@@ -137,7 +137,6 @@
                                                 <th>Phone</th>
                                                 <th>Status</th>
                                                 <th>IQ Result</th>
-                                                <th>Soft skills</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -148,9 +147,13 @@
                                                     <td>{{ $candidate->last_name ?: '-' }}</td>
                                                     <td>{{ $candidate->email }}</td>
                                                     <td>{{ $candidate->phone ?: '-' }}</td>
-                                                    <td><span class="status-hold">Hold</span></td>
-                                                    <td class="text-info border">78%</td>
-                                                    <td class="text-info border">48%</td>
+                                                    <td>
+                                                        <span class="{{ $candidate->iqResult->status == 'complete' ?
+                                                            'status-success' : 'status-hold' }}">
+                                                            {{ $candidate->iqResult->status }}
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-info border">{{ $candidate->iqResult->result }} %</td>
                                                 </tr>
                                             @endforeach
 
@@ -175,19 +178,28 @@
                                                 <th>Last name</th>
                                                 <th>Email</th>
                                                 <th>Phone</th>
+                                                <th>Status</th>
                                                 <th>IQ Result</th>
-                                                <th>Soft skills</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td>Dakota</td>
-                                                <td>Rice</td>
-                                                <td>dakota.rice@gmail.com</td>
-                                                <td>+35987-880-7922</td>
-                                                <td class="text-info border">78%</td>
-                                                <td class="text-info border">48%</td>
-                                            </tr>
+
+                                            @foreach($job->bestCandidates as $candidate)
+                                                <tr>
+                                                    <td>{{ $candidate->first_name ?: '-' }}</td>
+                                                    <td>{{ $candidate->last_name ?: '-' }}</td>
+                                                    <td>{{ $candidate->email }}</td>
+                                                    <td>{{ $candidate->phone ?: '-' }}</td>
+                                                    <td>
+                                                        <span class="{{ $candidate->iqResult->status == 'complete' ?
+                                                            'status-success' : 'status-hold' }}">
+                                                            {{ $candidate->iqResult->status }}
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-info border">{{ $candidate->iqResult->result }} %</td>
+                                                </tr>
+                                            @endforeach
+
                                             </tbody>
                                         </table>
                                     </div>

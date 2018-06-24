@@ -1,21 +1,45 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml">
-    <div class="card">
-        <div class="card-header" data-background-color="blue">Example Component</div>
-
-        <div class="card-body">
-            <div class="col-md-6 col-md-offset-3">
-                <input type="text" class="form-control">
-                <button class="btn btn-block btn-lg btn-info" v-on:click="verify">VERIFY</button>
+    <div class="col-md-6 col-md-offset-3">
+        <div class="card">
+            <div class="card-header" data-background-color="blue">Your Email</div>
+            <h5 class="invalid text-center">{{ error }}</h5>
+            <div class="card-body">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="form-group form-info">
+                        <input type="email" required class="form-control" v-model="email" placeholder="Your email">
+                        <button class="btn btn-block btn-lg btn-info" v-on:click="verify">VERIFY</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </template>
-
 <script>
+    import axios from 'axios';
+
     export default {
+        data() {
+            return {
+                email: '',
+                error: '',
+                emailRegex: /^\S+@\S+\.\S+$/
+            }
+        },
         methods: {
             verify() {
-                this.$emit('verifyEmail');
+                let self = this;
+
+                if (!self.emailRegex.test(self.email)) {
+                    self.error = 'The email must be a valid email address.';
+                    return;
+                }
+
+                axios.post('/ajax/test/email', {email: this.email})
+                    .then(function () {
+                        self.$emit('verifyEmail', self.email);
+                    }, function (error) {
+                        self.error = error.response.data.errors.email[0];
+                    });
             }
         }
     }

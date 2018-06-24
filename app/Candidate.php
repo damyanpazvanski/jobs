@@ -28,4 +28,9 @@ class Candidate extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function iqResult()
+    {
+        return $this->hasOne(IqResult::class);
+    }
 }

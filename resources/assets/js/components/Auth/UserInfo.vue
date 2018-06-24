@@ -92,7 +92,7 @@
                 },
                 errors: [],
                 passwordRegex: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])+\w{8,}$/,
-                emailRegex: /^\S+@\S+\.\S+$/,
+                emailRegex: /^\S+@\S+\.\S+$/
             }
         },
         methods: {
@@ -103,7 +103,6 @@
                     function (response) {
                         self.$emit('continueBtn', {user: self.user});
                     }, function (error) {
-                        console.log(self.errors, error.response.data.errors);
                         self.errors = error.response.data.errors;
                     });
             },

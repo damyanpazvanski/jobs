@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Test extends Model
+class IqResult extends Model
 {
 
     /**
@@ -15,7 +15,8 @@ class Test extends Model
     protected $fillable = [
         'status',
         'level',
-        'result'
+        'result',
+        'attempts'
     ];
 
     public function candidate()

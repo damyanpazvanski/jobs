@@ -32,8 +32,16 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
-Route::post('/ajax/register/user-information', 'Ajax\RegisterController@userInformation');
-Route::post('/ajax/register/company-information', 'Ajax\RegisterController@companyInformation');
-Route::post('/ajax/register/store', 'Ajax\RegisterController@store');
+
+Route::prefix('ajax')->namespace('Ajax')->group(function () {
+
+    Route::post('/register/user-information', 'RegisterController@userInformation');
+    Route::post('/register/company-information', 'RegisterController@companyInformation');
+    Route::post('/register/store', 'RegisterController@store');
+
+    Route::post('/test/email', 'TestsController@validateEmail');
+    Route::post('/test', 'TestsController@store');
+
+});
 
 Route::get('/test', 'TestsController@index');

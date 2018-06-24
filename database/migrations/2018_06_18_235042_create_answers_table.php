@@ -15,14 +15,14 @@ class CreateAnswersTable extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('question_id')->onDelete('delete');
+            $table->unsignedInteger('question_id')->onDelete('cascade');
+            $table->binary('image')->nullable();
             $table->string('content')->nullable();
-            $table->string('image')->nullable();
             $table->timestamps();
 
             $table->foreign('question_id')
                 ->references('id')->on('questions')
-                ->onDelete('delete');
+                ->onDelete('cascade');
         });
     }
 

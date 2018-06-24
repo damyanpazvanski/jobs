@@ -36,12 +36,15 @@ class Job extends Model
 
     public function candidates()
     {
-        return $this->hasMany(JobsCandidates::class, 'job_id', 'id');
+        return $this->belongsToMany(Candidate::class, 'jobs_candidates', 'job_id');
     }
 
-    public function scopeCandidates($query, $jobId)
+    public function bestCandidates()
     {
-        return Candidate::join('jobs_candidates', 'jobs_candidates.candidate_id', '=', 'candidates.id')
-            ->where('job_id', $jobId);
+        return $this->belongsToMany(Candidate::class, 'jobs_candidates', 'job_id')
+            ->join('iq_results', 'iq_results.candidate_id', '=', 'candidates.id')
+            ->where('status', 'complete')
+            ->orderBy('result', 'DESC')
+            ->limit(10);
     }
 }

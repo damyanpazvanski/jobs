@@ -23,7 +23,7 @@ class CreateCardsTable extends Migration
 
             $table->foreign('company_admin_id')
                 ->references('id')->on('company_admins')
-                ->onDelete('delete');
+                ->onDelete('cascade');
         });
     }
 
