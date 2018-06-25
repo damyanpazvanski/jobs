@@ -47,4 +47,20 @@ class Job extends Model
             ->orderBy('result', 'DESC')
             ->limit(10);
     }
+
+    public function holdCandidatesCount()
+    {
+        return $this->belongsToMany(Candidate::class, 'jobs_candidates', 'job_id')
+            ->join('iq_results', 'iq_results.candidate_id', '=', 'candidates.id')
+            ->where('status', 'hold')
+            ->count();
+    }
+
+    public function completedCandidatesCount()
+    {
+        return $this->belongsToMany(Candidate::class, 'jobs_candidates', 'job_id')
+            ->join('iq_results', 'iq_results.candidate_id', '=', 'candidates.id')
+            ->where('status', 'complete')
+            ->count();
+    }
 }

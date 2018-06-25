@@ -21,18 +21,19 @@
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="card card-stats">
                             <div class="card-header" data-background-color="orange">
-                                <i class="material-icons">asdas</i>
+                                <i class="material-icons">people</i>
                             </div>
                             <div class="card-content">
-                                <p class="category">Used Space</p>
-                                <h3 class="title">49/50
-                                    <small>GB</small>
+                                <p class="category">Candidates On Hold</p>
+                                <h3 class="title">
+                                    {{ $job->holdCandidatesCount() }}
+                                    <small>({{ ($job->holdCandidatesCount() / $job->candidates()->count()) * 100 }} %)</small>
                                 </h3>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
                                     <i class="material-icons text-danger">warning</i>
-                                    <a href="#pablo">Get More Space...</a>
+                                    <span>You should send the emails</span>
                                 </div>
                             </div>
                         </div>
@@ -40,11 +41,14 @@
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="card card-stats">
                             <div class="card-header" data-background-color="green">
-                                <i class="material-icons">store</i>
+                                <i class="material-icons">people</i>
                             </div>
                             <div class="card-content">
-                                <p class="category">Revenue</p>
-                                <h3 class="title">$34,245</h3>
+                                <p class="category">Completed Candidates</p>
+                                <h3 class="title">
+                                    {{ $job->completedCandidatesCount() }}
+                                    <small>({{ ($job->completedCandidatesCount() / $job->candidates()->count()) * 100 }} %)</small>
+                                </h3>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
@@ -55,32 +59,19 @@
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="card card-stats">
-                            <div class="card-header" data-background-color="red">
-                                <i class="material-icons">info_outline</i>
+                            <div class="card-header" data-background-color="blue">
+                                <i class="material-icons">people</i>
                             </div>
                             <div class="card-content">
-                                <p class="category">Fixed Issues</p>
-                                <h3 class="title">75</h3>
+                                <p class="category">Best candidates</p>
+                                <h3 class="title">
+                                    {{ $job->bestCandidates()->count() }}
+                                    <small>({{ ($job->bestCandidates()->count() / $job->candidates()->count()) * 100 }} %)</small>
+                                </h3>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
                                     <i class="material-icons">local_offer</i> Tracked from Github
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="card card-stats">
-                            <div class="card-header" data-background-color="blue">
-                                <i class="fa fa-twitter"></i>
-                            </div>
-                            <div class="card-content">
-                                <p class="category">Followers</p>
-                                <h3 class="title">+245</h3>
-                            </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    <i class="material-icons">update</i> Just Updated
                                 </div>
                             </div>
                         </div>
@@ -137,6 +128,8 @@
                                                 <th>Phone</th>
                                                 <th>Status</th>
                                                 <th>IQ Result</th>
+                                                <th>Level</th>
+                                                <th>Action</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -148,12 +141,18 @@
                                                     <td>{{ $candidate->email }}</td>
                                                     <td>{{ $candidate->phone ?: '-' }}</td>
                                                     <td>
-                                                        <span class="{{ $candidate->iqResult->status == 'complete' ?
-                                                            'status-success' : 'status-hold' }}">
-                                                            {{ $candidate->iqResult->status }}
-                                                        </span>
+                                                    <span class="{{ $candidate->iqResult->status == 'complete' ?
+                                                        'status-success' : 'status-hold' }}">
+                                                        {{ $candidate->iqResult->status }}
+                                                    </span>
                                                     </td>
-                                                    <td class="text-info border">{{ $candidate->iqResult->result }} %</td>
+                                                    <td class="text-info border">{{ $candidate->iqResult->result ?: '-' }} %</td>
+                                                    <td>{{ ucfirst($candidate->iqResult->level) }}</td>
+                                                    <td>
+                                                        <a href="/jobs/{{ $job->id }}/candidates/{{ $candidate->id }}">
+                                                            <i class="material-icons text-info">remove_red_eye</i>
+                                                        </a>
+                                                    </td>
                                                 </tr>
                                             @endforeach
 

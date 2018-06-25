@@ -55,6 +55,7 @@ class Store
 
         $points += $this->bonus;
 
+
         if ($points > 20) {
             $points = 20;
         }
@@ -67,15 +68,15 @@ class Store
     private function calculateLevel($points)
     {
         if ($points <= 8) {
-            $this->level = 'low';
+            return $this->level = 'low';
         } else if ($points <= 11) {
-            $this->level = 'below middle';
+            return $this->level = 'below middle';
         } else if ($points <= 14) {
-            $this->level = 'middle';
+            return $this->level = 'middle';
         } else if ($points <= 17) {
-            $this->level = 'above middle';
+            return $this->level = 'above middle';
         }
 
-        $this->level = 'high';
+        return $this->level = 'high';
     }
 }

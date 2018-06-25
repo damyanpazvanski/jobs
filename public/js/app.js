@@ -17124,7 +17124,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: ['questions'],
     data: function data() {
         return {
-            page: 1,
+            page: 2,
             email: ''
         };
     },

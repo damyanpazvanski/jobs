@@ -33,4 +33,9 @@ class Candidate extends Authenticatable
     {
         return $this->hasOne(IqResult::class);
     }
+
+    public function getFullName()
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
 }
