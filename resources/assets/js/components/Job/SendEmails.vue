@@ -15,7 +15,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-info" data-dismiss="modal">Send</button>
+                        <button type="button" class="btn btn-info" data-dismiss="modal" v-on:click="markEmails">Send</button>
                     </div>
                 </div>
             </div>
@@ -24,7 +24,19 @@
     </span>
 </template>
 <script>
-    export default {
+    import axios from 'axios';
 
+    export default {
+        props: ['jobId'],
+        methods: {
+            markEmails() {
+                axios.post(`/ajax/job/${this.jobId}/send-tests`, {})
+                    .then(function (response) {
+                        console.log(response);
+                    }, function (error) {
+                        console.log(error);
+                    });
+            }
+        }
     }
 </script>

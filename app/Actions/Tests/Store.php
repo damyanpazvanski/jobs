@@ -55,9 +55,10 @@ class Store
 
         $points += $this->bonus;
 
-
         if ($points > 20) {
             $points = 20;
+        } else if ($points < 1) {
+            $points = 0;
         }
 
         $this->calculateLevel($points);

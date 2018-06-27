@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateJobsCandidatesTable extends Migration
+class CreateSentIqTestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateJobsCandidatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('jobs_candidates', function (Blueprint $table) {
-            $table->unsignedInteger('job_id');
+        Schema::create('sent_iq_tests', function (Blueprint $table) {
+            $table->increments('id');
             $table->unsignedInteger('candidate_id');
-
-            $table->foreign('job_id')
-                ->references('id')->on('jobs')
-                ->onDelete('cascade');
+            $table->date('send_on');
+            $table->tinyInteger('count')->default(0);
+            $table->timestamps();
 
             $table->foreign('candidate_id')
                 ->references('id')->on('candidates')
@@ -34,6 +33,6 @@ class CreateJobsCandidatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('answers');
+        Schema::dropIfExists('sent_iq_tests');
     }
 }

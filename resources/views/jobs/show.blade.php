@@ -84,7 +84,7 @@
                     <add-candidates :job-id="{{ $job->id }}"></add-candidates>
                 </div>
                 <div class="col-md-3 col-md-offset-6">
-                    <send-emails></send-emails>
+                    <send-emails :job-id="{{ $job->id }}"></send-emails>
                 </div>
             </div>
 

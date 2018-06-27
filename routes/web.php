@@ -31,6 +31,8 @@ Route::middleware(['auth'])->group(function () {
 
         Route::post('/job/{job}/candidates', 'CandidatesController@store');
 
+        Route::post('/job/{job}/send-tests', 'EmailsController@mark');
+
     });
 });
 

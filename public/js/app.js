@@ -16260,6 +16260,8 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 //
 //
 //
@@ -16286,7 +16288,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['jobId'],
+    methods: {
+        markEmails: function markEmails() {
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/ajax/job/' + this.jobId + '/send-tests', {}).then(function (response) {
+                console.log(response);
+            }, function (error) {
+                console.log(error);
+            });
+        }
+    }
+});
 
 /***/ }),
 /* 62 */
@@ -16296,91 +16311,88 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("span", [
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "sendEmailsmodal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "sendEmailsmodalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content text-left" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _vm._v(
+                  "\n                    You are going to send emails to all of the candidates without already sent invitations\n                "
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: { type: "button", "data-dismiss": "modal" }
+                  },
+                  [_vm._v("Cancel")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-info",
+                    attrs: { type: "button", "data-dismiss": "modal" },
+                    on: { click: _vm.markEmails }
+                  },
+                  [_vm._v("Send")]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-outline-info btn-block",
+        attrs: { "data-toggle": "modal", "data-target": "#sendEmailsmodal" }
+      },
+      [_vm._v("SEND EMAILS")]
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("span", [
-      _c(
-        "div",
-        {
-          staticClass: "modal fade",
-          attrs: {
-            id: "sendEmailsmodal",
-            tabindex: "-1",
-            role: "dialog",
-            "aria-labelledby": "sendEmailsmodalLabel",
-            "aria-hidden": "true"
-          }
-        },
-        [
-          _c(
-            "div",
-            { staticClass: "modal-dialog", attrs: { role: "document" } },
-            [
-              _c("div", { staticClass: "modal-content text-left" }, [
-                _c("div", { staticClass: "modal-header" }, [
-                  _c("label", [_vm._v("Dou you want to send emails")]),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "close",
-                      attrs: {
-                        type: "button",
-                        "data-dismiss": "modal",
-                        "aria-label": "Close"
-                      }
-                    },
-                    [
-                      _c("span", { attrs: { "aria-hidden": "true" } }, [
-                        _vm._v("×")
-                      ])
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "modal-body" }, [
-                  _vm._v(
-                    "\n                    You are going to send emails to all of the candidates without already sent invitations\n                "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "modal-footer" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-secondary",
-                      attrs: { type: "button", "data-dismiss": "modal" }
-                    },
-                    [_vm._v("Cancel")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-info",
-                      attrs: { type: "button", "data-dismiss": "modal" }
-                    },
-                    [_vm._v("Send")]
-                  )
-                ])
-              ])
-            ]
-          )
-        ]
-      ),
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("label", [_vm._v("Dou you want to send emails")]),
       _vm._v(" "),
       _c(
         "button",
         {
-          staticClass: "btn btn-outline-info btn-block",
-          attrs: { "data-toggle": "modal", "data-target": "#sendEmailsmodal" }
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
         },
-        [_vm._v("SEND EMAILS")]
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
       )
     ])
   }
@@ -17124,7 +17136,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: ['questions'],
     data: function data() {
         return {
-            page: 2,
+            page: 1,
             email: ''
         };
     },
