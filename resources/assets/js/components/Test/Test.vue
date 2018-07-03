@@ -1,6 +1,5 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml">
     <div class="">
-        <notifications group="errors" position="top center" width="80%" classes="alert text-center error-alert"/>
         <div v-if="page === 1">
             <verify-email @verifyEmail="verifyEmail"></verify-email>
         </div>
@@ -73,10 +72,7 @@
 </template>
 <script>
     import axios from 'axios';
-    import Notifications from 'vue-notification';
     import verifyEmail from './VerifyEmail.vue';
-
-    Vue.use(Notifications);
 
     export default {
         props: ['questions'],
@@ -95,7 +91,6 @@
         },
         methods: {
             verifyEmail(response) {
-                console.log(response);
                 this.email = response.data.email;
                 this.attempts = response.data.attempts;
                 this.allowed_attempts = response.data.allowed_attempts;
@@ -103,7 +98,7 @@
             },
             continueToTheTest() {
                 if (this.attempts >= this.allowed_attempts) {
-                    this.error('Attempts error', 'You have reached the limit of the attempts');
+                    this.error('ATTEMPTS ERROR', 'You have reached the limit of the attempts');
                     return;
                 }
 
@@ -123,7 +118,7 @@
                         self.result = response.data.result;
                     }, function (error) {
                         for (let key in error.response.data.errors) {
-                            self.error(key, error.response.data.errors[key][0]);
+                            self.error(key.toUpperCase(), error.response.data.errors[key][0]);
                         }
                     })
             },
@@ -165,13 +160,6 @@
     }
     h3 {
         font-weight: bold;
-    }
-    .error-alert {
-        margin-top: 20px;
-        color: #ffffff;
-        text-align: center!important;
-        background: linear-gradient(60deg, #ef5350, #e53935);
-        box-shadow: 0 12px 20px -10px rgba(244, 67, 54, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(244, 67, 54, 0.2);
     }
     .register {
         margin: 10px 0;

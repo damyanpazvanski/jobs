@@ -36,14 +36,26 @@
         },
         methods: {
             addCandidates() {
+                let self = this;
+
                 axios.post('/ajax/job/' + this.jobId + '/candidates', {
                     candidates: this.candidates
                 })
                     .then(function (response) {
-                        console.log(response);
+                        window.location.href = '/jobs/' + self.jobId;
                     }, function (error) {
-                        console.log(error);
+                        for (let key in error.response.data.errors) {
+                            self.error(key.toUpperCase(), error.response.data.errors[key][0]);
+                        }
                     });
+            },
+            error(title, message) {
+                this.$notify({
+                    group: 'errors',
+                    type: 'error',
+                    title: title,
+                    text: message
+                });
             }
         }
     }

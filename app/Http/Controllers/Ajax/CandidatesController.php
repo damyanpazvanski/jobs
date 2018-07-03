@@ -16,7 +16,7 @@ class CandidatesController extends Controller
     public function store(Job $job, CandidateRequest $request)
     {
         foreach (self::$EMAILS_LIST as $email) {
-            $candidate = Candidate::create([
+            $candidate = Candidate::firstOrCreate([
                 'email' => $email
             ]);
 

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Job;
 use App\Country;
-use App\JobsCandidates;
 use App\WorkTime;
 use App\Http\Requests\JobRequest;
 

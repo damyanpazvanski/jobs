@@ -10,11 +10,11 @@ use Illuminate\Support\Facades\DB;
 class FindDuplicateEmails implements Rule
 {
 
-    protected $jobId;
+    protected $job;
 
-    public function __construct($jobId)
+    public function __construct($job)
     {
-        $this->jobId = $jobId;
+        $this->job = $job;
     }
 
     /**
@@ -30,10 +30,10 @@ class FindDuplicateEmails implements Rule
 
         $duplicatesInJob = Candidate::join('jobs_candidates', 'jobs_candidates.candidate_id', '=', 'candidates.id')
             ->whereIn('email', $emails)
-            ->orWhere('job_id', $this->jobId)
+            ->where('job_id', $this->job->id)
             ->count();
 
-        if ($duplicatesInJob || Candidate::whereIn('email', $emails)->count()) {
+        if ($duplicatesInJob) {
             return false;
         }
 
