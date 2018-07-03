@@ -63,10 +63,10 @@
                                 <i class="material-icons">people</i>
                             </div>
                             <div class="card-content">
-                                <p class="category">Best candidates</p>
+                                <p class="category">Result is more than 70%</p>
                                 <h3 class="title">
-                                    {{ $job->bestCandidates()->count() }}
-                                    <small>({{ ($job->bestCandidates()->count() / $job->candidates()->count()) * 100 }} %)</small>
+                                    {{ $job->candidatesWithHighResult()->count() }}
+                                    <small>({{ ($job->candidatesWithHighResult()->count() / $job->candidates()->count()) * 100 }} %)</small>
                                 </h3>
                             </div>
                             <div class="card-footer">

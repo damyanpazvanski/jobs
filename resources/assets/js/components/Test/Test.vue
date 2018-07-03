@@ -122,7 +122,9 @@
                         self.level = response.data.level;
                         self.result = response.data.result;
                     }, function (error) {
-                        console.log(error);
+                        for (let key in error.response.data.errors) {
+                            self.error(key, error.response.data.errors[key][0]);
+                        }
                     })
             },
             error(title, message) {

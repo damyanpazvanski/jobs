@@ -48,6 +48,14 @@ class Job extends Model
             ->limit(10);
     }
 
+    public function candidatesWithHighResult()
+    {
+        return $this->belongsToMany(Candidate::class, 'jobs_candidates', 'job_id')
+            ->join('iq_results', 'iq_results.candidate_id', '=', 'candidates.id')
+            ->where('status', 'complete')
+            ->where('result', '>=', '70');
+    }
+
     public function holdCandidatesCount()
     {
         return $this->belongsToMany(Candidate::class, 'jobs_candidates', 'job_id')
