@@ -1,7 +1,7 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml">
     <div class="col-md-6 col-md-offset-3">
         <div class="card">
-            <div class="card-header" data-background-color="blue">Your Email</div>
+            <div class="card-header" data-background-color="blue">Verify Your Email</div>
             <h5 class="invalid text-center">{{ error }}</h5>
             <div class="card-body">
                 <div class="col-md-6 col-md-offset-3">
@@ -35,8 +35,8 @@
                 }
 
                 axios.post('/ajax/test/email', {email: this.email})
-                    .then(function () {
-                        self.$emit('verifyEmail', self.email);
+                    .then(function (response) {
+                        self.$emit('verifyEmail', response);
                     }, function (error) {
                         self.error = error.response.data.errors.email[0];
                     });

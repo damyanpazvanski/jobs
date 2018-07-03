@@ -19,7 +19,8 @@ class CreateIQResultsTable extends Migration
             $table->enum('status', ['hold', 'complete']);
             $table->enum('level', ['low', 'below middle', 'middle', 'above middle', 'high'])->nullable();
             $table->integer('result')->nullable();
-            $table->integer('attempts')->default(0);
+            $table->tinyInteger('attempts')->default(0);
+            $table->tinyInteger('allowed_attempts')->default(0);
             $table->timestamps();
 
             $table->foreign('candidate_id')

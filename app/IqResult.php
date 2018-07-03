@@ -16,7 +16,8 @@ class IqResult extends Model
         'status',
         'level',
         'result',
-        'attempts'
+        'attempts',
+        'allowed_attempts'
     ];
 
     public function candidate()

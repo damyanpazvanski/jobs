@@ -169,6 +169,7 @@
 <script src="{{ asset('js/material.min.js') }}" defer></script>
 <script src="{{ asset('js/chartist.min.js') }}" defer></script>
 <script src="{{ asset('js/arrive.min.js') }}" defer></script>
+<script src="{{ asset('js/bootstrap-notify.js') }}" defer></script>
 {{--<script src="{{ asset('js/perfect-scrollbar.jquery.min.js') }}" defer></script>--}}
 <script src="{{ asset('js/material-dashboard.js') }}" defer></script>
 {{--<script src="{{ asset('js/demo.js') }}" defer></script>--}}

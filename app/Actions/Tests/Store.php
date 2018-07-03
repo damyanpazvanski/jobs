@@ -36,7 +36,7 @@ class Store
             'attempts' => DB::raw('attempts + 1')
         ]);
 
-        return [];
+        return $candidate->iqResult;
     }
 
     private function calculateResult()
@@ -63,7 +63,7 @@ class Store
 
         $this->calculateLevel($points);
 
-        return ($points / 20) * 100;
+        return round(($points / 20) * 100);
     }
 
     private function calculateLevel($points)

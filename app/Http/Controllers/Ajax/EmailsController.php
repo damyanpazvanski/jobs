@@ -16,9 +16,11 @@ class EmailsController extends Controller
             ->select('candidates.*')->where('sent_iq_tests.candidate_id', null)->get();
 
         foreach ($candidates as $candidate) {
+
             $sentIqTest = new SentIqTest([
                 'send_on' => Carbon::now()
             ]);
+
             $sentIqTest->candidate()->associate($candidate);
             $sentIqTest->save();
         }
