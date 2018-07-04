@@ -23,7 +23,9 @@ class TestRequest extends FormRequest
      */
     public function rules()
     {
-        if ($this->route()->getActionMethod() === 'validateEmail') {
+        $method = $this->route()->getActionMethod();
+
+        if ($method === 'validateEmail' || $method === 'attempt') {
             return [
                 'email' => 'required|string|email|max:255|exists:candidates,email'
             ];

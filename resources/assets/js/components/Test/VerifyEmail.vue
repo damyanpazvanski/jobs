@@ -2,7 +2,6 @@
     <div class="col-md-6 col-md-offset-3">
         <div class="card">
             <div class="card-header" data-background-color="blue">Verify Your Email</div>
-            <h5 class="invalid text-center">{{ error }}</h5>
             <div class="card-body">
                 <div class="col-md-6 col-md-offset-3">
                     <div class="form-group form-info">
@@ -21,7 +20,6 @@
         data() {
             return {
                 email: '',
-                error: '',
                 emailRegex: /^\S+@\S+\.\S+$/
             }
         },
@@ -30,7 +28,12 @@
                 let self = this;
 
                 if (!self.emailRegex.test(self.email)) {
-                    self.error = 'The email must be a valid email address.';
+                    this.$notify({
+                        group: 'errors',
+                        type: 'error',
+                        title: 'EMAIL',
+                        text: 'The email must be a valid email address.'
+                    });
                     return;
                 }
 
@@ -38,7 +41,12 @@
                     .then(function (response) {
                         self.$emit('verifyEmail', response);
                     }, function (error) {
-                        self.error = error.response.data.errors.email[0];
+                        this.$notify({
+                            group: 'errors',
+                            type: 'error',
+                            title: 'EMAIL',
+                            text: error.response.data.errors.email[0]
+                        });
                     });
             }
         }

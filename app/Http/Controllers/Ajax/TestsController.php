@@ -19,6 +19,14 @@ class TestsController extends Controller
         return response()->json($candidate->iqResult);
     }
 
+    public function attempt(TestRequest $request)
+    {
+        $candidate = Candidate::where('email', $request->get('email'))->first();
+        $candidate->iqResult->increment('attempts');
+
+        return response()->json([]);
+    }
+
     public function store(TestRequest $request)
     {
         $iqResult = (new Store($request->get('email'), $request->get('questions'), $request->get('bonus')))->handle();

@@ -28,7 +28,7 @@
                                     <p class="category">Candidates On Hold</p>
                                     <h3 class="title">
                                         {{ $job->holdCandidatesCount() }}
-                                        <small>({{ ($job->holdCandidatesCount() / $job->candidates()->count()) * 100 }} %)</small>
+                                        <small>({{ round(($job->holdCandidatesCount() / $job->candidates()->count()) * 100) }} %)</small>
                                     </h3>
                                 </div>
                                 <div class="card-footer">
@@ -48,7 +48,7 @@
                                     <p class="category">Completed Candidates</p>
                                     <h3 class="title">
                                         {{ $job->completedCandidatesCount() }}
-                                        <small>({{ ($job->completedCandidatesCount() / $job->candidates()->count()) * 100 }} %)</small>
+                                        <small>({{ round(($job->completedCandidatesCount() / $job->candidates()->count()) * 100) }} %)</small>
                                     </h3>
                                 </div>
                                 <div class="card-footer">
@@ -67,7 +67,7 @@
                                     <p class="category">Result is more than 70%</p>
                                     <h3 class="title">
                                         {{ $job->candidatesWithHighResult()->count() }}
-                                        <small>({{ ($job->candidatesWithHighResult()->count() / $job->candidates()->count()) * 100 }} %)</small>
+                                        <small>({{ round(($job->candidatesWithHighResult()->count() / $job->candidates()->count()) * 100) }} %)</small>
                                     </h3>
                                 </div>
                                 <div class="card-footer">
@@ -98,7 +98,7 @@
                                 <ul class="nav nav-tabs" data-tabs="tabs">
                                     <li class="active">
                                         <a href="#candidates" data-toggle="tab">
-                                            <i class="material-icons"></i> Candidates
+                                            <i class="material-icons">people</i> Candidates
                                         </a>
                                     </li>
                                     <li class="">
@@ -177,37 +177,41 @@
                             <div class="tab-pane" id="bestCandidates">
                                 <div class="col-md-12">
                                     <div class="table-responsive">
-                                        <table class="table table-hover">
-                                            <thead class="text-info font-weight-bold">
-                                            <tr>
-                                                <th>First name</th>
-                                                <th>Last name</th>
-                                                <th>Email</th>
-                                                <th>Phone</th>
-                                                <th>Status</th>
-                                                <th>IQ Result</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-
-                                            @foreach($job->bestCandidates as $candidate)
+                                        @if($job->bestCandidates->count())
+                                            <table class="table table-hover">
+                                                <thead class="text-info font-weight-bold">
                                                 <tr>
-                                                    <td>{{ $candidate->first_name ?: '-' }}</td>
-                                                    <td>{{ $candidate->last_name ?: '-' }}</td>
-                                                    <td>{{ $candidate->email }}</td>
-                                                    <td>{{ $candidate->phone ?: '-' }}</td>
-                                                    <td>
-                                                        <span class="{{ $candidate->iqResult->status == 'complete' ?
-                                                            'status-success' : 'status-hold' }}">
-                                                            {{ $candidate->iqResult->status }}
-                                                        </span>
-                                                    </td>
-                                                    <td class="text-info border">{{ $candidate->iqResult->result }} %</td>
+                                                    <th>First name</th>
+                                                    <th>Last name</th>
+                                                    <th>Email</th>
+                                                    <th>Phone</th>
+                                                    <th>Status</th>
+                                                    <th>IQ Result</th>
                                                 </tr>
-                                            @endforeach
+                                                </thead>
+                                                <tbody>
 
-                                            </tbody>
-                                        </table>
+                                                @foreach($job->bestCandidates as $candidate)
+                                                    <tr>
+                                                        <td>{{ $candidate->first_name ?: '-' }}</td>
+                                                        <td>{{ $candidate->last_name ?: '-' }}</td>
+                                                        <td>{{ $candidate->email }}</td>
+                                                        <td>{{ $candidate->phone ?: '-' }}</td>
+                                                        <td>
+                                                            <span class="{{ $candidate->iqResult->status == 'complete' ?
+                                                                'status-success' : 'status-hold' }}">
+                                                                {{ $candidate->iqResult->status }}
+                                                            </span>
+                                                        </td>
+                                                        <td class="text-info border">{{ $candidate->iqResult->result }} %</td>
+                                                    </tr>
+                                                @endforeach
+
+                                                </tbody>
+                                            </table>
+                                        @else
+                                            <h5 class="text-center">The are no candidates, please add some.</h5>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

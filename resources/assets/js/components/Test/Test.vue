@@ -102,7 +102,14 @@
                     return;
                 }
 
-                this.page++;
+                let self = this;
+
+                axios.post('/ajax/test/attempt', {email: this.email})
+                    .then(function (response) {
+                        self.page++;
+                    }, function (error) {
+                        self.error('ERROR', 'Please try again later.');
+                    });
             },
             finishedQuestions(questions) {
                 let self = this;

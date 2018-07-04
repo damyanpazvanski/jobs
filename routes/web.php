@@ -44,6 +44,7 @@ Route::prefix('ajax')->namespace('Ajax')->group(function () {
     Route::post('/register/store', 'RegisterController@store');
 
     Route::post('/test/email', 'TestsController@validateEmail');
+    Route::post('/test/attempt', 'TestsController@attempt');
     Route::post('/test', 'TestsController@store');
 
 });
