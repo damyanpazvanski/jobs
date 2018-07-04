@@ -17,14 +17,4 @@ class TestsController extends Controller
 
         return view('tests.index', compact('questions'));
     }
-
-    public function validateEmail(TestRequest $request)
-    {
-        return response()->json([]);
-    }
-
-    public function store(TestRequest $request)
-    {
-        return (new Store())->handle();
-    }
 }

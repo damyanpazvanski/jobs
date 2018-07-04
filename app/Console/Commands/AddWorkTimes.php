@@ -33,9 +33,7 @@ class AddWorkTimes extends Command
     ];
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
+     * AddWorkTimes constructor.
      */
     public function __construct()
     {

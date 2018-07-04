@@ -31,7 +31,7 @@ class CreateCompanyAdminsTable extends Migration
             $table->rememberToken();
             $table->timestamps();
 
-            $table->foreign('country_id')
+            $table->foreign('company_id')
                 ->references('id')->on('countries')
                 ->onDelete('SET NULL');
 

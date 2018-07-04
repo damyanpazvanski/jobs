@@ -169,7 +169,7 @@
 
 
                                     <div class="d-flex justify-content-between text-right">
-                                        {{ $candidates->links('vendor.pagination.default') }}
+                                        {{ $candidates->links('pagination.default') }}
                                     </div>
                                 </div>
 

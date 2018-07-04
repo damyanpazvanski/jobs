@@ -18,7 +18,7 @@ class QuestionsResource extends JsonResource
             'id' => $this->id,
             'image' => $this->image,
             'condition' => $this->condition,
-            'answers' => AnswersResource::collection($this->answers()->get())->collection
+            'answers' => AnswersResource::collection($this->answers())->collection
         ];
     }
 }

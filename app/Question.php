@@ -24,26 +24,31 @@ class Question extends Model
 
     public function answers()
     {
-        return $this->hasMany(Answer::class, 'question_id');
+        return collect([
+            $this->answer1,
+            $this->answer2,
+            $this->answer3,
+            $this->answer4
+        ])->shuffle();
     }
 
     public function answer1()
     {
-        return $this->belongsTo(Company::class, 'answer_1_id');
+        return $this->belongsTo(Answer::class, 'answer_1_id');
     }
 
     public function answer2()
     {
-        return $this->belongsTo(Company::class, 'answer_2_id');
+        return $this->belongsTo(Answer::class, 'answer_2_id');
     }
 
     public function answer3()
     {
-        return $this->belongsTo(Company::class, 'answer_3_id');
+        return $this->belongsTo(Answer::class, 'answer_3_id');
     }
 
     public function answer4()
     {
-        return $this->belongsTo(Company::class, 'answer_4_id');
+        return $this->belongsTo(Answer::class, 'answer_4_id');
     }
 }

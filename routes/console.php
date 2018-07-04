@@ -16,3 +16,11 @@ use Illuminate\Foundation\Inspiring;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->describe('Display an inspiring quote');
+
+Artisan::command('db:seed', function () {
+    $this->callSilent('business-sectors:populate', []);
+    $this->callSilent('countries:populate', []);
+    $this->callSilent('roles:populate', []);
+    $this->callSilent('work-times:populate', []);
+    $this->callSilent('questions:populate', []);
+});

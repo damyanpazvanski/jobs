@@ -98,13 +98,8 @@ class AddQuestions extends Command
     {
         $answerImage = File::get($pathToImage);
 
-        $answer = new Answer([
+        return Answer::create([
             'image' => base64_encode($answerImage)
         ]);
-
-        $answer->question()->associate($question);
-        $answer->save();
-
-        return $answer;
     }
 }

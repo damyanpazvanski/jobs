@@ -29,9 +29,7 @@ class AddRoles extends Command
     ];
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
+     * AddRoles constructor.
      */
     public function __construct()
     {

@@ -46,6 +46,6 @@ class JobsController extends Controller
 
         $job->save();
 
-        return back();
+        return redirect('/jobs');
     }
 }

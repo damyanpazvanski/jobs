@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\FindDuplicateEmails;
 use App\Rules\TrimEmails;
+use App\Rules\FindDuplicateEmails;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CandidateRequest extends FormRequest
