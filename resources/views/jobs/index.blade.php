@@ -38,13 +38,14 @@
                                 </div>
 
                                 <div class="content" style="padding-bottom: 10px">
-                                    {{--<h6 class="category text-gray">CEO / CO-FOUNDER</h6>--}}
                                     <h4 class="category text-gray">{{ strtoupper($job->workTime->name) }}</h4>
                                     <h4 class="alert card-title">{{ $job->position }}</h4>
                                     <div>
                                         <p>County: {{ $job->country->name }}</p></p>
                                         <p>City: {{ $job->city }}</p></p>
                                         <p>Created at: {{ $job->created_at->format('m/d/Y') }}</p></p>
+                                        <p class="category text-gray">Candidates: {{ $job->candidates()->count() }}</p>
+                                        <p class="category text-gray">Best Candidates: {{ $job->candidatesWithHighResult()->count() }}</p>
                                     </div>
 
                                     @if($job->status == 'open')

@@ -1,4 +1,4 @@
-<template>
+<template xmlns:v-on="http://www.w3.org/1999/xhtml">
     <span>
         <!-- Modal -->
         <div class="modal fade" id="sendEmailsmodal" tabindex="-1" role="dialog" aria-labelledby="sendEmailsmodalLabel" aria-hidden="true">

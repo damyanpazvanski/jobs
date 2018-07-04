@@ -45,4 +45,9 @@ class CompanyAdmin extends Authenticatable
     {
         return $this->belongsTo(Role::class, 'role_id');
     }
+
+    public function getFullName()
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
 }

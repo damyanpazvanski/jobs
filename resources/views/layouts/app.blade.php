@@ -21,7 +21,7 @@
 <body>
 <div id="app" class="wrapper">
     <div class="sidebar" data-color="blue">
-        <div class="logo text-center" style="font-weight: bold">Hello Damyan Pazvanski</div>
+        <div class="logo text-center" style="font-weight: bold">Hello {{ auth()->user()->getFullName() }}</div>
         <div class="sidebar-wrapper ps-container ps-theme-default">
             <ul class="nav">
                 <li class="{{ request()->is('/') ? 'active' : '' }}">
