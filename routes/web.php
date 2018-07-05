@@ -24,15 +24,16 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/jobs/{job}/candidates/{candidate}', 'CandidatesController@show')->name('show-candidate');
 
-    Route::get('/my-account', 'AccountsController@index')->name('my-account');
+    Route::get('/my-account', 'AccountsController@edit')->name('edit.account');
+
+    Route::put('/company-admins/{companyAdmin}', 'CompanyAdminsController@update')->name('update.companyAdmins');
+
+    Route::put('/company/{company}', 'CompaniesController@update')->name('update.company');
 
 
     Route::prefix('ajax')->namespace('Ajax')->group(function () {
-
         Route::post('/job/{job}/candidates', 'CandidatesController@store');
-
         Route::post('/job/{job}/send-tests', 'EmailsController@mark');
-
     });
 });
 
@@ -44,6 +45,7 @@ Route::prefix('ajax')->namespace('Ajax')->group(function () {
     Route::post('/register/store', 'RegisterController@store');
 
     Route::post('/test/email', 'TestsController@validateEmail');
+    Route::post('/test/candidate-information', 'TestsController@candidateInformation');
     Route::post('/test/attempt', 'TestsController@attempt');
     Route::post('/test', 'TestsController@store');
 

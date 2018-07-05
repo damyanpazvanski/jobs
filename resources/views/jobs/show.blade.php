@@ -92,10 +92,10 @@
 
             <div class="col-md-12">
                 <div class="card card-nav-tabs">
-                    <div class="card-header" data-background-color="blue">
+                    <div class="col-md-12 card-header" data-background-color="blue">
                         <div class="nav-tabs-navigation">
                             <div class="nav-tabs-wrapper">
-                                <ul class="nav nav-tabs" data-tabs="tabs">
+                                <ul class="col-md-6 nav nav-tabs" data-tabs="tabs">
                                     <li class="active">
                                         <a href="#candidates" data-toggle="tab">
                                             <i class="material-icons">people</i> Candidates
@@ -106,13 +106,23 @@
                                             <i class="material-icons">how_to_reg</i> Best Candidates
                                         </a>
                                     </li>
-                                    <li class="">
+                                    <li class="text-right">
                                         <a href="#settings" data-toggle="tab">
                                             <i class="material-icons">cloud</i> Server
                                         </a>
                                     </li>
                                 </ul>
 
+                                <div class="col-md-6">
+                                    <ul class="nav nav-tabs search-candidates" data-tabs="tabs">
+                                        <li>
+                                            <a data-toggle="tab">
+                                                <i class="material-icons">people</i>
+                                                <input type="text" class="search-candidates-bar" placeholder="Search">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>

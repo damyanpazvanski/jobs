@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class JobRequest extends FormRequest
+class CompanyAdminRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,9 @@ class JobRequest extends FormRequest
     public function rules()
     {
         return [
-            'country_id' => 'required|integer|exists:countries,id',
-            'position' => 'required|alpha|min:2|max:150',
-            'work_time_id' => 'required|integer|exists:work_times,id',
-            'city' => 'required|alpha|min:2|max:100'
+            'first_name' => 'required|alpha|min:2|max:255',
+            'last_name' => 'required|alpha|min:2|max:255',
+            'phone' => ['required', 'string', 'min:8', 'max:15', 'regex:/^([\+]{1}[0-9]{5}|[0-9]{3})+([\-])([0-9]{3})([\-])([0-9]{3,8})$/u']
         ];
     }
 }

@@ -3,7 +3,52 @@
         <div v-if="page === 1">
             <verify-email @verifyEmail="verifyEmail"></verify-email>
         </div>
+
         <div v-if="page === 2">
+            <div class="col-md-12" style="padding: 0">
+                <div class="col-lg-4 col-lg-offset-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="col-md-12 text-center">
+                                <h2 class="result-title">Hello</h2>
+                                <h4>Please fill the information below</h4>
+                            </div>
+
+                            <div class="form-group row form-info">
+                                <label for="first_name" class="col-md-4 col-form-label text-right">First name</label>
+
+                                <div class="col-md-6">
+                                    <input id="first_name" v-model="first_name" type="text" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group row form-info">
+                                <label for="last_name" class="col-md-4 col-form-label text-right">Last name</label>
+
+                                <div class="col-md-6">
+                                    <input id="last_name" v-model="last_name" type="text" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group row form-info">
+                                <label for="phone" class="col-md-4 col-form-label text-right">Phone</label>
+
+                                <div class="col-md-6">
+                                    <input id="phone" v-model="phone" type="text" class="form-control">
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-12 text-center">
+                                <button class="btn btn-info btn-lg" v-on:click="fillCandidateInformation">Continue</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div v-if="page === 3">
             <div class="col-md-12" style="padding: 0">
                 <div class="col-lg-4 col-lg-offset-4">
                     <div class="card">
@@ -27,10 +72,10 @@
                 </div>
             </div>
         </div>
-        <div v-if="page === 3">
+        <div v-if="page === 4">
             <questions @finishedQuestions="finishedQuestions" :questions="questions"></questions>
         </div>
-        <div v-if="page === 4">
+        <div v-if="page === 5">
             <div class="col-md-12" style="padding: 0">
                 <div class="col-lg-4 col-lg-offset-4">
                     <div class="card">
@@ -78,8 +123,11 @@
         props: ['questions'],
         data() {
             return {
-                page: 1,
+                page: 2,
                 email: '',
+                first_name: '',
+                last_name: '',
+                phone: '',
                 attempts: 0,
                 allowed_attempts: 0,
                 result: 0,
@@ -94,7 +142,30 @@
                 this.email = response.data.email;
                 this.attempts = response.data.attempts;
                 this.allowed_attempts = response.data.allowed_attempts;
+
+                if (response.data.is_updated) {
+                    this.page += 2;
+                    return;
+                }
+
                 this.page++;
+            },
+            fillCandidateInformation() {
+                let self = this;
+
+                axios.post('/ajax/test/candidate-information', {
+                    email: this.email,
+                    firs_name: this.firs_name,
+                    last_name: this.last_name,
+                    phone: this.phone,
+                })
+                    .then(function (response) {
+                        self.page++;
+                    }, function (error) {
+                        for (let key in error.response.data.errors) {
+                            self.error(key.toUpperCase(), error.response.data.errors[key][0]);
+                        }
+                    });
             },
             continueToTheTest() {
                 if (this.attempts >= this.allowed_attempts) {

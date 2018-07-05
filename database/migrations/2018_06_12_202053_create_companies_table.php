@@ -23,7 +23,7 @@ class CreateCompaniesTable extends Migration
             $table->string('city');
             $table->unsignedInteger('country_id')->nullable();;
             $table->string('phone');
-            $table->string('description')->nullable();
+            $table->string('description', 2000)->nullable();
             $table->timestamps();
 
             $table->foreign('business_sector_id')

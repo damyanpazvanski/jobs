@@ -19,7 +19,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-<div id="app" class="wrapper">
+<div id="app" class="wrapper" style="overflow: hidden">
     <div class="sidebar" data-color="blue">
         <div class="logo text-center" style="font-weight: bold">Hello {{ auth()->user()->getFullName() }}</div>
         <div class="sidebar-wrapper ps-container ps-theme-default">
@@ -53,51 +53,6 @@
         </div>
         <div class="sidebar-background"></div>
     </div>
-
-            {{--@if(auth()->user())--}}
-    {{--<nav class="navbar navbar-expand-md navbar-laravel"--}}
-         {{--style="background: linear-gradient(60deg, #26c6da, #00acc1); box-shadow: 0 12px 20px -10px rgba(0, 188, 212, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(0, 188, 212, 0.2)">--}}
-        {{--<div class="container" style="color: #ffffff">--}}
-            {{--<a class="navbar-brand font-weight-bold" href="{{ url('/') }}">--}}
-                {{--{{ config('app.name', 'Laravel') }}--}}
-            {{--</a>--}}
-            {{--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"--}}
-                    {{--aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">--}}
-                {{--<span class="navbar-toggler-icon"></span>--}}
-            {{--</button>--}}
-
-            {{--<div class="collapse navbar-collapse" id="navbarSupportedContent">--}}
-                {{--<!-- Left Side Of Navbar -->--}}
-                {{--<ul class="navbar-nav mr-auto">--}}
-
-                {{--</ul>--}}
-
-                {{--<!-- Right Side Of Navbar -->--}}
-                {{--<ul class="navbar-nav ml-auto">--}}
-                    {{--<li class="nav-item dropdown">--}}
-                        {{--<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"--}}
-                           {{--data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>--}}
-                                                            {{--{{ Auth::user()->name }}--}}
-                            {{--User name--}}
-                        {{--</a>--}}
-
-                        {{--<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">--}}
-                            {{--<a class="dropdown-item" href="{{ route('logout') }}"--}}
-                               {{--onclick="event.preventDefault();--}}
-                                                 {{--document.getElementById('logout-form').submit();">--}}
-                                {{--{{ __('Logout') }}--}}
-                            {{--</a>--}}
-
-                            {{--<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">--}}
-                                {{--@csrf--}}
-                            {{--</form>--}}
-                        {{--</div>--}}
-                    {{--</li>--}}
-                {{--</ul>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</nav>--}}
-    {{--@endif--}}
 
     <main class="py-4 main-panel ps-theme-default ps-active-y" style="overflow: scroll; bottom: -12px;">
         <nav class="navbar navbar-transparent navbar-absolute">
@@ -151,6 +106,14 @@
         </nav>
         <div class="content">
             <div class="">
+                @if(Session::has('success'))
+                    <div class="alert alert-success text-center">{{ Session::get('success') }}</div>
+                @endif
+
+                @if(Session::has('error'))
+                    <div class="alert alert-danger text-center">{{ Session::get('error') }}</div>
+                @endif
+
                 @yield('content')
             </div>
             <footer class="footer col-md-12">

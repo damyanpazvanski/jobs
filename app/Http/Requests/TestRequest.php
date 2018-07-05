@@ -23,12 +23,19 @@ class TestRequest extends FormRequest
      */
     public function rules()
     {
+        $rules = [];
         $method = $this->route()->getActionMethod();
 
+        $rules['email'] = 'required|string|email|max:255|exists:candidates,email';
+
         if ($method === 'validateEmail' || $method === 'attempt') {
-            return [
-                'email' => 'required|string|email|max:255|exists:candidates,email'
-            ];
+            return $rules;
+        } else if ($method == 'candidateInformation') {
+            $rules['first_name'] = 'required|alpha|min:2|max:255';
+            $rules['last_name'] = 'required|alpha|min:2|max:255';
+            $rules['phone'] = ['required', 'string', 'min:8', 'max:15', 'regex:/^([\+]{1}[0-9]{5}|[0-9]{3})+([\-])([0-9]{3})([\-])([0-9]{3,8})$/u'];
+
+            return $rules;
         }
 
         return [

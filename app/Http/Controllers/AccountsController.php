@@ -11,12 +11,13 @@ class AccountsController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function edit()
     {
-        $company = auth()->user()->company;
+        $user = auth()->user();
+        $company = $user->company;
         $businessSectors = BusinessSector::all();
         $countries = Country::all();
 
-        return view('accounts.index', compact('company', 'countries', 'businessSectors'));
+        return view('accounts.edit', compact('user', 'company', 'countries', 'businessSectors'));
     }
 }
