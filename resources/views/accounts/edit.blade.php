@@ -6,9 +6,39 @@
             <div class="card-header font-weight-bold text-center" data-background-color="blue">
                 <h4 class="title">Company Logo</h4>
             </div>
-            <div class="card-body col-md-12">
-                <img src="/images/image.png" alt="">
-            </div>
+
+            <form action="{{ route('update.company.image') }}" method="POST" enctype="multipart/form-data">
+                @method('PUT')
+                @csrf
+
+                <div class="card-body">
+                    <div class="form-group">
+                        <img src="/storage/{{ $user->id }}/images/{{ $company->image->name }}" alt="">
+                    </div>
+
+                    <div class="col-md-12 row">
+                        <div class="form-group form-info col-md-12">
+                            <div class="input-group">
+                                <span class="input-group-btn">
+                                    <span class="btn btn-info">
+                                        Browse… <input type="file" name="image">
+                                    </span>
+                                </span>
+                                <input type="text" class="form-control" readonly disabled />
+                                @if ($errors->has('image'))
+                                    <strong class="invalid">{{ $errors->first('image') }}</strong>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="submit" value="Save" class="btn btn-info btn-lg btn-block" />
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
 
         <div class="card">
@@ -100,7 +130,7 @@
         <div class="justify-content-center">
             <div class="card">
                 <div class="card-header font-weight-bold" data-background-color="blue">
-                    <h4 class="title">Company information</h4>
+                    <h4 class="title text-center">Company information</h4>
                 </div>
 
                 <form action="{{ route('update.company', ['company' => $company->id]) }}" method="POST">
@@ -129,7 +159,7 @@
                             <label for="website" class="col-md-4 col-form-label text-right">Website</label>
 
                             <div class="col-md-6">
-                                <input id="website" name="website" type="text"
+                                <input id="website" name="website" type="text" placeholder="http://YOUR SITE"
                                        value="{{ $company->website ?: old('website') }}"
                                        class="form-control {{ $errors->has('website') ? 'invalid-input' : '' }}">
 

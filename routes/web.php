@@ -28,8 +28,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::put('/company-admins/{companyAdmin}', 'CompanyAdminsController@update')->name('update.companyAdmins');
 
-    Route::put('/company/{company}', 'CompaniesController@update')->name('update.company');
-
+    Route::put('/companies/update-image', 'CompaniesController@updateImage')->name('update.company.image');
+    Route::put('/companies/{company}', 'CompaniesController@update')->name('update.company');
 
     Route::prefix('ajax')->namespace('Ajax')->group(function () {
         Route::post('/job/{job}/candidates', 'CandidatesController@store');

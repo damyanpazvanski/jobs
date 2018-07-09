@@ -23,7 +23,16 @@ class TestsController extends Controller
 
     public function candidateInformation(TestRequest $request)
     {
-        Candidate::where('email', $request->get('email'))->first()->fill($request->all())->save();
+        $candidate = Candidate::where('email', $request->get('email'))->first()->fill($request->all())->save();
+
+        $cvFile = $request->file('cv');
+        $name = md5(date("Y-m-d H:i:s")) . '.' . $cvFile->getClientOriginalExtension();
+        $destinationPath = public_path('/storage/' . auth()->user()->id . '/cvs/');
+        $cvFile->move($destinationPath, $name);
+
+        $candidate->cv->update([
+            'name' => $name
+        ]);
 
         return response()->json([]);
     }

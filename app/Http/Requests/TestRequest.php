@@ -34,6 +34,7 @@ class TestRequest extends FormRequest
             $rules['first_name'] = 'required|alpha|min:2|max:255';
             $rules['last_name'] = 'required|alpha|min:2|max:255';
             $rules['phone'] = ['required', 'string', 'min:8', 'max:15', 'regex:/^([\+]{1}[0-9]{5}|[0-9]{3})+([\-])([0-9]{3})([\-])([0-9]{3,8})$/u'];
+            $rules['cv'] = 'required';
 
             return $rules;
         }

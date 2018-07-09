@@ -18,7 +18,7 @@ class CreateCandidatesTable extends Migration
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('email')->unique();
-            $table->integer('phone')->nullable();
+            $table->string('phone', 20)->nullable();
             $table->string('password')->nullable();
             $table->rememberToken()->nullable();
             $table->timestamps();

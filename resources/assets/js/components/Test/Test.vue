@@ -38,6 +38,19 @@
                                 </div>
                             </div>
 
+                            <div class="col-md-8 col-md-offset-2 col-lg-12 col-lg-offset-0">
+                                <div class="form-group form-info col-md-12">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <span class="btn btn-info">
+                                                CV Browse… <input type="file" @change="uploadCv">
+                                            </span>
+                                        </span>
+                                        <input type="text" class="form-control" readonly disabled />
+                                    </div>
+                                </div>
+                            </div>
+
 
                             <div class="col-md-12 text-center">
                                 <button class="btn btn-info btn-lg" v-on:click="fillCandidateInformation">Continue</button>
@@ -128,6 +141,7 @@
                 first_name: '',
                 last_name: '',
                 phone: '',
+                cv: null,
                 attempts: 0,
                 allowed_attempts: 0,
                 result: 0,
@@ -152,13 +166,15 @@
             },
             fillCandidateInformation() {
                 let self = this;
+                let formData = new FormData();
 
-                axios.post('/ajax/test/candidate-information', {
-                    email: this.email,
-                    firs_name: this.firs_name,
-                    last_name: this.last_name,
-                    phone: this.phone,
-                })
+                formData.append('email', self.email);
+                formData.append('first_name', self.first_name);
+                formData.append('last_name', self.last_name);
+                formData.append('phone', self.phone);
+                formData.append('cv', self.cv);
+
+                axios.post('/ajax/test/candidate-information', formData)
                     .then(function (response) {
                         self.page++;
                     }, function (error) {
@@ -199,6 +215,9 @@
                             self.error(key.toUpperCase(), error.response.data.errors[key][0]);
                         }
                     })
+            },
+            uploadCv(event) {
+                this.cv = event.target.files[0];
             },
             error(title, message) {
                 this.$notify({

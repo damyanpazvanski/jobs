@@ -1,17 +1,24 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml">
-    <div class="col-md-6 col-md-offset-3">
-        <div class="card">
-            <div class="card-header" data-background-color="blue">Verify Your Email</div>
-            <div class="card-body">
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="form-group form-info">
-                        <input type="email" required class="form-control" v-model="email" placeholder="Your email">
-                        <button class="btn btn-block btn-lg btn-info" v-on:click="verify">VERIFY</button>
+        <div class="col-md-12" style="padding: 0">
+            <div class="col-lg-4 col-lg-offset-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="col-md-12 text-center">
+                            <h2 class="result-title">Verify Your Email</h2>
+                        </div>
+
+                        <div class="form-group row form-info">
+                            <div class="col-md-10 col-md-offset-1">
+                                <input type="email" required class="form-control" v-model="email" placeholder="Your email">
+                            </div>
+                            <div class="col-md-12">
+                                <button class="btn btn-block btn-lg btn-info" v-on:click="verify">VERIFY</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 </template>
 <script>
     import axios from 'axios';

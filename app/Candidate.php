@@ -39,4 +39,9 @@ class Candidate extends Authenticatable
     {
         return $this->first_name . ' ' . $this->last_name;
     }
+
+    public function cv()
+    {
+        return $this->hasOne(Cv::class, 'candidate_id', 'id');
+    }
 }

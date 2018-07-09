@@ -106,11 +106,6 @@
                                             <i class="material-icons">how_to_reg</i> Best Candidates
                                         </a>
                                     </li>
-                                    <li class="text-right">
-                                        <a href="#settings" data-toggle="tab">
-                                            <i class="material-icons">cloud</i> Server
-                                        </a>
-                                    </li>
                                 </ul>
 
                                 <div class="col-md-6">
@@ -224,9 +219,6 @@
                                         @endif
                                     </div>
                                 </div>
-                            </div>
-                            <div class="tab-pane" id="settings">
-
                             </div>
                         </div>
                     </div>

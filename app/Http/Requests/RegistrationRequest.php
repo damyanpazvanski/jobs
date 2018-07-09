@@ -34,7 +34,7 @@ class RegistrationRequest extends FormRequest
                 break;
             case 'companyInformation';
                 return [
-                    'image' => 'nullable|image|mime:png,jpg,jpeg,gif|max:1024',
+                    'image' => 'nullable|image|mime:png,jpg,jpeg,gif|max:2048',
                     'name' => 'required|string|min:2|max:255',
                     'website' => 'nullable|active_url',
                     'business_sector' => 'required|integer|exists:business_sectors,id',

@@ -46,15 +46,11 @@ class SendIqTests extends Command
      */
     public function handle()
     {
-        //        $noAttemptsCandidates = Candidate::leftJoin('sent_iq_tests', 'sent_iq_tests.candidate_id', '=', 'candidates.id')
-//            ->join('iq_results', 'iq_results.candidate_id', '=', 'candidates.id')
-//            ->select('candidates.*')
-//            ->where('candidate_id', null)
-//            ->whereDate('send_on', '<', Carbon::now())
-//            ->where('status', 'hold')
-//            ->where('attempts', '<', '4');
-
         $sentIqTests = SentIqTest::where('count', '<', '4');
+
+        if ($sentIqTests->count() === 0) {
+            return;
+        }
 
         $this->send($sentIqTests->get());
 
