@@ -16,7 +16,7 @@ class CreateSentIqTestsTable extends Migration
         Schema::create('sent_iq_tests', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('candidate_id');
-            $table->date('send_on');
+            $table->dateTime('send_on');
             $table->tinyInteger('count')->default(0);
             $table->timestamps();
 

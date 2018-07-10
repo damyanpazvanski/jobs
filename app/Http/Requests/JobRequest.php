@@ -25,7 +25,7 @@ class JobRequest extends FormRequest
     {
         return [
             'country_id' => 'required|integer|exists:countries,id',
-            'position' => 'required|alpha|min:2|max:150',
+            'position' => 'required|string|min:2|max:150',
             'work_time_id' => 'required|integer|exists:work_times,id',
             'city' => 'required|alpha|min:2|max:100'
         ];

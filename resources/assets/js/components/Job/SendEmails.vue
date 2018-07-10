@@ -32,9 +32,16 @@
             markEmails() {
                 axios.post(`/ajax/job/${this.jobId}/send-tests`, {})
                     .then(function (response) {
-                        console.log(response);
+                        window.location.href = `/jobs/${this.jobId}`;
                     }, function (error) {
-                        console.log(error);
+                        for (let key in error.response.data.errors) {
+                            this.$notify({
+                                group: 'errors',
+                                type: 'error',
+                                title: key.toUpperCase(),
+                                text: error.response.data.errors[key][0]
+                            });
+                        }
                     });
             }
         }

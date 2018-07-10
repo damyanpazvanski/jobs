@@ -12,46 +12,52 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-content">
+                    <div class="card-content mb-5">
                         <div class="form-group">
-                            <label for="" class="col-md-3 text-right">First Name:</label>
-                            <div class="col-md-6">
+                            <label for="" class="col-md-4 text-right">First Name:</label>
+                            <div class="col-md-5">
                                 <input type="text" readonly value="{{ $candidate->first_name }}" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-md-3 text-right">Last Name:</label>
-                            <div class="col-md-6">
+                            <label for="" class="col-md-4 text-right">Last Name:</label>
+                            <div class="col-md-5">
                                 <input type="text" readonly value="{{ $candidate->last_name }}" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-md-3 text-right">Email:</label>
-                            <div class="col-md-6">
+                            <label for="" class="col-md-4 text-right">Email:</label>
+                            <div class="col-md-5">
                                 <input type="text" readonly value="{{ $candidate->email }}" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-md-3 text-right">Phone:</label>
-                            <div class="col-md-6">
+                            <label for="" class="col-md-4 text-right">Phone:</label>
+                            <div class="col-md-5">
                                 <input type="text" readonly value="{{ $candidate->phone }}" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="" class="col-md-3 text-right">Result:</label>
-                            <div class="col-md-6">
+                            <label for="" class="col-md-4 text-right">Result:</label>
+                            <div class="col-md-5">
                                 <input type="text" readonly value="{{ $candidate->iqResult->result }} %" class="form-control">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="" class="col-md-3 text-right">CV:</label>
-                            <div class="col-md-6">
-                                <a href="/jobs/{{ $job->id }}/candidates/{{ $candidate->id }}/cv">
-                                    <button class="btn btn-block">CV</button>
-                                </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8 col-md-offset-2">
+                <div class="card card-nav-tabs">
+                    <div class="card-header" data-background-color="blue">
+                        <div class="nav-tabs-navigation">
+                            <div class="nav-tabs-wrapper" >
+                                CV Preview
                             </div>
                         </div>
-
+                    </div>
+                    <div class="card-content">
+                        <cv-preview></cv-preview>
                     </div>
                 </div>
             </div>

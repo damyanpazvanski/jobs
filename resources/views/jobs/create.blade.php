@@ -31,7 +31,7 @@
 
                             <div class="col-md-6">
                                 <select name="country_id" id="country_id"
-                                        class="custom-select {{ $errors->has('country_id') ? 'invalid-input' : '' }}">
+                                        class="custom-select select {{ $errors->has('country_id') ? 'invalid-input' : '' }}">
                                     <option value="">Choose country</option>
                                     @foreach($countries as $country)
                                         <option value="{{ $country->id }}"
@@ -68,7 +68,7 @@
 
                             <div class="col-md-6">
                                 <select name="work_time_id" id="work_time_id"
-                                        class="custom-select {{ $errors->has('work_time_id') ? 'invalid-input' : '' }}">
+                                        class="custom-select select {{ $errors->has('work_time_id') ? 'invalid-input' : '' }}">
                                     <option value="">Choose work time</option>
                                     @foreach($workTimes as $workTime)
                                         <option value="{{ $workTime->id }}"

@@ -12,8 +12,12 @@
                 @csrf
 
                 <div class="card-body">
-                    <div class="form-group">
-                        <img src="/storage/{{ $user->id }}/images/{{ $company->image->name }}" alt="">
+                    <div class="form-group text-center">
+                        @if ($company->image)
+                            <img src="/storage/{{ $user->id }}/images/{{ $company->image->name }}" alt="">
+                        @else
+                            <h5>You have no logo</h5>
+                        @endif
                     </div>
 
                     <div class="col-md-12 row">
@@ -24,7 +28,7 @@
                                         Browse… <input type="file" name="image">
                                     </span>
                                 </span>
-                                <input type="text" class="form-control" readonly disabled />
+                                <input type="text" class="form-control" readonly disabled placeholder="Browse for a logo" />
                                 @if ($errors->has('image'))
                                     <strong class="invalid">{{ $errors->first('image') }}</strong>
                                 @endif

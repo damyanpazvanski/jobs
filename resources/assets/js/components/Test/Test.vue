@@ -46,7 +46,7 @@
                                                 CV Browse… <input type="file" @change="uploadCv">
                                             </span>
                                         </span>
-                                        <input type="text" class="form-control" readonly disabled />
+                                        <input type="text" class="form-control" readonly disabled placeholder="PDF or Word document"/>
                                     </div>
                                 </div>
                             </div>
@@ -136,7 +136,7 @@
         props: ['questions'],
         data() {
             return {
-                page: 2,
+                page: 1,
                 email: '',
                 first_name: '',
                 last_name: '',

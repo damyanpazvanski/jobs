@@ -135,6 +135,7 @@
                                                     <th>Last name</th>
                                                     <th>Email</th>
                                                     <th>Phone</th>
+                                                    <th>Sent Emails</th>
                                                     <th>Status</th>
                                                     <th>IQ Result</th>
                                                     <th>Level</th>
@@ -142,18 +143,18 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-
                                                 @foreach($candidates as $candidate)
                                                     <tr>
                                                         <td>{{ $candidate->first_name ?: '-' }}</td>
                                                         <td>{{ $candidate->last_name ?: '-' }}</td>
                                                         <td>{{ $candidate->email }}</td>
                                                         <td>{{ $candidate->phone ?: '-' }}</td>
+                                                        <td>{{ $candidate->sentIqTest ? $candidate->sentIqTest->count : '-' }}</td>
                                                         <td>
-                                                    <span class="{{ $candidate->iqResult->status == 'complete' ?
-                                                        'status-success' : 'status-hold' }}">
-                                                        {{ $candidate->iqResult->status }}
-                                                    </span>
+                                                            <span class="{{ $candidate->iqResult->status == 'complete' ?
+                                                                'status-success' : 'status-hold' }}">
+                                                                {{ $candidate->iqResult->status }}
+                                                            </span>
                                                         </td>
                                                         <td class="text-info border">{{ $candidate->iqResult->result ?: '-' }} %</td>
                                                         <td>{{ ucfirst($candidate->iqResult->level) }}</td>

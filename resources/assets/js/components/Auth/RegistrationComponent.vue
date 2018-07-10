@@ -1,5 +1,5 @@
 <template>
-    <div class="row justify-content-center">
+    <div class="col-lg-4 col-lg-offset-4">
 
             <user-info
                     v-show="page == 1"
@@ -44,10 +44,10 @@
         methods: {
             continueBtn(data) {
 
-                if (this.page == 1) {
+                if (this.page === 1) {
                     this.data['user'] = data.user;
                     this.page++;
-                } else if (this.page == 2) {
+                } else if (this.page === 2) {
                     this.data['company'] = data.company;
 
                     console.log(this.data, this);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Ajax;
 
 use App\Actions\Tests\Store;
 use App\Candidate;
+use App\Cv;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TestRequest;
 
@@ -23,16 +24,21 @@ class TestsController extends Controller
 
     public function candidateInformation(TestRequest $request)
     {
-        $candidate = Candidate::where('email', $request->get('email'))->first()->fill($request->all())->save();
+        $candidate = Candidate::where('email', $request->get('email'))->first()->fill($request->all());
 
         $cvFile = $request->file('cv');
         $name = md5(date("Y-m-d H:i:s")) . '.' . $cvFile->getClientOriginalExtension();
-        $destinationPath = public_path('/storage/' . auth()->user()->id . '/cvs/');
+        $destinationPath = public_path('/storage/candidates/' . $candidate->id . '/cvs/');
         $cvFile->move($destinationPath, $name);
 
-        $candidate->cv->update([
+        $cv = new Cv([
             'name' => $name
         ]);
+
+        $cv->candidate()->associate($candidate);
+        $cv->save();
+
+        $candidate->save();
 
         return response()->json([]);
     }

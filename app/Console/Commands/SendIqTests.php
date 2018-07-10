@@ -46,7 +46,7 @@ class SendIqTests extends Command
      */
     public function handle()
     {
-        $sentIqTests = SentIqTest::where('count', '<', '4');
+        $sentIqTests = SentIqTest::where('count', '<', 5);
 
         if ($sentIqTests->count() === 0) {
             return;

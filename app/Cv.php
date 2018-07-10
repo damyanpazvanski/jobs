@@ -13,7 +13,7 @@ class Cv extends Model
      * @var array
      */
     protected $fillable = [
-        'image'
+        'name'
     ];
 
     public function candidate()

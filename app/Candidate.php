@@ -44,4 +44,9 @@ class Candidate extends Authenticatable
     {
         return $this->hasOne(Cv::class, 'candidate_id', 'id');
     }
+
+    public function sentIqTest()
+    {
+        return $this->hasOne(SentIqTest::class, 'candidate_id', 'id');
+    }
 }

@@ -1,5 +1,5 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml">
-    <div class="card col-md-7">
+    <div class="card">
         <div class="card-header font-weight-bold" data-background-color="blue">
             <h3 class="title">Company Information</h3>
         </div>
@@ -45,7 +45,7 @@
                 <label for="business_sector" class="col-md-4 col-form-label text-right">Business Sector</label>
 
                 <div class="col-md-6">
-                    <select class="custom-select" id="business_sector" name="business_sector" v-model="company.business_sector">
+                    <select class="custom-select select" id="business_sector" name="business_sector" v-model="company.business_sector">
                         <option value="" selected disabled>Choose the business sector</option>
                         <option v-for="sector in businessSectors" :value="sector.id">{{ sector.name }}</option>
                     </select>
@@ -58,7 +58,7 @@
                 <label for="country_id" class="col-md-4 col-form-label text-right">Country</label>
 
                 <div class="col-md-6">
-                    <select name="country_id" id="country_id" class="custom-select" v-model="company.country_id">
+                    <select name="country_id" id="country_id" class="custom-select select" v-model="company.country_id">
                         <option value="">Choose the country</option>
                         <option v-for="country in countries" :value="country.id">{{ country.name }}</option>
                     </select>

@@ -1,5 +1,5 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml">
-    <div class="card col-md-7" v-if="user">
+    <div class="card" v-if="user">
         <div class="card-header font-weight-bold" data-background-color="blue">
             <h3 class="title">User Information</h3>
         </div>
