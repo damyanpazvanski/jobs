@@ -159,7 +159,7 @@
                                                         <td class="text-info border">{{ $candidate->iqResult->result ?: '-' }} %</td>
                                                         <td>{{ ucfirst($candidate->iqResult->level) }}</td>
                                                         <td>
-                                                            <a href="/jobs/{{ $job->id }}/candidates/{{ $candidate->id }}">
+                                                            <a href="{{ route('show-candidate', ['candidate' => $candidate->id]) }}">
                                                                 <i class="material-icons text-info">remove_red_eye</i>
                                                             </a>
                                                         </td>

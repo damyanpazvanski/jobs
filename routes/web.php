@@ -22,7 +22,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/jobs', 'JobsController@index')->name('jobs');
     Route::get('/jobs/{job}', 'JobsController@show')->name('show-job');
 
-    Route::get('/jobs/{job}/candidates/{candidate}', 'CandidatesController@show')->name('show-candidate');
+    Route::get('/candidates/{candidate}', 'CandidatesController@show')->name('show-candidate');
+    Route::get('/candidates/{candidate}/cv/download', 'CandidatesController@cvDownload')->name('cv.download.account');
 
     Route::get('/my-account', 'AccountsController@edit')->name('edit.account');
 

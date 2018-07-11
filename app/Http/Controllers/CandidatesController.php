@@ -13,4 +13,9 @@ class CandidatesController extends Controller
     {
         return view('candidates.show', compact('job', 'candidate'));
     }
+
+    public function cvDownload(Candidate $candidate)
+    {
+
+    }
 }

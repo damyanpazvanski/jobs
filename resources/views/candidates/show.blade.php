@@ -57,7 +57,18 @@
                         </div>
                     </div>
                     <div class="card-content">
-                        <cv-preview></cv-preview>
+                        @if(substr($candidate->cv->name, -3) === 'pdf')
+                            <iframe class="col-md-12" src="/storage/candidates/6/cvs/bfed1a110749712af7bbe86db71bc25f.pdf" frameborder="0" height="600"></iframe>
+                        @else
+                            <div class="form-group">
+                                <h5 class="text-center">The file format is not pdf</h5>
+                                <div class="text-center">
+                                    <a href="{{ route('cv.download.account', ['candidate' => $candidate->id]) }}">
+                                        <button class="btn btn-info"><strong>Download the CV</strong></button>
+                                    </a>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
