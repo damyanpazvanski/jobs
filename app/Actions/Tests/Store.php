@@ -29,6 +29,12 @@ class Store
     {
         $candidate = Candidate::where('email', $this->email)->first();
 
+        $result = $this->calculateResult();
+
+        if ($result <= $candidate->iqResult->result) {
+            return $candidate->iqResult;
+        }
+
         $candidate->iqResult->update([
             'status' => 'complete',
             'result' => $this->calculateResult(),

@@ -20,8 +20,8 @@ class CreateJobsTable extends Migration
             $table->string('position');
             $table->unsignedInteger('work_time_id')->nullable();
             $table->string('city');
-            $table->enum('status', ['open', 'closed']);
             $table->text('description')->nullable();
+            $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('company_id')

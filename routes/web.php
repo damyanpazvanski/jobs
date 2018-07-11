@@ -17,11 +17,13 @@ Auth::routes();
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/', 'HomeController@index')->name('home');
-    Route::get('/job', 'JobsController@create')->name('create-job');
-    Route::post('/job', 'JobsController@store')->name('store-job');
+    Route::get('/jobs/create', 'JobsController@create')->name('create.jobs');
+    Route::post('/jobs', 'JobsController@store')->name('store.jobs');
     Route::get('/jobs', 'JobsController@index')->name('jobs');
+    Route::get('/jobs/disabled', 'JobsController@disabled')->name('disabled.jobs');
     Route::get('/jobs/{job}', 'JobsController@show')->name('show-job');
 
+    Route::get('/candidates', 'CandidatesController@index')->name('index.candidates');
     Route::get('/candidates/{candidate}', 'CandidatesController@show')->name('show-candidate');
     Route::get('/candidates/{candidate}/cv/download', 'CandidatesController@cvDownload')->name('cv.download.account');
 
@@ -33,11 +35,12 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/companies/{company}', 'CompaniesController@update')->name('update.company');
 
     Route::prefix('ajax')->namespace('Ajax')->group(function () {
-        Route::post('/job/{job}/candidates', 'CandidatesController@store');
-        Route::post('/job/{job}/send-tests', 'EmailsController@mark');
+        Route::delete('/jobs/{job}', 'JobsController@destroy');
+        Route::patch('/jobs/{job}/activate', 'JobsController@activate');
+        Route::post('/jobs/{job}/candidates', 'CandidatesController@store');
+        Route::post('/jobs/{job}/send-tests', 'EmailsController@mark');
     });
 });
-
 
 Route::prefix('ajax')->namespace('Ajax')->group(function () {
 

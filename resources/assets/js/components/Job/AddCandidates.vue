@@ -1,5 +1,5 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml">
-    <span>
+    <div>
         <!-- Modal -->
         <div class="modal fade" id="addCandidatesModal" tabindex="-1" role="dialog" aria-labelledby="addCandidatesModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -22,7 +22,7 @@
             </div>
         </div>
         <button class="btn btn-outline-info btn-block" data-toggle="modal" data-target="#addCandidatesModal">ADD CANDIDATES</button>
-    </span>
+    </div>
 </template>
 <script>
     import axios from 'axios';
@@ -38,7 +38,7 @@
             addCandidates() {
                 let self = this;
 
-                axios.post('/ajax/job/' + this.jobId + '/candidates', {
+                axios.post('/ajax/jobs/' + this.jobId + '/candidates', {
                     candidates: this.candidates
                 })
                     .then(function (response) {

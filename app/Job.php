@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Job extends Model
 {
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -15,8 +17,13 @@ class Job extends Model
     protected $fillable = [
         'position',
         'city',
-        'description',
-        'status'
+        'description'
+    ];
+
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at'
     ];
 
     public function company()
@@ -64,11 +71,24 @@ class Job extends Model
             ->count();
     }
 
+    public function noMailedCandidatesCount()
+    {
+        return $this->belongsToMany(Candidate::class, 'jobs_candidates', 'job_id')
+            ->leftJoin('sent_iq_tests', 'sent_iq_tests.candidate_id', '=', 'candidates.id')
+            ->where('sent_iq_tests.candidate_id', null)
+            ->count();
+    }
+
     public function completedCandidatesCount()
     {
         return $this->belongsToMany(Candidate::class, 'jobs_candidates', 'job_id')
             ->join('iq_results', 'iq_results.candidate_id', '=', 'candidates.id')
             ->where('status', 'complete')
             ->count();
+    }
+
+    public function scopeHasDisabledJobs($query)
+    {
+        return $query->onlyTrashed()->count() > 0;
     }
 }

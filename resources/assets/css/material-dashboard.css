@@ -2976,11 +2976,6 @@ label.control-label {
     font-size: 11px;
 }
 
-.form-group {
-    padding-bottom: 10px;
-    margin: 27px 0 0 0;
-}
-
 .form-group .form-control::-moz-placeholder {
     font-size: 14px;
     line-height: 1.42857;
@@ -6361,6 +6356,14 @@ footer .btn {
 }
 .btn-outline-info:hover {
     background-color: #00c2d7;
+    color: #ffffff !important;
+}
+.btn-outline-danger {
+    background-color: #ffffff;
+    border: 1.5px solid #ff6347;
+}
+.btn-outline-danger:hover {
+    background-color: #f44336;
     color: #ffffff !important;
 }
 .wrapper .navbar.navbar-transparent.navbar-absolute {

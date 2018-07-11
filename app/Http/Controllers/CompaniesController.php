@@ -38,7 +38,7 @@ class CompaniesController extends Controller
 
         $imageFile = $request->file('image');
         $name = md5(date("Y-m-d H:i:s")) . '.' . $imageFile->getClientOriginalExtension();
-        $destinationPath = public_path('/storage/' . auth()->user()->id . '/images/');
+        $destinationPath = public_path('/storage/company_admins/' . auth()->user()->id . '/images/');
         $imageFile->move($destinationPath, $name);
 
         $image->name = $name;

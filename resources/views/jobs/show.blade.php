@@ -1,25 +1,15 @@
 @extends('layouts.app')
-<style>
-    .status-hold {
-        background: #ff8e00;
-        padding: 3px 10px;
-        color: #FFFFFF;
-        border-radius: 20px;
-    }
-    .status-success {
-        background: #00ff00;
-        padding: 3px 10px;
-        color: #FFFFFF;
-        border-radius: 20px;
-    }
-</style>
+
 @section('content')
     <div class="col-md-12">
+        <div class="col-md-3 col-md-offset-9 text-right">
+            <disable-job job-id="{{ $job->id }}"></disable-job>
+        </div>
         <div class="row justify-content-center">
             @if($job->candidates()->count())
                 <div class="col-md-12">
                     <div class="row">
-                        <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="card card-stats">
                                 <div class="card-header" data-background-color="orange">
                                     <i class="material-icons">people</i>
@@ -39,7 +29,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="card card-stats">
                                 <div class="card-header" data-background-color="green">
                                     <i class="material-icons">people</i>
@@ -53,12 +43,12 @@
                                 </div>
                                 <div class="card-footer">
                                     <div class="stats">
-                                        <i class="material-icons">date_range</i> Last 24 Hours
+                                        <i class="material-icons text-success">people</i> Number of all candidates: {{ $candidates->count() }}
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="card card-stats">
                                 <div class="card-header" data-background-color="blue">
                                     <i class="material-icons">people</i>
@@ -72,7 +62,7 @@
                                 </div>
                                 <div class="card-footer">
                                     <div class="stats">
-                                        <i class="material-icons">local_offer</i> Tracked from Github
+                                        <i class="material-icons text-info">nature_people</i> These are the candidates, who you want
                                     </div>
                                 </div>
                             </div>
@@ -85,17 +75,32 @@
                 <div class="col-md-3">
                     <add-candidates :job-id="{{ $job->id }}"></add-candidates>
                 </div>
-                <div class="col-md-3 col-md-offset-6">
+                <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-lg-offset-1 text-right">
+                    @if ($job->noMailedCandidatesCount())
+                        <div class="col-md-12 col-sm-12 col-xs-12 alert alert-danger" style="margin: 0; padding: 0">
+                            <div class="col-md-7 col-sm-6 col-xs-6 pt-1 text-center">
+                                <h5>You have {{ $job->noMailedCandidatesCount() }} new candidate/s</h5>
+                            </div>
+                            <div class="col-md-5 hidden-xs hidden-sm">
+                                <i class="material-icons animated-horizontal-arrow">arrow_right_alt</i>
+                            </div>
+                            <div class="col-sm-6 col-xs-6 hidden-md hidden-lg">
+                                <i class="material-icons animated-vertical-arrow">arrow_downward</i>
+                            </div>
+                        </div>
+                    @endif
+                </div>
+                <div class="col-md-3 col-sm-12 col-xs-12">
                     <send-emails :job-id="{{ $job->id }}"></send-emails>
                 </div>
             </div>
 
             <div class="col-md-12">
                 <div class="card card-nav-tabs">
-                    <div class="col-md-12 card-header" data-background-color="blue">
+                    <div class="card-header" data-background-color="blue">
                         <div class="nav-tabs-navigation">
                             <div class="nav-tabs-wrapper">
-                                <ul class="col-md-6 nav nav-tabs" data-tabs="tabs">
+                                <ul class="nav nav-tabs" data-tabs="tabs">
                                     <li class="active">
                                         <a href="#candidates" data-toggle="tab">
                                             <i class="material-icons">people</i> Candidates
@@ -103,21 +108,20 @@
                                     </li>
                                     <li class="">
                                         <a href="#bestCandidates" data-toggle="tab">
-                                            <i class="material-icons">how_to_reg</i> Best Candidates
+                                            <i class="material-icons">how_to_reg</i> Best Completed Candidates
                                         </a>
                                     </li>
                                 </ul>
-
-                                <div class="col-md-6">
-                                    <ul class="nav nav-tabs search-candidates" data-tabs="tabs">
-                                        <li>
-                                            <a data-toggle="tab">
-                                                <i class="material-icons">people</i>
-                                                <input type="text" class="search-candidates-bar" placeholder="Search">
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                {{--<div class="col-md-6 col-sm-6">--}}
+                                    {{--<ul class="nav nav-tabs search-candidates" data-tabs="tabs">--}}
+                                        {{--<li>--}}
+                                            {{--<a data-toggle="tab">--}}
+                                                {{--<i class="material-icons">people</i>--}}
+                                                {{--<input type="text" class="search-candidates-bar" placeholder="Search">--}}
+                                            {{--</a>--}}
+                                        {{--</li>--}}
+                                    {{--</ul>--}}
+                                {{--</div>--}}
                             </div>
                         </div>
                     </div>
@@ -139,7 +143,7 @@
                                                     <th>Status</th>
                                                     <th>IQ Result</th>
                                                     <th>Level</th>
-                                                    <th>Action</th>
+                                                    <th>Actions</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>

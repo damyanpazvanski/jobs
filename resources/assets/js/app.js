@@ -27,6 +27,8 @@ Vue.component('registration', require('./components/Auth/RegistrationComponent.v
 
 Vue.component('add-candidates', require('./components/Job/AddCandidates.vue'));
 Vue.component('send-emails', require('./components/Job/SendEmails.vue'));
+Vue.component('disable-job', require('./components/Job/Disable'));
+Vue.component('disabled-jobs', require('./components/Job/DisabledJobs'));
 
 Vue.component('verify-email', require('./components/Test/VerifyEmail.vue'));
 Vue.component('questions', require('./components/Test/Questions.vue'));

@@ -43,6 +43,22 @@
                     </a>
                 </li>
 
+                @if(auth()->user()->company->jobs()->hasDisabledJobs())
+                    <li class="{{ request()->is(route('disabled.jobs')) ? 'active' : '' }}">
+                        <a href="{{ route('disabled.jobs') }}">
+                            <i class="material-icons">content_paste</i>
+                            <p>Disabled Jobs</p>
+                        </a>
+                    </li>
+                @endif
+
+                <li class="{{ request()->is(route('index.candidates')) ? 'active' : '' }}">
+                    <a href="{{ route('index.candidates') }}">
+                        <i class="material-icons">view_list</i>
+                        <p>Candidates</p>
+                    </a>
+                </li>
+
             </ul>
             <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
                 <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>
@@ -117,7 +133,7 @@
 
                 @yield('content')
             </div>
-            <footer class="footer col-md-12">
+            <footer class="footer col-md-12 col-sm-12 col-xs-12">
                 <div class="container-fluid">
                     <p class="copyright text-center">
                         &copy 2018<span class="btn-link"> Pazvany Corporation</span>, made with love for a better web

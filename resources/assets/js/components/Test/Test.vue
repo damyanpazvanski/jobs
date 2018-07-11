@@ -6,7 +6,7 @@
 
         <div v-if="page === 2">
             <div class="col-md-12" style="padding: 0">
-                <div class="col-lg-4 col-lg-offset-4">
+                <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                     <div class="card">
                         <div class="card-body">
                             <div class="col-md-12 text-center">
@@ -15,30 +15,30 @@
                             </div>
 
                             <div class="form-group row form-info">
-                                <label for="first_name" class="col-md-4 col-form-label text-right">First name</label>
+                                <label for="first_name" class="col-md-4 col-sm-3 col-form-label text-right">First name <span class="required-field-star">*</span></label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-sm-8">
                                     <input id="first_name" v-model="first_name" type="text" class="form-control">
                                 </div>
                             </div>
 
                             <div class="form-group row form-info">
-                                <label for="last_name" class="col-md-4 col-form-label text-right">Last name</label>
+                                <label for="last_name" class="col-md-4 col-sm-3 col-form-label text-right">Last name <span class="required-field-star">*</span></label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-sm-8">
                                     <input id="last_name" v-model="last_name" type="text" class="form-control">
                                 </div>
                             </div>
 
                             <div class="form-group row form-info">
-                                <label for="phone" class="col-md-4 col-form-label text-right">Phone</label>
+                                <label for="phone" class="col-md-4 col-sm-3 col-form-label text-right">Phone <span class="required-field-star">*</span></label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-sm-8">
                                     <input id="phone" v-model="phone" type="text" class="form-control">
                                 </div>
                             </div>
 
-                            <div class="col-md-8 col-md-offset-2 col-lg-12 col-lg-offset-0">
+                            <div class="col-md-11 col-lg-12 col-lg-offset-0 col-sm-11">
                                 <div class="form-group form-info col-md-12">
                                     <div class="input-group">
                                         <span class="input-group-btn">
@@ -47,6 +47,7 @@
                                             </span>
                                         </span>
                                         <input type="text" class="form-control" readonly disabled placeholder="PDF or Word document"/>
+                                        <strong class="invalid row">The PDF format is better for your employer</strong>
                                     </div>
                                 </div>
                             </div>
@@ -97,6 +98,7 @@
                                 <h2 class="result-title">Congratulations</h2>
 
                                 <h4>You completed the test sucsessfully</h4>
+                                <h4>We are doing to keep your better result: {{ oldResult }}</h4>
                                 <h3 class="alert">Your result is: {{ result }}%</h3>
                                 <h4>Your level is: {{ level }}</h4>
                             </div>
@@ -145,7 +147,9 @@
                 attempts: 0,
                 allowed_attempts: 0,
                 result: 0,
-                level: ''
+                level: '',
+                oldResult: 0,
+                badResult: false
             }
         },
         components: {
@@ -156,6 +160,7 @@
                 this.email = response.data.email;
                 this.attempts = response.data.attempts;
                 this.allowed_attempts = response.data.allowed_attempts;
+                this.oldResult = response.data.result;
 
                 if (response.data.is_updated) {
                     this.page += 2;
@@ -210,6 +215,10 @@
                         self.page++;
                         self.level = response.data.level;
                         self.result = response.data.result;
+
+                        if (response.data.result < self.oldResult) {
+                            self.badResult = true;
+                        }
                     }, function (error) {
                         for (let key in error.response.data.errors) {
                             self.error(key.toUpperCase(), error.response.data.errors[key][0]);

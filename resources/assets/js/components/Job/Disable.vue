@@ -1,26 +1,23 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml">
     <div>
         <!-- Modal -->
-        <div class="modal fade" id="sendEmailsmodal" tabindex="-1" role="dialog" aria-labelledby="sendEmailsmodalLabel" aria-hidden="true">
+        <div class="modal fade" id="disableJobModal" tabindex="-1" role="dialog" aria-labelledby="disableJobModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content text-left">
                     <div class="modal-header">
-                        <label>Dou you want to send emails</label>
+                        <span class="fs-18 bold">Are you sure to disable this job?</span>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        You are going to send emails to all of the candidates without already sent invitations
-                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-info" data-dismiss="modal" v-on:click="markEmails">Send</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" v-on:click="disable">Disable</button>
                     </div>
                 </div>
             </div>
         </div>
-        <button class="btn btn-outline-info btn-block" data-toggle="modal" data-target="#sendEmailsmodal">SEND EMAILS</button>
+        <button class="btn btn-danger btn-block" data-toggle="modal" data-target="#disableJobModal">Disable job</button>
     </div>
 </template>
 <script>
@@ -29,10 +26,10 @@
     export default {
         props: ['jobId'],
         methods: {
-            markEmails() {
-                axios.post(`/ajax/jobs/${this.jobId}/send-tests`, {})
-                    .then(function (response) {
-                        window.location.href = `/jobs/${this.jobId}`;
+            disable() {
+                axios.delete('/ajax/jobs/' + this.jobId)
+                    .then(function () {
+                        window.location.href = '/jobs';
                     }, function (error) {
                         for (let key in error.response.data.errors) {
                             this.$notify({
@@ -42,7 +39,7 @@
                                 text: error.response.data.errors[key][0]
                             });
                         }
-                    });
+                    })
             }
         }
     }
