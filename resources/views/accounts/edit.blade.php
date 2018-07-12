@@ -14,7 +14,7 @@
                 <div class="card-body">
                     <div class="form-group text-center">
                         @if ($company->image)
-                            <img src="/storage/company_admins/{{ $user->id }}/images/{{ $company->image->name }}" alt="">
+                            <img src="/storage/company_admins/{{ $user->id }}/images/{{ $company->image->name }}" alt="Company's logo">
                         @else
                             <h5>You have no logo</h5>
                         @endif

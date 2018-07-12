@@ -1,5 +1,5 @@
 <template>
-    <div class="col-md-12 text-left card">
+    <div class="text-left card">
         <div class="card-content">
             <div class="col-md-3 form-group form-info">
                 <label class="mt-0 mb-0">Add the filters</label>
@@ -32,12 +32,12 @@
         </div>
     </div>
 </template>
-
 <script>
     export default {
         props: ['csvUrl', 'pdfUrl'],
         data() {
             return {
+                loading: false,
                 filters: 'yes',
                 rows: 10
             }

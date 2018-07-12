@@ -37,6 +37,7 @@ class AllCandidates
             ->candidatesRelatedTo(auth()->user()->company->jobs()->pluck('id'));
 
         if ($this->status || $this->level || $this->orderByResult) {
+            $candidatesQuery->addSelect('iq_results.result');
             $candidatesQuery->AddIqResults();
         }
 
@@ -69,11 +70,11 @@ class AllCandidates
         }
 
         if ($this->orderByFirstName) {
-            $candidatesQuery->orderBy('result', $this->orderByFirstName);
+            $candidatesQuery->orderBy('first_name', $this->orderByFirstName);
         }
 
         if ($this->orderByLastName) {
-            $candidatesQuery->orderBy('result', $this->orderByLastName);
+            $candidatesQuery->orderBy('last_name', $this->orderByLastName);
         }
 
         $candidates = $candidatesQuery->paginate($this->onPage);

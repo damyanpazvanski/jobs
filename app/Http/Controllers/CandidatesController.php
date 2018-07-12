@@ -9,7 +9,9 @@ use App\Job;
 use App\Candidate;
 use App\WorkTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\View;
 
 
 class CandidatesController extends Controller
@@ -18,17 +20,7 @@ class CandidatesController extends Controller
     public function index(AllCandidatesFilterRequest $request)
     {
         $workTimes = WorkTime::all();
-        $candidates = (new AllCandidates(
-            Input::get('status'),
-            Input::get('city'),
-            Input::get('position'),
-            Input::get('level'),
-            Input::get('work_time_id'),
-            Input::get('order_by_result'),
-            Input::get('order_by_first_name'),
-            Input::get('order_by_last_name'),
-            20
-        ))->handle();
+        $candidates = $this->getCandidates();
 
         return view('candidates.index', compact('workTimes', 'candidates'));
     }
@@ -66,22 +58,17 @@ class CandidatesController extends Controller
 
     public function downloadPdf(AllCandidatesFilterRequest $request)
     {
+        $pdf = App::make('dompdf.wrapper');
 
+        $candidates = $this->getCandidates();
+        $pdf->loadHTML(View::make('pdf.candidates.index', compact('candidates', 'workTimes')))->setPaper('a4', 'landscape');
+
+        return $pdf->download('candidates.pdf');
     }
 
     public function downloadCsv(AllCandidatesFilterRequest $request)
     {
-        $candidates = (new AllCandidates(
-            Input::get('status'),
-            Input::get('city'),
-            Input::get('position'),
-            Input::get('level'),
-            Input::get('work_time_id'),
-            Input::get('order_by_result'),
-            Input::get('order_by_first_name'),
-            Input::get('order_by_last_name'),
-            ((int) Input::get('rows')) > 100 ? 100 : Input::get('rows')
-        ))->handle();
+        $candidates = $this->getCandidates();
 
         return (new CandidatesCsv($candidates, Input::get('filters'), [
             'Status' => Input::get('status'),
@@ -93,5 +80,20 @@ class CandidatesController extends Controller
             'Order_By_First_Name' => Input::get('order_by_first_name'),
             'Order_By_Last_Name' => Input::get('order_by_last_name')
         ]))->handle();
+    }
+
+    private function getCandidates()
+    {
+        return (new AllCandidates(
+            Input::get('status'),
+            Input::get('city'),
+            Input::get('position'),
+            Input::get('level'),
+            Input::get('work_time_id'),
+            Input::get('order_by_result'),
+            Input::get('order_by_first_name'),
+            Input::get('order_by_last_name'),
+            Input::get('rows') ?: 20
+        ))->handle();
     }
 }
