@@ -25,7 +25,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/candidates', 'CandidatesController@index')->name('index.candidates');
     Route::get('/candidates/{candidate}', 'CandidatesController@show')->name('show-candidate');
-    Route::get('/candidates/{candidate}/cv/download', 'CandidatesController@cvDownload')->name('cv.download.account');
+    Route::get('/candidates/{candidate}/download/cv', 'CandidatesController@downloadCv')->name('download.cv.candidates');
+    Route::get('/candidates/download/pdf', 'CandidatesController@downloadPdf')->name('download.pdf.candidates');
+    Route::get('/candidates/download/csv', 'CandidatesController@downloadCsv')->name('download.csv.candidates');
 
     Route::get('/my-account', 'AccountsController@edit')->name('edit.account');
 

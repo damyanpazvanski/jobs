@@ -45,6 +45,11 @@ class Candidate extends Authenticatable
         return $this->hasOne(Cv::class, 'candidate_id', 'id');
     }
 
+    public function jobs()
+    {
+        return $this->belongsToMany(Job::class, 'jobs_candidates');
+    }
+
     public function sentIqTest()
     {
         return $this->hasOne(SentIqTest::class, 'candidate_id', 'id');

@@ -43,7 +43,7 @@ class Job extends Model
 
     public function candidates()
     {
-        return $this->belongsToMany(Candidate::class, 'jobs_candidates', 'job_id');
+        return $this->belongsToMany(Candidate::class, 'jobs_candidates');
     }
 
     public function bestCandidates()

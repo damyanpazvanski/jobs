@@ -28,13 +28,15 @@ class CandidatesController extends Controller
                 $relationship->candidate()->associate($candidate);
                 $relationship->save();
 
-                $result = new IqResult([
-                    'status' => 'hold',
-                    'allowed_attempts' => 2
-                ]);
+                if (is_null($candidate->iqResult)) {
+                    $result = new IqResult([
+                        'status' => 'hold',
+                        'allowed_attempts' => 2
+                    ]);
 
-                $result->candidate()->associate($candidate);
-                $result->save();
+                    $result->candidate()->associate($candidate);
+                    $result->save();
+                }
             }
         }, 2);
 

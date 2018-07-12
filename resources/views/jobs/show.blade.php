@@ -157,7 +157,7 @@
                                                         <td>
                                                             <span class="{{ $candidate->iqResult->status == 'complete' ?
                                                                 'status-success' : 'status-hold' }}">
-                                                                {{ $candidate->iqResult->status }}
+                                                                <strong>{{ $candidate->iqResult->status }}</strong>
                                                             </span>
                                                         </td>
                                                         <td class="text-info border">{{ $candidate->iqResult->result ?: '-' }} %</td>

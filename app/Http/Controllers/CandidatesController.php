@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Download\CandidatesCsv;
 use App\Actions\Filters\AllCandidates;
 use App\Http\Requests\AllCandidatesFilterRequest;
 use App\Job;
@@ -37,7 +38,7 @@ class CandidatesController extends Controller
         return view('candidates.show', compact('job', 'candidate'));
     }
 
-    public function cvDownload(Candidate $candidate, Request $request)
+    public function downloadCv(Candidate $candidate, Request $request)
     {
         if (!file_exists(base_path('/public/storage/candidates/' . $candidate->id . '/cvs/' . $candidate->cv->name))) {
             $request->session()->flash('error', trans('validation.exists', ['attribute' => 'CV']));
@@ -54,10 +55,43 @@ class CandidatesController extends Controller
 
         header("Content-Disposition: attachment; filename=" . $candidate->getFullName() . '-cv.' . $extention);
         header("Content-Transfer-Encoding: binary");
+        header('Pragma: no-cache');
+        header('Expires: 0');
 
         ob_clean();
         flush();
 
         return @readfile( base_path('/public/storage/candidates/' . $candidate->id . '/cvs/' . $candidate->cv->name));
+    }
+
+    public function downloadPdf(AllCandidatesFilterRequest $request)
+    {
+
+    }
+
+    public function downloadCsv(AllCandidatesFilterRequest $request)
+    {
+        $candidates = (new AllCandidates(
+            Input::get('status'),
+            Input::get('city'),
+            Input::get('position'),
+            Input::get('level'),
+            Input::get('work_time_id'),
+            Input::get('order_by_result'),
+            Input::get('order_by_first_name'),
+            Input::get('order_by_last_name'),
+            ((int) Input::get('rows')) > 100 ? 100 : Input::get('rows')
+        ))->handle();
+
+        return (new CandidatesCsv($candidates, Input::get('filters'), [
+            'Status' => Input::get('status'),
+            'City' => Input::get('city'),
+            'Position' => Input::get('position'),
+            'Level' => Input::get('level'),
+            'Work_Time' => Input::get('work_time_id'),
+            'Order_By_IQ_Result' => Input::get('order_by_result'),
+            'Order_By_First_Name' => Input::get('order_by_first_name'),
+            'Order_By_Last_Name' => Input::get('order_by_last_name')
+        ]))->handle();
     }
 }

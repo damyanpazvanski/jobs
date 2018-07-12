@@ -76,14 +76,14 @@
                             </div>
 
                             <div class="form-group form-info">
-                                <label class="col-md-4 text-right">City:</label>
+                                <label class="col-md-4 text-right">City of the job:</label>
                                 <div class="col-md-5">
                                     <input type="text" name="city" class="form-control" value="{{ request()->input('city') }}" placeholder="Search for a city" />
                                 </div>
                             </div>
 
                             <div class="form-group form-info">
-                                <label class="col-md-4 text-right">Position:</label>
+                                <label class="col-md-4 text-right">Job position:</label>
                                 <div class="col-md-5">
                                     <input type="text" name="position" class="form-control" value="{{ request()->input('position') }}" placeholder="Search for a position" />
                                 </div>
@@ -110,6 +110,11 @@
                     </form>
                 </div>
             </div>
+
+            <download-candidates-report
+                    csv-url="{{ route('download.csv.candidates', request()->input()) }}"
+                    pdf-url="{{ route('download.pdf.candidates', request()->input()) }}"
+            ></download-candidates-report>
 
             <div class="card card-nav-tabs">
                 <div class="card-header" data-background-color="blue">
@@ -149,7 +154,7 @@
                                             <td>
                                                 <span class="{{ $candidate->iqResult->status == 'complete' ?
                                                     'status-success' : 'status-hold' }}">
-                                                    {{ $candidate->iqResult->status }}
+                                                    <strong>{{ $candidate->iqResult->status }}</strong>
                                                 </span>
                                             </td>
                                             <td class="text-info border">{{ $candidate->iqResult->result ?: '-' }} %</td>

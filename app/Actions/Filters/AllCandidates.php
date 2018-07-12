@@ -33,7 +33,7 @@ class AllCandidates
 
     public function handle()
     {
-        $candidatesQuery = Candidate::query()
+        $candidatesQuery = Candidate::distinct('candidates.id')->select('candidates.*', 'candidates.id as id')
             ->candidatesRelatedTo(auth()->user()->company->jobs()->pluck('id'));
 
         if ($this->status || $this->level || $this->orderByResult) {

@@ -70,7 +70,7 @@
                             <div class="form-group">
                                 <h5 class="text-center">The file format is not pdf</h5>
                                 <div class="text-center">
-                                    <a href="{{ route('cv.download.account', ['candidate' => $candidate->id]) }}">
+                                    <a href="{{ route('download.cv.candidates', ['candidate' => $candidate->id]) }}">
                                         <button class="btn btn-info"><strong>Download the CV</strong></button>
                                     </a>
                                 </div>
