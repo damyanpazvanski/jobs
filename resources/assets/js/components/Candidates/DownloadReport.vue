@@ -3,14 +3,14 @@
         <div class="card-content">
             <div class="col-md-3 form-group form-info">
                 <label class="mt-0 mb-0">Add the filters</label>
-                <select name="" class="form-control select mt-0 mb-0" @change="addFilters">
+                <select name="filters" class="form-control select mt-0 mb-0" @change="addFilters">
                     <option value="1" selected>Yes</option>
                     <option value="0">No</option>
                 </select>
             </div>
             <div class="col-md-3 form-group form-info">
                 <label class="mt-0 mb-0">How much rows</label>
-                <select name="" class="form-control select mt-0 mb-0" @change="addRows">
+                <select name="rows" class="form-control select mt-0 mb-0" @change="addRows">
                     <option value="" selected>Select rows (default 10)</option>
                     <option value="10">10</option>
                     <option value="20">20</option>
@@ -38,7 +38,7 @@
         data() {
             return {
                 loading: false,
-                filters: 'yes',
+                filters: 1,
                 rows: 10
             }
         },
@@ -48,6 +48,15 @@
             },
             addRows(event) {
                 this.rows = event.target.value;
+            }
+        },
+        mounted() {
+            if (this.csvUrl.indexOf('?') === -1) {
+                this.csvUrl += '?';
+            }
+
+            if (this.pdfUrl.indexOf('?') === -1) {
+                this.csvUrl += '?';
             }
         }
     }

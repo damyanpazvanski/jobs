@@ -18,7 +18,7 @@ class AllCandidatesFilterRequest {
             'order_by_first_name' => 'nullable|string|in:asc,desc',
             'order_by_last_name' => 'nullable|string|in:asc,desc',
             'rows' => 'nullable|integer|between:1,100',
-            'filters' => 'nullable|boolean',
+            'filters' => 'nullable|integer|between:0,1',
         ]);
     }
 }

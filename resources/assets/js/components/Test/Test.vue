@@ -76,7 +76,7 @@
                                 <button class="btn btn-info btn-lg" v-on:click="continueToTheTest">Continue</button>
                             </div>
                             <div class="col-md-12 text-center register">
-                                If you want more attempts go to <a href="/register" class="text-info">Register</a>
+                                If you want more attempts go to <a href="/candidates/register" class="text-info">Register</a>
                             </div>
                             <div class="col-md-12 text-center more-attempts">
                                 Or if you have an account go for <a class="text-info">More Attempts</a>

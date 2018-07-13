@@ -8,7 +8,7 @@
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
 
-                    <div class="form-group row">
+                    <div class="form-group row mt-5">
                         <label for="password"
                                class="col-md-4 col-form-label text-right">{{ __('E-Mail Address') }}</label>
 
@@ -50,16 +50,16 @@
                         </div>
                     </div>
 
-                    <div class="form-group row mb-0">
+                    <div class="form-group mb-0">
                         <div class="col-md-12 text-center">
                             <button type="submit" class="btn btn-lg btn-block" data-background-color="blue">
                                 {{ __('Login') }}
                             </button>
                             <hr>
-                            <a class="btn btn-link" href="{{ route('register') }}">
-                                {{ __('You have\'t account?') }}
+                            <a class="btn btn-link" href="{{ route('candidates.register') }}">
+                                {{ __('You have\'t an account?') }}
                             </a>
-                            <a class="btn btn-link" href="{{ route('password.request') }}">
+                            <a class="btn btn-link" href="{{ route('candidates.password.request') }}">
                                 {{ __('Forgot Your Password?') }}
                             </a>
                         </div>

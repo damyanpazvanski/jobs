@@ -11,12 +11,37 @@
 |
 */
 
+Route::namespace('Auth\Candidates')->group(function () {
+    Route::get('login', 'LoginController@showLoginForm')->name('login');
+    Route::post('login', 'LoginController@login');
+    Route::post('logout', 'LoginController@logout')->name('candidates.logout');
 
-Auth::routes();
+    Route::get('register', 'RegisterController@showRegistrationForm')->name('candidates.register');
+    Route::post('register', 'RegisterController@register');
 
-Route::middleware(['auth'])->group(function () {
+    Route::get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('candidates.password.request');
+    Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('candidates.password.email');
+    Route::get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('candidates.password.reset');
+    Route::post('password/reset', 'ResetPasswordController@reset');
+});
 
+Route::namespace('Auth\CompanyAdmins')->prefix('companies')->group(function () {
+    Route::get('login', 'LoginController@showLoginForm')->name('company.admins.login');
+    Route::post('login', 'LoginController@login');
+    Route::post('logout', 'LoginController@logout')->name('company.admins.logout');
+
+    Route::get('register', 'RegisterController@showRegistrationForm')->name('company.admins.register');
+    Route::post('register', 'RegisterController@register');
+
+    Route::get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('company.admins.password.request');
+    Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('company.admins.password.email');
+    Route::get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('company.admins.password.reset');
+    Route::post('password/reset', 'ResetPasswordController@reset');
+});
+
+Route::middleware(['auth:web,companyAdmin'])->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
+
     Route::get('/jobs/create', 'JobsController@create')->name('create.jobs');
     Route::post('/jobs', 'JobsController@store')->name('store.jobs');
     Route::get('/jobs', 'JobsController@index')->name('jobs');

@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'users',
+        'passwords' => 'candidates',
     ],
 
     /*
@@ -38,13 +38,17 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'candidates',
         ],
-
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
         ],
+        'companyAdmin' => [
+            'driver' => 'session',
+            'provider' => 'companyAdmins',
+        ]
+
     ],
 
     /*
@@ -65,9 +69,17 @@ return [
     */
 
     'providers' => [
-        'users' => [
+//        'users' => [
+//            'driver' => 'eloquent',
+//            'model' => App\CompanyAdmin::class,
+//        ],
+        'companyAdmins' => [
             'driver' => 'eloquent',
             'model' => App\CompanyAdmin::class,
+        ],
+        'candidates' => [
+            'driver' => 'eloquent',
+            'model' => App\Candidate::class,
         ],
 
         // 'users' => [
@@ -92,9 +104,14 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
-            'table' => 'password_resets',
+        'candidates' => [
+            'provider' => 'candidates',
+            'table' => 'candidate_password_resets',
+            'expire' => 60,
+        ],
+        'companyAdmins' => [
+            'provider' => 'companyAdmins',
+            'table' => 'company_admin_password_resets',
             'expire' => 60,
         ],
     ],

@@ -1,12 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth\Candidates;
 
-use App\BusinessSector;
-use App\CompanyAdmin;
-use App\Country;
+use App\Candidate;
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -50,10 +47,7 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        $businessSectors = BusinessSector::all();
-        $countries = Country::all();
-
-        return view('auth.register', compact('businessSectors', 'countries'));
+        return view('auth.candidates.register');
     }
 
     /**
@@ -67,12 +61,8 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'first_name' => 'required|string|min:2|max:255',
             'last_name' => 'required|string|min:2|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-            'phone' => 'required|string|min:8|max:20',
-            'card_brand' => 'nullable|string|min:2|max:255',
-            'card_last_four' => 'nullable|integer|digits:4',
-            'trial' => 'nullable|integer|between:0,1'
+            'email' => 'required|string|email|max:255',
+            'password' => 'required|string|min:6|confirmed'
         ]);
     }
 
@@ -84,20 +74,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $trialEndAt = null;
-        if ($data['trial'] == 1) {
-            $trialEndAt = Carbon::now()->addMonth(1);
-        }
-
-        return CompanyAdmin::create([
+        return Candidate::updateOrCreate(['email' => $data['email']], [
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
-            'phone' => $data['phone'],
-            'card_brand' => $data['card_brand'],
-            'trial_ends_at' => $trialEndAt,
-            'card_last_four' => $data['card_last_four'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'password' => Hash::make($data['password'])
         ]);
     }
 }
