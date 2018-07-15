@@ -7,7 +7,7 @@
                 <div class="card-header" data-background-color="blue">
                     <div class="nav-tabs-navigation">
                         <div class="nav-tabs-wrapper">
-                            <strong>Filters</strong>
+                            Filters
                         </div>
                     </div>
                 </div>
@@ -120,7 +120,7 @@
                 <div class="card-header" data-background-color="blue">
                     <div class="nav-tabs-navigation">
                         <div class="nav-tabs-wrapper">
-                            <strong>Candidates</strong>
+                            Candidates
                         </div>
                     </div>
                 </div>

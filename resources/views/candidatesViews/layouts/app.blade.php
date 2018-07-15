@@ -30,6 +30,13 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
+                <li class="{{ request()->is('my-account') ? 'active' : '' }}">
+                    <a href="/my-account">
+                        <i class="material-icons">person</i>
+                        <p>User Profile</p>
+                    </a>
+                </li>
+
             </ul>
             <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
                 <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>
@@ -113,7 +120,12 @@
             </footer>
         </div>
     </main>
-    <notifications group="errors" position="top center" width="80%" classes="alert text-center error-alert"/>
+    <div>
+        <notifications group="errors" position="top center" width="80%" classes="alert text-center error-alert"/>
+    </div>
+    <div>
+        <notifications group="success" position="top center" width="80%" classes="alert text-center success-alert"/>
+    </div>
 </div>
 
 <script src="{{ asset('js/jquery-3.2.1.min.js') }}" defer></script>

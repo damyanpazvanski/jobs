@@ -2,14 +2,14 @@
 
 namespace App;
 
-//use Laravel\Cashier\Billable;
+use Laravel\Cashier\Billable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class CompanyAdmin extends Authenticatable
 {
     use Notifiable;
-//    use Billable;
+    use Billable;
 
     /**
      * The attributes that are mass assignable.
@@ -22,6 +22,7 @@ class CompanyAdmin extends Authenticatable
         'email',
         'phone',
         'password',
+        'trial',
         'card_brand',
         'card_last_four',
         'trial_ends_at',

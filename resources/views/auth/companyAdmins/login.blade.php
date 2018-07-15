@@ -3,7 +3,7 @@
 @section('content')
     <div class="justify-content-center col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2" style="margin-top: 50px">
         <div class="card">
-            <div class="card-header" data-background-color="blue">{{ __('Login') }}</div>
+            <div class="alert alert-default bold">{{ __('Company Admins Login') }}</div>
             <div class="card-body">
                 <form method="POST" action="{{ route('company.admins.login') }}">
                     @csrf
@@ -52,7 +52,7 @@
 
                     <div class="form-group mb-0">
                         <div class="col-md-12 text-center">
-                            <button type="submit" class="btn btn-lg btn-block" data-background-color="blue">
+                            <button type="submit" class="btn btn-lg btn-block alert">
                                 {{ __('Login') }}
                             </button>
                             <hr>

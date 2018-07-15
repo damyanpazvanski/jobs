@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Ajax;
 
+use App\Http\Requests\CompanyAdminRequest;
+use App\Http\Requests\CompanyRequest;
+use App\Notifications\CustomPlan;
 use App\Role;
 use App\Country;
 use App\Company;
@@ -11,6 +14,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\RegistrationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Notification;
 
 class RegisterController extends Controller
 {
@@ -43,13 +47,19 @@ class RegisterController extends Controller
         return $companyAdmin;
     }
 
-    public function userInformation(RegistrationRequest $request)
+    public function userInformation(CompanyAdminRequest $request)
     {
         return response()->json([]);
     }
 
-    public function companyInformation(RegistrationRequest $request)
+    public function companyInformation(CompanyRequest $request)
     {
         return response()->json([]);
+    }
+
+    public function sendMessage(RegistrationRequest $request)
+    {
+        Notification::route('mail', config('services.support.email'))
+            ->notify(new CustomPlan($request->get('user'), $request->get('company'), $request->get('message')));
     }
 }

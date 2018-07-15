@@ -1,113 +1,114 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml">
-    <div class="card">
-        <div class="card-header font-weight-bold" data-background-color="blue">
-            <h3 class="title">Company Information</h3>
-        </div>
+    <div class="col-md-6 col-md-offset-3">
+        <div class="card">
+            <div class="alert alert-default bold">Company Information</div>
 
-        <div class="card-body">
 
-            <div class="form-group row form-info">
-                <label for="image" class="col-md-4 col-form-label text-right">Company Logo</label>
+            <div class="card-body">
 
-                <div class="col-md-6">
-                    <p v-show="company.image">{{ company.imageName }}</p>
-                    <label class="btn btn-block" data-background-color="blue">
-                        Upload image
-                        <input id="image" type="file" class="btn custom-file-input" required accept="image/*"
-                               @change="uploadImage($event)" />
+                <div class="form-group row form-info">
+                    <label for="image" class="col-md-4 col-form-label text-right">Company Logo</label>
 
-                    </label>
-                    <strong class="invalid">{{ errors['image'] }}</strong>
+                    <div class="col-md-6">
+                        <p v-show="company.image">{{ company.imageName }}</p>
+                        <label class="btn btn-block" data-background-color="blue">
+                            Upload image
+                            <input id="image" type="file" class="btn custom-file-input" required accept="image/*"
+                                   @change="uploadImage($event)" />
+
+                        </label>
+                        <strong class="invalid">{{ errors['image'] }}</strong>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group row form-info">
-                <label for="name" class="col-md-4 col-form-label text-right">Company name</label>
+                <div class="form-group row form-info">
+                    <label for="name" class="col-md-4 col-form-label text-right">Company name <span class="required-field-star">*</span></label>
 
-                <div class="col-md-6">
-                    <input id="name" v-model="company.name" type="text" class="form-control" required autofocus placeholder="Enter the company name">
+                    <div class="col-md-6">
+                        <input id="name" v-model="company.name" type="text" class="form-control" required autofocus placeholder="Enter the company name">
 
-                    <strong class="invalid">{{ errors['name'] }}</strong>
+                        <strong class="invalid">{{ errors['name'] }}</strong>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group row form-info">
-                <label for="website" class="col-md-4 col-form-label text-right">Website</label>
+                <div class="form-group row form-info">
+                    <label for="website" class="col-md-4 col-form-label text-right">Website</label>
 
-                <div class="col-md-6">
-                    <input id="website" v-model="company.website" type="text" class="form-control" required placeholder="http://website.com">
+                    <div class="col-md-6">
+                        <input id="website" v-model="company.website" type="text" class="form-control" required placeholder="http://website.com">
 
-                    <strong class="invalid" v-if="errors['website']">The format is: http://[USER SITE] or https://[YOUR SITE]</strong>
+                        <strong class="invalid" v-if="errors['website']">The format is: http://[USER SITE] or https://[YOUR SITE]</strong>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group row form-info">
-                <label for="business_sector" class="col-md-4 col-form-label text-right">Business Sector</label>
+                <div class="form-group row form-info">
+                    <label for="business_sector_id" class="col-md-4 col-form-label text-right">Business Sector <span class="required-field-star">*</span></label>
 
-                <div class="col-md-6">
-                    <select class="custom-select select" id="business_sector" name="business_sector" v-model="company.business_sector">
-                        <option value="" selected disabled>Choose the business sector</option>
-                        <option v-for="sector in businessSectors" :value="sector.id">{{ sector.name }}</option>
-                    </select>
+                    <div class="col-md-6">
+                        <select class="custom-select select" id="business_sector_id" name="business_sector_id" v-model="company.business_sector_id">
+                            <option value="" selected disabled>Choose the business sector</option>
+                            <option v-for="sector in businessSectors" :value="sector.id">{{ sector.name }}</option>
+                        </select>
 
-                    <strong class="invalid">{{ errors['business_sector'] }}</strong>
+                        <strong class="invalid">{{ errors['business_sector_id'] }}</strong>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group row form-info">
-                <label for="country_id" class="col-md-4 col-form-label text-right">Country</label>
+                <div class="form-group row form-info">
+                    <label for="country_id" class="col-md-4 col-form-label text-right">Country <span class="required-field-star">*</span></label>
 
-                <div class="col-md-6">
-                    <select name="country_id" id="country_id" class="custom-select select" v-model="company.country_id">
-                        <option value="">Choose the country</option>
-                        <option v-for="country in countries" :value="country.id">{{ country.name }}</option>
-                    </select>
+                    <div class="col-md-6">
+                        <select name="country_id" id="country_id" class="custom-select select" v-model="company.country_id">
+                            <option value="">Choose the country</option>
+                            <option v-for="country in countries" :value="country.id">{{ country.name }}</option>
+                        </select>
 
-                    <strong class="invalid">{{ errors['country_id'] }}</strong>
+                        <strong class="invalid">{{ errors['country_id'] }}</strong>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group row form-info">
-                <label for="city" class="col-md-4 col-form-label text-right">City</label>
+                <div class="form-group row form-info">
+                    <label for="city" class="col-md-4 col-form-label text-right">City <span class="required-field-star">*</span></label>
 
-                <div class="col-md-6">
-                    <input id="city" v-model="company.city" type="text" class="form-control" required placeholder="Enter the city">
+                    <div class="col-md-6">
+                        <input id="city" v-model="company.city" type="text" class="form-control" required placeholder="Enter the city">
 
-                    <strong class="invalid">{{ errors['city'] }}</strong>
+                        <strong class="invalid">{{ errors['city'] }}</strong>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group row form-info">
-                <label for="address" class="col-md-4 col-form-label text-right">Company Address</label>
+                <div class="form-group row form-info">
+                    <label for="address" class="col-md-4 col-form-label text-right">Company Address <span class="required-field-star">*</span></label>
 
-                <div class="col-md-6">
-                    <input id="address" v-model="company.address" type="text" class="form-control" required placeholder="Enter the company address">
+                    <div class="col-md-6">
+                        <input id="address" v-model="company.address" type="text" class="form-control" required placeholder="Enter the company address">
 
-                    <strong class="invalid">{{ errors['address'] }}</strong>
+                        <strong class="invalid">{{ errors['address'] }}</strong>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group row form-info">
-                <label for="phone" class="col-md-4 col-form-label text-right">Phone</label>
+                <div class="form-group row form-info">
+                    <label class="col-md-4 col-form-label text-right">Company Phone</label>
 
-                <div class="col-md-6">
-                    <input id="phone" v-model="company.phone" type="text" class="form-control" required placeholder="Enter the company phone">
+                    <div class="col-md-6">
+                        <input v-model="company.phone" type="text" class="form-control" required placeholder="Enter the company phone">
 
-                    <strong class="invalid" v-if="errors['phone']">The format is: XXX-XXX-XXXX or +XXXX-XXX-XXXX</strong>
+                        <strong class="invalid" v-if="errors['phone']">The format is: XXX-XXX-XXXX or +XXXX-XXX-XXXX</strong>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group row mb-0">
-                <div class="col-md-6">
-                    <button class="btn btn-lg btn-block btn-outline-secondary border-secondary" v-on:click="backBtn">
-                        Back
-                    </button>
+                <div class="form-group row mb-0">
+                    <div class="col-md-6">
+                        <button class="btn btn-lg btn-block btn-outline-secondary border-secondary" v-on:click="backBtn">
+                            Back
+                        </button>
 
-                </div>
-                <div class="col-md-6">
-                    <button class="btn btn-lg btn-block" data-background-color="blue" v-on:click="continueBtn">
-                        Continue
-                    </button>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn btn-lg btn-block" data-background-color="blue" v-on:click="continueBtn">
+                            Continue
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -126,7 +127,7 @@
                     imageName: '',
                     name: '',
                     website: '',
-                    business_sector: '',
+                    business_sector_id: '',
                     country_id: '',
                     city: '',
                     address: '',

@@ -30,7 +30,12 @@
             </div>
         </footer>
     </div>
-    <notifications group="errors" position="top center" width="80%" classes="alert text-center error-alert"/>
+    <div>
+        <notifications group="errors" position="top center" width="80%" classes="alert text-center error-alert"/>
+    </div>
+    <div>
+        <notifications group="success" position="top center" width="80%" classes="alert text-center success-alert"/>
+    </div>
 </div>
 
 <script src="{{ asset('js/jquery-3.2.1.min.js') }}" defer></script>

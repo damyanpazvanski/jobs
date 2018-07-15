@@ -64,6 +64,10 @@
                             </a>
                         </div>
                     </div>
+
+                    <div class="col-md-12 text-center more-attempts mb-1">
+                        Go to the company admins <a href="{{ route('company.admins.login') }}" class="text-info btn-link">Login</a>
+                    </div>
                 </form>
             </div>
         </div>

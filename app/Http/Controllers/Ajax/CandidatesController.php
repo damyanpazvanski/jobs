@@ -7,14 +7,14 @@ use App\Job;
 use App\Candidate;
 use App\JobsCandidates;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CandidateRequest;
+use App\Http\Requests\CandidatesEmailsRequest;
 use Illuminate\Support\Facades\DB;
 
 class CandidatesController extends Controller
 {
     public static $EMAILS_LIST = [];
 
-    public function store(Job $job, CandidateRequest $request)
+    public function store(Job $job, CandidatesEmailsRequest $request)
     {
         DB::transaction(function () use ($job) {
             foreach (self::$EMAILS_LIST as $email) {

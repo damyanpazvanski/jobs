@@ -1,25 +1,27 @@
 <template>
-    <div class="col-lg-4 col-lg-offset-4">
+    <div>
+        <div class="alert alert-default bold col-md-6 col-md-offset-3 ">Comapny Registration</div>
 
-            <user-info
-                    v-show="page == 1"
-                    @continueBtn="continueBtn">
-            </user-info>
+        <user-info
+                v-show="page == 1"
+                @continueBtn="continueBtn">
+        </user-info>
 
-            <company-info
-                    v-show="page == 2"
-                    :business-sectors="businessSectors"
-                    :countries="countries"
-                    @backBtn="backBtn"
-                    @continueBtn="continueBtn">
-            </company-info>
+        <company-info
+                v-show="page == 2"
+                :business-sectors="businessSectors"
+                :countries="countries"
+                @backBtn="backBtn"
+                @continueBtn="continueBtn">
+        </company-info>
 
-            <choose-plan
-                    v-show="page == 3"
-                    @backBtn="backBtn"
-                    @continueBtn="continueBtn">
-            </choose-plan>
-
+        <choose-plan
+                v-show="page == 3"
+                @backBtn="backBtn"
+                @continueBtn="continueBtn"
+                @register="register"
+                @sendMessage="sendMessage">
+        </choose-plan>
     </div>
 </template>
 <script>
@@ -29,7 +31,7 @@
     import choosePlan from './ChoosePlan.vue';
 
     export default {
-        props: ['businessSectors', 'countries'],
+        props: ['plans', 'businessSectors', 'countries'],
         components: {
             userInfo,
             companyInfo,
@@ -42,21 +44,48 @@
             }
         },
         methods: {
+            register(data) {
+                console.log(data);
+//                axios.post('/ajax/register/store', this.data);
+
+            },
+            sendMessage(data) {
+                let self = this;
+                this.data['message'] = data.message;
+
+                axios.post('/ajax/register/send-message', this.data)
+                    .then(function (response) {
+                        self.error('Message', 'Successfully sent message.', 'success');
+
+                        setTimeout(function () {
+                            window.location.href = '/';
+                        }, 4000);
+                    }, function (error) {
+                        for (let key in error.response.data.errors) {
+                            self.error(key.toUpperCase(), error.response.data.errors[key][0]);
+                        }
+                    });
+            },
             continueBtn(data) {
 
                 if (this.page === 1) {
                     this.data['user'] = data.user;
-                    this.page++;
                 } else if (this.page === 2) {
                     this.data['company'] = data.company;
-
-                    console.log(this.data, this);
-
-                    axios.post('/ajax/register/store', this.data);
                 }
+
+                this.page++;
             },
             backBtn() {
                 this.page--;
+            },
+            error(title, message, group = 'errors') {
+                this.$notify({
+                    group: group,
+                    type: 'error',
+                    title: title,
+                    text: message
+                });
             }
         }
     }

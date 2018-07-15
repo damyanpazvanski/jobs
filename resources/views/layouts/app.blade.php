@@ -52,7 +52,7 @@
                     </li>
                 @endif
 
-                <li class="{{ request()->is(route('index.candidates')) ? 'active' : '' }}">
+                <li class="{{ request()->is('candidates') ? 'active' : '' }}">
                     <a href="{{ route('index.candidates') }}">
                         <i class="material-icons">view_list</i>
                         <p>Candidates</p>
@@ -142,7 +142,12 @@
             </footer>
         </div>
     </main>
-    <notifications group="errors" position="top center" width="80%" classes="alert text-center error-alert"/>
+    <div>
+        <notifications group="errors" position="top center" width="80%" classes="alert text-center error-alert"/>
+    </div>
+    <div>
+        <notifications group="success" position="top center" width="80%" classes="alert text-center success-alert"/>
+    </div>
 </div>
 
 <script src="{{ asset('js/jquery-3.2.1.min.js') }}" defer></script>

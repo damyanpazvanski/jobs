@@ -43,7 +43,7 @@ class Candidate extends Authenticatable
 
     public function cv()
     {
-        return $this->hasOne(Cv::class, 'candidate_id', 'id');
+        return $this->hasOne(Cv::class, 'candidate_id', 'id')->latest();
     }
 
     public function jobs()

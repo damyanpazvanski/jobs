@@ -23,4 +23,5 @@ Artisan::command('db:seed', function () {
     $this->callSilent('roles:populate', []);
     $this->callSilent('work-times:populate', []);
     $this->callSilent('questions:populate', []);
+    $this->callSilent('braintree:sync-plans', []);
 });

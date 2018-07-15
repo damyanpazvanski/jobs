@@ -1,77 +1,88 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml">
-    <div class="card" v-if="user">
-        <div class="card-header font-weight-bold" data-background-color="blue">
-            <h3 class="title">User Information</h3>
-        </div>
+    <div class="col-md-6 col-md-offset-3">
+        <div class="card" v-if="user">
+            <div class="alert alert-default bold">User Information</div>
 
-        <div class="card-body">
-            <div class="form-group row form-info">
-                <label for="first_name" class="col-md-4 col-form-label text-right">First name</label>
+            <div class="card-body">
+                <div class="form-group row form-info">
+                    <label for="first_name" class="col-md-4 col-form-label text-right">First name <span class="required-field-star">*</span></label>
 
-                <div class="col-md-6">
-                    <input id="first_name" @blur="check(user.firstName, 'firstName')"
-                           type="text" v-model="user.firstName" class="form-control" required autofocus>
+                    <div class="col-md-6">
+                        <input id="first_name" @blur="check(user.first_name, 'first_name')"
+                               type="text" v-model="user.first_name" class="form-control" required autofocus>
 
-                    <strong class="invalid">{{ errors['firstName'] }}</strong>
+                        <strong class="invalid">{{ errors['first_name'] }}</strong>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group row form-info">
-                <label for="last_name" class="col-md-4 col-form-label text-right">Last name</label>
+                <div class="form-group row form-info">
+                    <label for="last_name" class="col-md-4 col-form-label text-right">Last name <span class="required-field-star">*</span></label>
 
-                <div class="col-md-6">
-                    <input id="last_name" @blur="check(user.lastName, 'lastName')"
-                           type="text" v-model="user.lastName" class="form-control" required>
+                    <div class="col-md-6">
+                        <input id="last_name" @blur="check(user.last_name, 'last_name')"
+                               type="text" v-model="user.last_name" class="form-control" required>
 
-                    <strong class="invalid">{{ errors['lastName'] }}</strong>
+                        <strong class="invalid">{{ errors['last_name'] }}</strong>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group row form-info">
-                <label for="email" class="col-md-4 col-form-label text-right">E-Mail Address'</label>
+                <div class="form-group row form-info">
+                    <label for="email" class="col-md-4 col-form-label text-right">E-Mail Address <span class="required-field-star">*</span></label>
 
-                <div class="col-md-6">
-                    <input id="email" @blur="check(emailRegex.test(user.email), 'email')"
-                           type="email" v-model="user.email" class="form-control" name="email" required>
+                    <div class="col-md-6">
+                        <input id="email" @blur="check(emailRegex.test(user.email), 'email')"
+                               type="email" v-model="user.email" class="form-control" name="email" required>
 
-                    <strong class="invalid">{{ errors['email'] }}</strong>
+                        <strong class="invalid">{{ errors['email'] }}</strong>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group row form-info">
-                <label for="password" class="col-md-4 col-form-label text-right">Password</label>
+                <div class="form-group row form-info">
+                    <label for="phone" class="col-md-4 col-form-label text-right">Phone <span class="required-field-star">*</span></label>
 
-                <div class="col-md-6">
-                    <input id="password" @blur="check(passwordRegex.test(user.password), 'password')"
-                           type="password" v-model="user.password" class="form-control" name="password" required>
+                    <div class="col-md-6">
+                        <input id="phone" @blur="check(user.phone, 'phone')"
+                               type="email" v-model="user.phone" class="form-control" name="email" required>
 
-                    <strong class="invalid">{{ errors['password'] }}</strong>
+                        <strong class="invalid">{{ errors['phone'] }}</strong>
+                    </div>
                 </div>
-                <div class="col-md-6 col-md-offset-3">
-                    <ul class="mt-2">
-                        <li>At least 8 characters</li>
-                        <li>At least one uppercase letter</li>
-                        <li>At least one lowercase letter</li>
-                    </ul>
+
+                <div class="form-group row form-info">
+                    <label for="password" class="col-md-4 col-form-label text-right">Password <span class="required-field-star">*</span></label>
+
+                    <div class="col-md-6">
+                        <input id="password" @blur="check(passwordRegex.test(user.password), 'password')"
+                               type="password" v-model="user.password" class="form-control" name="password" required>
+
+                        <strong class="invalid">{{ errors['password'] }}</strong>
+                    </div>
+                    <div class="col-md-6 col-md-offset-3">
+                        <ul class="mt-2">
+                            <li>At least 8 characters</li>
+                            <li>At least one uppercase letter</li>
+                            <li>At least one lowercase letter</li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group row form-info">
-                <label for="password-confirm" class="col-md-4 col-form-label text-right">Confirm Password</label>
+                <div class="form-group row form-info">
+                    <label for="password-confirm" class="col-md-4 col-form-label text-right">Confirm Password <span class="required-field-star">*</span></label>
 
-                <div class="col-md-6">
-                    <input id="password-confirm" @blur="check(user.confirmPassword == user.password, 'confirmPassword')"
-                           type="password" v-model="user.confirmPassword" class="form-control" required>
+                    <div class="col-md-6">
+                        <input id="password-confirm" @blur="check(user.confirmPassword == user.password, 'confirmPassword')"
+                               type="password" v-model="user.confirmPassword" class="form-control" required>
 
-                    <strong class="invalid">{{ errors['confirmPassword'] }}</strong>
+                        <strong class="invalid">{{ errors['confirmPassword'] }}</strong>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group row mb-0">
-                <div class="col-md-6 col-md-offset-3 text-center">
-                    <button class="btn btn-lg btn-block" data-background-color="blue" v-on:click="continueBtn">
-                        Continue
-                    </button>
+                <div class="form-group row mb-0">
+                    <div class="col-md-6 col-md-offset-3 text-center">
+                        <button class="btn btn-lg btn-block" data-background-color="blue" v-on:click="continueBtn">
+                            Continue
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -84,9 +95,10 @@
         data() {
             return {
                 user: {
-                    firstName: '',
-                    lastName: '',
+                    first_name: '',
+                    last_name: '',
                     email: '',
+                    phone: '',
                     password: '',
                     confirmPassword: ''
                 },

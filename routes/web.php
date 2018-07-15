@@ -42,6 +42,8 @@ Route::namespace('Auth\CompanyAdmins')->prefix('companies')->group(function () {
 Route::middleware(['auth:web,companyAdmin'])->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
 
+    Route::post('/subscribe', 'SubscriptionsController@store');
+
     Route::get('/jobs/create', 'JobsController@create')->name('create.jobs');
     Route::post('/jobs', 'JobsController@store')->name('store.jobs');
     Route::get('/jobs', 'JobsController@index')->name('jobs');
@@ -50,11 +52,12 @@ Route::middleware(['auth:web,companyAdmin'])->group(function () {
 
     Route::get('/candidates', 'CandidatesController@index')->name('index.candidates');
     Route::get('/candidates/{candidate}', 'CandidatesController@show')->name('show-candidate');
+    Route::put('/candidates/{candidate}', 'CandidatesController@update')->name('update.candidates');
     Route::get('/candidates/{candidate}/download/cv', 'CandidatesController@downloadCv')->name('download.cv.candidates');
     Route::get('/candidates/download/pdf', 'CandidatesController@downloadPdf')->name('download.pdf.candidates');
     Route::get('/candidates/download/csv', 'CandidatesController@downloadCsv')->name('download.csv.candidates');
 
-    Route::get('/my-account', 'AccountsController@edit')->name('edit.account');
+    Route::get('/my-account', 'AccountsController@edit');
 
     Route::put('/company-admins/{companyAdmin}', 'CompanyAdminsController@update')->name('update.companyAdmins');
 
@@ -73,6 +76,7 @@ Route::prefix('ajax')->namespace('Ajax')->group(function () {
 
     Route::post('/register/user-information', 'RegisterController@userInformation');
     Route::post('/register/company-information', 'RegisterController@companyInformation');
+    Route::post('/register/send-message', 'RegisterController@sendMessage');
     Route::post('/register/store', 'RegisterController@store');
 
     Route::post('/test/email', 'TestsController@validateEmail');

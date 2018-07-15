@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Actions\Download\CandidatesCsv;
 use App\Actions\Filters\AllCandidates;
+use App\Cv;
 use App\Http\Requests\AllCandidatesFilterRequest;
+use App\Http\Requests\CandidateRequest;
 use App\Job;
 use App\Candidate;
 use App\WorkTime;
@@ -28,6 +30,37 @@ class CandidatesController extends Controller
     public function show(Job $job, Candidate $candidate)
     {
         return view('candidates.show', compact('job', 'candidate'));
+    }
+
+    public function edit()
+    {
+        $user = auth()->user();
+
+        return view('candidatesViews.accounts.edit', compact('user'));
+    }
+
+    public function update(Candidate $candidate, CandidateRequest $request)
+    {
+        $cvFile = $request->file('cv');
+
+        if ($cvFile) {
+            $name = md5(date("Y-m-d H:i:s")) . '.' . $cvFile->getClientOriginalExtension();
+            $destinationPath = public_path('/storage/candidates/' . $candidate->id . '/cvs/');
+            $cvFile->move($destinationPath, $name);
+
+            $cv = new Cv([
+                'name' => $name
+            ]);
+
+            $cv->candidate()->associate($candidate);
+            $cv->save();
+        }
+
+        $candidate->fill($request->all())->save();
+
+        $request->session()->flash('success', trans('messages.updated_successfully'));
+
+        return back();
     }
 
     public function downloadCv(Candidate $candidate, Request $request)

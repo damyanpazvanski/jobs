@@ -13,9 +13,8 @@
                     @foreach($jobs as $job)
                         <a href="/jobs/{{ $job->id }}" class="col-md-3">
                             <div class="card card-profile open">
-                                <div class="text-left" style="height: 20px">
-                                    <img src="/images/pin.png"
-                                         style="width: 80px; position: relative; top: -35px; left: -15px;">
+                                <div class="text-left job-pin-wrapper">
+                                    <img src="/images/pin.png" class="job-pin">
                                 </div>
 
                                 <div class="content" style="padding-bottom: 10px">

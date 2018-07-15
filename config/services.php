@@ -41,5 +41,8 @@ return [
         'public_key' => env('BRAINTREE_PUBLIC_KEY'),
         'private_key' => env('BRAINTREE_PRIVATE_KEY'),
     ],
+    'support' => [
+        'email' => env('SUPPORT_EMAIL')
+    ]
 
 ];

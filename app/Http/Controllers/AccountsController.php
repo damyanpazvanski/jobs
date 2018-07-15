@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Country;
-use App\BusinessSector;
-use Illuminate\Http\Request;
+use App\Candidate;
+use Illuminate\Support\Facades\App;
 
 class AccountsController extends Controller
 {
@@ -13,11 +12,10 @@ class AccountsController extends Controller
      */
     public function edit()
     {
-        $user = auth()->user();
-        $company = $user->company;
-        $businessSectors = BusinessSector::all();
-        $countries = Country::all();
+        if (auth()->user() instanceof Candidate) {
+            return App::make(CandidatesController::class)->edit();
+        }
 
-        return view('accounts.edit', compact('user', 'company', 'countries', 'businessSectors'));
+        return App::make(CompanyAdminsController::class)->edit();
     }
 }

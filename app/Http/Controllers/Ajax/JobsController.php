@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers\Ajax;
 
-use App\Http\Requests\JobRequest;
 use App\Job;
+use App\Http\Requests\JobRequest;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CandidateRequest;
-use Illuminate\Http\Request;
 
 class JobsController extends Controller
 {

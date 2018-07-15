@@ -6,6 +6,7 @@ use App\BusinessSector;
 use App\CompanyAdmin;
 use App\Country;
 use App\Http\Controllers\Controller;
+use App\Plan;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -35,9 +36,7 @@ class RegisterController extends Controller
     protected $redirectTo = '/';
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * RegisterController constructor.
      */
     public function __construct()
     {
@@ -56,10 +55,11 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        $businessSectors = BusinessSector::all();
+        $plans = Plan::all();
         $countries = Country::all();
+        $businessSectors = BusinessSector::all();
 
-        return view('auth.register', compact('businessSectors', 'countries'));
+        return view('auth.companyAdmins.register', compact('plans', 'businessSectors', 'countries'));
     }
 
     /**

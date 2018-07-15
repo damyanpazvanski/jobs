@@ -24,24 +24,24 @@ class RegistrationRequest extends FormRequest
     public function rules()
     {
         switch ($this->route()->getActionMethod()) {
-            case 'userInformation':
+            case 'sendMessage':
                 return [
-                    'firstName' => 'required|alpha|min:2|max:255',
-                    'lastName' => 'required|alpha|min:2|max:255',
-                    'email' => 'required|string|email|max:255|unique:company_admins',
-                    'password' => 'required|string|min:8|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])+\w{8,}$/'
-                ];
-                break;
-            case 'companyInformation';
-                return [
-                    'image' => 'nullable|image|mime:png,jpg,jpeg,gif|max:2048',
-                    'name' => 'required|string|min:2|max:255',
-                    'website' => 'nullable|active_url',
-                    'business_sector' => 'required|integer|exists:business_sectors,id',
-                    'country_id' => 'required|integer|exists:countries,id',
-                    'city' => 'required|alpha|min:2|max:255',
-                    'address' => 'required|string|min:2|max:255',
-                    'phone' => ['required', 'string', 'min:8', 'max:15', 'regex:/^([\+]{1}[0-9]{5}|[0-9]{3})+([\-])([0-9]{3})([\-])([0-9]{3,8})$/u']
+                    'message' => 'required|string|min:20|max:3000',
+
+                    'company.name' => 'required|string|min:2|max:255',
+                    'company.website' => 'nullable|active_url',
+                    'company.business_sector_id' => 'required|integer|exists:business_sectors,id',
+                    'company.country_id' => 'required|integer|exists:countries,id',
+                    'company.city' => 'required|alpha|min:2|max:255',
+                    'company.address' => 'required|string|min:2|max:255',
+                    'company.phone' => ['nullable', 'string', 'min:8', 'max:15', 'regex:/^([\+]{1}[0-9]{5}|[0-9]{3})+([\-])([0-9]{3})([\-])([0-9]{3,8})$/u'],
+                    'company.description' => 'nullable|string|min:2|max:2000',
+                    'company.image' => 'nullable|image|mime:png,jpg,jpeg,gif|max:2048',
+
+                    'user.first_name' => 'required|alpha|min:2|max:255',
+                    'user.last_name' => 'required|alpha|min:2|max:255',
+                    'user.phone' => ['required', 'string', 'min:8', 'max:15', 'regex:/^([\+]{1}[0-9]{5}|[0-9]{3})+([\-])([0-9]{3})([\-])([0-9]{3,8})$/u'],
+                    'user.email' => 'required|string|email|max:255'
                 ];
                 break;
         }
