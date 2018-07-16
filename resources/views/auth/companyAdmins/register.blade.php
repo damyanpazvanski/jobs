@@ -6,6 +6,7 @@
                 :plans="{{ $plans }}"
                 :countries="{{ $countries }}"
                 :business-sectors="{{ $businessSectors }}"
+                token="{{ $token }}"
         ></registration>
     </div>
 @endsection

@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -9,8 +8,10 @@ window.Vue = require('vue');
 
 
 import Notifications from 'vue-notification';
+import VueBraintree from 'vue-braintree';
 
 Vue.use(Notifications);
+Vue.use(VueBraintree);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

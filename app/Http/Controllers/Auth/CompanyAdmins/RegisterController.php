@@ -58,8 +58,9 @@ class RegisterController extends Controller
         $plans = Plan::all();
         $countries = Country::all();
         $businessSectors = BusinessSector::all();
+        $token = \Braintree_ClientToken::generate();
 
-        return view('auth.companyAdmins.register', compact('plans', 'businessSectors', 'countries'));
+        return view('auth.companyAdmins.register', compact('plans', 'businessSectors', 'countries', 'token'));
     }
 
     /**

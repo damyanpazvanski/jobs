@@ -64,7 +64,7 @@
                         <h1 class="mt-0"><small class="">Select the best plan for you</small></h1>
 
                         <div class="col-md-3">
-                            <div class="card mb-4 box-shadow" v-bind:class="{ 'chosen': chosenPlan == 1 }">
+                            <div class="card mb-4 box-shadow" v-bind:class="{ 'chosen': chosenPlan === 1 }">
                                 <div class="card-header" data-background-color>
                                     <h4 class="mt-0 mb-0 font-weight-normal">Beginners</h4>
                                 </div>
@@ -78,14 +78,14 @@
                                         <li>Help center access</li>
                                     </ul>
                                     <button type="button" class="mt-3 btn btn-block" v-on:click="select(1, 'm')"
-                                            v-bind:class="{ 'chosenBtn': chosenPlan == 1 && period === 'm' }">$300/Monthly - Pay Annually ($3,600)</button>
+                                            v-bind:class="{ 'chosenBtn': chosenPlan === 1 && period === 'm' }">$300/Monthly - Pay Annually ($3,600)</button>
                                     <button type="button" class="mb-0 btn btn-block btn-outline-secondary" v-on:click="select(1, 'a')"
-                                            v-bind:class="{ 'chosenBtn': chosenPlan == 1 && period === 'a' }">$400/Monthly - Cancel any time</button>
+                                            v-bind:class="{ 'chosenBtn': chosenPlan === 1 && period === 'a' }">$400/Monthly - Cancel any time</button>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="card mb-4 box-shadow" v-bind:class="{ 'chosen': chosenPlan == 2 }">
+                            <div class="card mb-4 box-shadow" v-bind:class="{ 'chosen': chosenPlan === 2 }">
                                 <div class="card-header" data-background-color="green">
                                     <h4 class="mt-0 mb-0 font-weight-normal">Ordinary</h4>
                                 </div>
@@ -99,14 +99,14 @@
                                         <li>Help center access</li>
                                     </ul>
                                     <button type="button" class="btn btn-block btn-success" v-on:click="select(2, 'm')"
-                                            v-bind:class="{ 'chosenBtn': chosenPlan == 2 && period === 'm' }">$450/Monthly - Pay Annually ($5,400)</button>
+                                            v-bind:class="{ 'chosenBtn': chosenPlan === 2 && period === 'm' }">$450/Monthly - Pay Annually ($5,400)</button>
                                     <button type="button" class="mb-0 btn btn-block btn-outline-success" v-on:click="select(2, 'a')"
-                                            v-bind:class="{ 'chosenBtn': chosenPlan == 2 && period === 'a' }">$600/Monthly - Cancel any time</button>
+                                            v-bind:class="{ 'chosenBtn': chosenPlan === 2 && period === 'a' }">$600/Monthly - Cancel any time</button>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="card mb-4 box-shadow" v-bind:class="{ 'chosen': chosenPlan == 3 }">
+                            <div class="card mb-4 box-shadow" v-bind:class="{ 'chosen': chosenPlan === 3 }">
                                 <div class="card-header" data-background-color="orange">
                                     <h4 class="mt-0 mb-0 font-weight-normal">Pro</h4>
                                 </div>
@@ -124,7 +124,7 @@
                                     <button type="button" class="btn btn-block btn-warning" v-on:click="select(3, 'm')"
                                             v-bind:class="{ 'chosenBtn': chosenPlan === 3 && period === 'm' }">$650/Monthly - Pay Annually ($7,800)</button>
                                     <button type="button" class="mb-0 btn btn-block btn-outline-warning" v-on:click="select(3, 'a')"
-                                            v-bind:class="{ 'chosenBtn': chosenPlan == 3 && period === 'a' }">$800/Monthly - Cancel any time</button>
+                                            v-bind:class="{ 'chosenBtn': chosenPlan === 3 && period === 'a' }">$800/Monthly - Cancel any time</button>
                                 </div>
                             </div>
                         </div>
@@ -149,9 +149,15 @@
                         </div>
                     </div>
                     <div v-show="chosenPlan">
-                        <div class="col-md-12">
-                            <input type="text" class="form-control" placeholder="Enter you card information" />
-                        </div>
+
+                        <v-braintree :token="token" :paypal="true"></v-braintree>
+
+                        <!--<form method="POST">-->
+                            <!--<div id="dropin-container"></div>-->
+                            <!--<div class="col-md-12">-->
+                                <!--<input type="text" class="form-control" placeholder="Enter you card information" />-->
+                            <!--</div>-->
+                        <!--</form>-->
                     </div>
                 </div>
 
@@ -161,8 +167,8 @@
                             Back
                         </button>
                     </div>
-                    <div class="col-md-6">
-                        <button class="btn btn-lg btn-block" :disabled="chosenPlan == 0 && trial == false" data-background-color="blue">
+                    <div class="col-md-6" id="registerBtn">
+                        <button class="btn btn-lg btn-block" :disabled="chosenPlan === 0 && trial === false" data-background-color="blue">
                             Register
                         </button>
                     </div>
@@ -172,11 +178,14 @@
     </div>
 </template>
 <script>
+    import braintree from 'braintree-web';
+
     export default {
+        props: ['token'],
         data() {
             return {
                 trial: false,
-                chosenPlan: 2,
+                chosenPlan: 0,
                 period: '',
                 customPlanMessage: ''
             }
@@ -201,6 +210,14 @@
                     message: this.customPlanMessage
                 });
             }
+        },
+        mounted() {
+            // braintree.setup(this.token, 'dropin', {
+            //     container: 'dropin-container',
+            //     onReady: function () {
+            //         $('#registerBtn').removeClass('hidden');
+            //     }
+            // });
         }
     }
 </script>

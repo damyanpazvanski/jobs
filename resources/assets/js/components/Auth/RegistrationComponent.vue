@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="alert alert-default bold col-md-6 col-md-offset-3 ">Comapny Registration</div>
+        <div class="alert alert-default bold col-md-6 col-md-offset-3 mb-0">Company Registration</div>
 
         <user-info
                 v-show="page == 1"
@@ -17,6 +17,7 @@
 
         <choose-plan
                 v-show="page == 3"
+                :token="token"
                 @backBtn="backBtn"
                 @continueBtn="continueBtn"
                 @register="register"
@@ -31,7 +32,7 @@
     import choosePlan from './ChoosePlan.vue';
 
     export default {
-        props: ['plans', 'businessSectors', 'countries'],
+        props: ['plans', 'businessSectors', 'countries', 'token'],
         components: {
             userInfo,
             companyInfo,
@@ -39,7 +40,7 @@
         },
         data() {
             return {
-                page: 1,
+                page: 3,
                 data: {}
             }
         },
