@@ -148,17 +148,23 @@
                             </div>
                         </div>
                     </div>
-                    <div v-show="chosenPlan">
+                </div>
 
-                        <v-braintree :token="token" :paypal="true"></v-braintree>
-
-                        <!--<form method="POST">-->
-                            <!--<div id="dropin-container"></div>-->
-                            <!--<div class="col-md-12">-->
-                                <!--<input type="text" class="form-control" placeholder="Enter you card information" />-->
-                            <!--</div>-->
-                        <!--</form>-->
+                <div class="col-md-12" v-show="chosenPlan || 1">
+                    <div class="col-md-6 col-md-offset-3">
+                        <form id="checkout" method="post" action="/checkout">
+                            <div id="payment-form"></div>
+                            <div id="dropin-container"></div>
+                            <button id="payment-button" class="btn btn-primary btn-flat hidden" type="submit">Pay now</button>
+                        </form>
                     </div>
+                    <!--<div class="col-md-6 col-md-offset-3">-->
+                        <!--<v-braintree-->
+                                <!--:token="token"-->
+                                <!--:paypal="true"-->
+                                <!--btnClass="btn btn-info"-->
+                        <!--&gt;</v-braintree>-->
+                    <!--</div>-->
                 </div>
 
                 <div class="form-group mb-0">
@@ -212,12 +218,14 @@
             }
         },
         mounted() {
-            // braintree.setup(this.token, 'dropin', {
-            //     container: 'dropin-container',
-            //     onReady: function () {
-            //         $('#registerBtn').removeClass('hidden');
-            //     }
-            // });
+            braintree.setup(this.token, 'dropin', {
+                container: 'dropin-container',
+                paypal: {
+                    singleUse: true,
+                    amount: 10.00,
+                    currency: 'USD'
+                }
+            });
         }
     }
 </script>

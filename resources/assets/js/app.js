@@ -8,10 +8,8 @@ window.Vue = require('vue');
 
 
 import Notifications from 'vue-notification';
-import VueBraintree from 'vue-braintree';
 
 Vue.use(Notifications);
-Vue.use(VueBraintree);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

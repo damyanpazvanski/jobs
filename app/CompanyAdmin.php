@@ -12,6 +12,13 @@ class CompanyAdmin extends Authenticatable
     use Billable;
 
     /**
+     * subscriptions:
+     * -    low
+     * -    middle
+     * -    high
+     */
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
