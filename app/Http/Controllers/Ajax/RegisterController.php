@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Ajax;
 use App\Http\Requests\CompanyAdminRequest;
 use App\Http\Requests\CompanyRequest;
 use App\Notifications\CustomPlan;
+use App\Plan;
 use App\Role;
 use App\Country;
 use App\Company;
@@ -13,23 +14,21 @@ use App\BusinessSector;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegistrationRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
 
 class RegisterController extends Controller
 {
 
-    public function store(Request $request)
+    public function store(RegistrationRequest $request)
     {
+        DB::beginTransaction();
+
         $userInformation = $request->get('user');
 
-        $companyAdmin = new CompanyAdmin([
-            'first_name' => $userInformation['firstName'],
-            'last_name' => $userInformation['lastName'],
-            'email' => $userInformation['email'],
-            'phone' => $request->get('company')['phone'],
-            'password' => Hash::make($userInformation['password'])
-        ]);
+        $companyAdmin = (new CompanyAdmin())->fill($userInformation);
+        $companyAdmin->password = Hash::make($userInformation['password']);
 
         $companyAdmin->role()->associate(Role::where('name', 'company_admin')->first());
 
@@ -37,14 +36,24 @@ class RegisterController extends Controller
 
         $company = new Company($companyInformation);
 
-        $company->businessSector()->associate(BusinessSector::find($companyInformation['business_sector']));
+        $company->businessSector()->associate(BusinessSector::find($companyInformation['business_sector_id']));
         $company->country()->associate(Country::find($companyInformation['country_id']));
         $company->save();
 
         $companyAdmin->company()->associate($company);
         $companyAdmin->save();
 
-        return $companyAdmin;
+        $cardInformation = $request->get('card');
+
+        $planSlug = $cardInformation['chosenPlanName'] . '-business-' . $cardInformation['period'];
+        $plan = Plan::where('slug', $planSlug)->first();
+
+        $c = CompanyAdmin::find(1);
+        $c->newSubscription($plan->name, $plan->braintree_plan)->create($cardInformation['paymentData']['nonce']);
+
+        DB::commit();
+
+        return '';
     }
 
     public function userInformation(CompanyAdminRequest $request)

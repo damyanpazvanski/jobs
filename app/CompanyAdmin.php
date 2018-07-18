@@ -8,15 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class CompanyAdmin extends Authenticatable
 {
-    use Notifiable;
     use Billable;
-
-    /**
-     * subscriptions:
-     * -    low
-     * -    middle
-     * -    high
-     */
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -44,6 +37,12 @@ class CompanyAdmin extends Authenticatable
         'password', 'remember_token',
     ];
 
+    protected $dates = [
+        'trial_ends_at',
+        'updated_at',
+        'created_at',
+    ];
+
     public function company()
     {
         return $this->belongsTo(Company::class, 'company_id');
@@ -58,4 +57,9 @@ class CompanyAdmin extends Authenticatable
     {
         return $this->first_name . ' ' . $this->last_name;
     }
+
+//    public function subscription()
+//    {
+//        return $this->hasOne(Subscription::class, 'company_admin_id', 'id');
+//    }
 }

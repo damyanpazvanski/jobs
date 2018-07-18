@@ -15,7 +15,7 @@ class CreateSubscriptionsTable extends Migration
     {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('company_admin_id');
             $table->string('name');
             $table->string('braintree_id');
             $table->string('braintree_plan');
@@ -23,6 +23,10 @@ class CreateSubscriptionsTable extends Migration
             $table->timestamp('trial_ends_at')->nullable();
             $table->timestamp('ends_at')->nullable();
             $table->timestamps();
+
+            $table->foreign('company_admin_id')
+                ->references('id')->on('company_admins')
+                ->onDelete('cascade');
         });
     }
 

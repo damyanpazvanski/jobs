@@ -3,12 +3,12 @@
         <div class="alert alert-default bold col-md-6 col-md-offset-3 mb-0">Company Registration</div>
 
         <user-info
-                v-show="page == 1"
+                v-show="page === 1"
                 @continueBtn="continueBtn">
         </user-info>
 
         <company-info
-                v-show="page == 2"
+                v-show="page === 2"
                 :business-sectors="businessSectors"
                 :countries="countries"
                 @backBtn="backBtn"
@@ -16,8 +16,9 @@
         </company-info>
 
         <choose-plan
-                v-show="page == 3"
+                v-show="page === 3"
                 :token="token"
+                :plans="plans"
                 @backBtn="backBtn"
                 @continueBtn="continueBtn"
                 @register="register"
@@ -40,15 +41,21 @@
         },
         data() {
             return {
-                page: 3,
+                page: 1,
                 data: {}
             }
         },
         methods: {
             register(data) {
-                console.log(data);
-//                axios.post('/ajax/register/store', this.data);
-
+                this.data['card'] = data;
+                axios.post('/ajax/register/store', this.data)
+                    .then(function (response) {
+                        console.log(response);
+                    }, function (error) {
+                        for (let key in error.response.data.errors) {
+                            self.error(key.toUpperCase(), error.response.data.errors[key][0]);
+                        }
+                    });
             },
             sendMessage(data) {
                 let self = this;
