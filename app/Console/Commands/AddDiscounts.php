@@ -2,17 +2,17 @@
 
 namespace App\Console\Commands;
 
-use App\Plan;
+use App\Discount;
 use Illuminate\Console\Command;
 
-class SyncPlans extends Command
+class AddDiscounts extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'braintree:sync-plans';
+    protected $signature = 'braintree:add-discounts';
 
     /**
      * The console command description.
@@ -38,17 +38,19 @@ class SyncPlans extends Command
     {
         $this->info('------------------------- START ADDING -------------------------');
 
-        Plan::truncate();
+        Discount::truncate();
 
-        $braintreePlans = \Braintree_Plan::all();
+        $discounts = \Braintree\Discount::all();
 
-        foreach ($braintreePlans as $braintreePlan) {
-            Plan::create([
-                'name' => $braintreePlan->name,
-                'slug' => str_slug($braintreePlan->name),
-                'braintree_plan' => $braintreePlan->id,
-                'cost' => $braintreePlan->price,
-                'description' => $braintreePlan->description,
+        foreach ($discounts as $discount) {
+            Discount::create([
+                'discount_id' => $discount->id,
+                'name' => strtolower($discount->name),
+                'amount' => $discount->amount,
+                'kind' => $discount->kind,
+                'neverExpires' => $discount->neverExpires,
+                'numberOfBillingCycles' => $discount->numberOfBillingCycles,
+                'description' => $discount->description
             ]);
         }
 

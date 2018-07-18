@@ -19,6 +19,7 @@
                 v-show="page === 3"
                 :token="token"
                 :plans="plans"
+                :couponError="couponError"
                 @backBtn="backBtn"
                 @continueBtn="continueBtn"
                 @register="register"
@@ -41,20 +42,32 @@
         },
         data() {
             return {
-                page: 1,
+                page: 3,
+                couponError: '',
                 data: {}
             }
         },
         methods: {
             register(data) {
-                this.data['card'] = data;
+                let self = this;
+
+                self.data['card'] = data;
+                self.couponError = '';
+
                 axios.post('/ajax/register/store', this.data)
                     .then(function (response) {
-                        console.log(response);
+                        self.notification('Message', 'Successfully created.', 'success');
+
+                        setTimeout(function () {
+                            window.location.href = '/companies/login';
+                        }, 4000);
                     }, function (error) {
-                        for (let key in error.response.data.errors) {
-                            self.error(key.toUpperCase(), error.response.data.errors[key][0]);
+                        if (error.response.data.errors.coupon) {
+                            self.couponError = error.response.data.errors.coupon[0];
+                            return;
                         }
+
+                        self.notification('ERROR', 'We have a problem, please try again later');
                     });
             },
             sendMessage(data) {
@@ -63,19 +76,18 @@
 
                 axios.post('/ajax/register/send-message', this.data)
                     .then(function (response) {
-                        self.error('Message', 'Successfully sent message.', 'success');
+                        self.notification('Message', 'Successfully sent message.', 'success');
 
                         setTimeout(function () {
                             window.location.href = '/';
                         }, 4000);
                     }, function (error) {
                         for (let key in error.response.data.errors) {
-                            self.error(key.toUpperCase(), error.response.data.errors[key][0]);
+                            self.notification(key.toUpperCase(), error.response.data.errors[key][0]);
                         }
                     });
             },
             continueBtn(data) {
-
                 if (this.page === 1) {
                     this.data['user'] = data.user;
                 } else if (this.page === 2) {
@@ -87,7 +99,7 @@
             backBtn() {
                 this.page--;
             },
-            error(title, message, group = 'errors') {
+            notification(title, message, group = 'errors') {
                 this.$notify({
                     group: group,
                     type: 'error',

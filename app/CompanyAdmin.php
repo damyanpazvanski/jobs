@@ -12,6 +12,13 @@ class CompanyAdmin extends Authenticatable
     use Notifiable;
 
     /**
+     * subscriptions:
+     *  - small
+     *  - pro
+     *  - enterprise
+     */
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array

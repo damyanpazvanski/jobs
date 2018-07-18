@@ -150,11 +150,34 @@
                     </div>
 
                     <div class="col-md-12" v-show="chosenPlanIndex">
-                        <div class="col-md-6 col-md-offset-3">
-                            <form id="checkout" method="post">
-                                <div id="payment-form"></div>
-                                <div id="dropin-container"></div>
-                                <button id="payment-button" class="btn btn-primary btn-flat" type="submit" v-if="!paymentData">Check The Card</button>
+                        <div class="col-md-3">
+                            <div class="col-md-12 col-sm-12 col-xs-12 alert alert-info pt-0 pb-0 pl-0 pr-0 text-right">
+                                <div class="col-sm-3 col-xs-3 hidden-md hidden-lg" style="height: 50px">
+                                    <i class="material-icons animated-vertical-arrow">arrow_downward</i>
+                                </div>
+                                <div class="col-md-7 col-sm-9 col-xs-9 pt-0 pb-0 pl-0 pr-0 text-center">
+                                    <h5>If you want to pay with PayPal click here!</h5>
+                                </div>
+                                <div class="col-md-5 hidden-xs hidden-sm">
+                                    <i class="material-icons animated-horizontal-arrow">arrow_right_alt</i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <form method="post">
+                                <div class="col-md-8">
+                                    <div id="dropin-container"></div>
+                                    <div class="mt-1 form-group form-info">
+                                        <label class="col-md-2 col-form-label text-right">Coupon: </label>
+                                        <div class="col-md-10">
+                                            <input type="text" v-model="coupon" class="form-control" :class="{'invalid-input': couponError}">
+                                        </div>
+                                    </div>
+                                    <div class="text-center invalid">{{ couponError }}</div>
+                                </div>
+                                <div class="col-md-4 pt-0">
+                                    <button id="payment-button" class="btn btn-info" type="submit" v-if="!paymentData">Check The Card</button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -180,13 +203,14 @@
     import braintree from 'braintree-web';
 
     export default {
-        props: ['token'],
+        props: ['token', 'couponError'],
         data() {
             return {
                 trial: true,
                 chosenPlanIndex: 0,
                 chosenPlanName: '',
                 period: '',
+                coupon: '',
                 customPlanMessage: '',
                 paymentData: null
             }
@@ -205,6 +229,7 @@
                     trial: this.trial,
                     chosenPlanName: this.chosenPlanName,
                     period: this.period,
+                    coupon: this.coupon,
                     paymentData: this.paymentData
                 });
             },

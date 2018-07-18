@@ -24,4 +24,5 @@ Artisan::command('db:seed', function () {
     $this->callSilent('work-times:populate', []);
     $this->callSilent('questions:populate', []);
     $this->callSilent('braintree:sync-plans', []);
+    $this->callSilent('braintree:add-discounts', []);
 });
