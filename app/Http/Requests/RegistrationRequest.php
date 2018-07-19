@@ -33,7 +33,7 @@ class RegistrationRequest extends FormRequest
             'company.website' => 'nullable|active_url',
             'company.business_sector_id' => 'required|integer|exists:business_sectors,id',
             'company.country_id' => 'required|integer|exists:countries,id',
-            'company.city' => 'required|alpha|min:2|max:255',
+            'company.city' => 'required|string|min:2|max:255',
             'company.address' => 'required|string|min:2|max:255',
             'company.phone' => ['nullable', 'string', 'min:8', 'max:15', 'regex:/^([\+]{1}[0-9]{5}|[0-9]{3})+([\-])([0-9]{3})([\-])([0-9]{3,8})$/u'],
             'company.description' => 'nullable|string|min:2|max:2000',

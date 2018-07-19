@@ -11,6 +11,8 @@
 |
 */
 
+Route::post('braintree/webhook', 'WebhookController@handleWebhook');
+
 Route::namespace('Auth\Candidates')->group(function () {
     Route::get('login', 'LoginController@showLoginForm')->name('login');
     Route::post('login', 'LoginController@login');
@@ -40,35 +42,39 @@ Route::namespace('Auth\CompanyAdmins')->prefix('companies')->group(function () {
 });
 
 Route::middleware(['auth:web,companyAdmin'])->group(function () {
-    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/pricing', 'PricesController@index')->name('pricing');
 
-    Route::post('/subscribe', 'SubscriptionsController@store');
+    Route::middleware(['subscribed'])->group(function () {
+        Route::get('/', 'HomeController@index')->name('home');
 
-    Route::get('/jobs/create', 'JobsController@create')->name('create.jobs');
-    Route::post('/jobs', 'JobsController@store')->name('store.jobs');
-    Route::get('/jobs', 'JobsController@index')->name('jobs');
-    Route::get('/jobs/disabled', 'JobsController@disabled')->name('disabled.jobs');
-    Route::get('/jobs/{job}', 'JobsController@show')->name('show-job');
+        Route::post('/subscribe', 'SubscriptionsController@store');
 
-    Route::get('/candidates', 'CandidatesController@index')->name('index.candidates');
-    Route::get('/candidates/{candidate}', 'CandidatesController@show')->name('show-candidate');
-    Route::put('/candidates/{candidate}', 'CandidatesController@update')->name('update.candidates');
-    Route::get('/candidates/{candidate}/download/cv', 'CandidatesController@downloadCv')->name('download.cv.candidates');
-    Route::get('/candidates/download/pdf', 'CandidatesController@downloadPdf')->name('download.pdf.candidates');
-    Route::get('/candidates/download/csv', 'CandidatesController@downloadCsv')->name('download.csv.candidates');
+        Route::get('/jobs/create', 'JobsController@create')->name('create.jobs');
+        Route::post('/jobs', 'JobsController@store')->name('store.jobs');
+        Route::get('/jobs', 'JobsController@index')->name('jobs');
+        Route::get('/jobs/disabled', 'JobsController@disabled')->name('disabled.jobs');
+        Route::get('/jobs/{job}', 'JobsController@show')->name('show-job');
 
-    Route::get('/my-account', 'AccountsController@edit');
+        Route::get('/candidates', 'CandidatesController@index')->name('index.candidates');
+        Route::get('/candidates/{candidate}', 'CandidatesController@show')->name('show-candidate');
+        Route::put('/candidates/{candidate}', 'CandidatesController@update')->name('update.candidates');
+        Route::get('/candidates/{candidate}/download/cv', 'CandidatesController@downloadCv')->name('download.cv.candidates');
+        Route::get('/candidates/download/pdf', 'CandidatesController@downloadPdf')->name('download.pdf.candidates');
+        Route::get('/candidates/download/csv', 'CandidatesController@downloadCsv')->name('download.csv.candidates');
 
-    Route::put('/company-admins/{companyAdmin}', 'CompanyAdminsController@update')->name('update.companyAdmins');
+        Route::get('/my-account', 'AccountsController@edit');
 
-    Route::put('/companies/update-image', 'CompaniesController@updateImage')->name('update.company.image');
-    Route::put('/companies/{company}', 'CompaniesController@update')->name('update.company');
+        Route::put('/company-admins/{companyAdmin}', 'CompanyAdminsController@update')->name('update.companyAdmins');
 
-    Route::prefix('ajax')->namespace('Ajax')->group(function () {
-        Route::delete('/jobs/{job}', 'JobsController@destroy');
-        Route::patch('/jobs/{job}/activate', 'JobsController@activate');
-        Route::post('/jobs/{job}/candidates', 'CandidatesController@store');
-        Route::post('/jobs/{job}/send-tests', 'EmailsController@mark');
+        Route::put('/companies/update-image', 'CompaniesController@updateImage')->name('update.company.image');
+        Route::put('/companies/{company}', 'CompaniesController@update')->name('update.company');
+
+        Route::prefix('ajax')->namespace('Ajax')->group(function () {
+            Route::delete('/jobs/{job}', 'JobsController@destroy');
+            Route::patch('/jobs/{job}/activate', 'JobsController@activate');
+            Route::post('/jobs/{job}/candidates', 'CandidatesController@store');
+            Route::post('/jobs/{job}/send-tests', 'EmailsController@mark');
+        });
     });
 });
 

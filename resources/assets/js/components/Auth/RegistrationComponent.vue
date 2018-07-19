@@ -25,6 +25,15 @@
                 @register="register"
                 @sendMessage="sendMessage">
         </choose-plan>
+
+        <div class="loader-wrapper" v-show="loader">
+            <div class="loader">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -42,8 +51,9 @@
         },
         data() {
             return {
-                page: 3,
+                page: 1,
                 couponError: '',
+                loader: false,
                 data: {}
             }
         },
@@ -53,15 +63,19 @@
 
                 self.data['card'] = data;
                 self.couponError = '';
+                self.loader = true;
 
                 axios.post('/ajax/register/store', this.data)
                     .then(function (response) {
                         self.notification('Message', 'Successfully created.', 'success');
 
                         setTimeout(function () {
+                            self.loader = false;
                             window.location.href = '/companies/login';
                         }, 4000);
                     }, function (error) {
+                        self.loader = false;
+
                         if (error.response.data.errors.coupon) {
                             self.couponError = error.response.data.errors.coupon[0];
                             return;
@@ -72,16 +86,21 @@
             },
             sendMessage(data) {
                 let self = this;
+
                 this.data['message'] = data.message;
+                self.loader = true;
 
                 axios.post('/ajax/register/send-message', this.data)
                     .then(function (response) {
                         self.notification('Message', 'Successfully sent message.', 'success');
 
                         setTimeout(function () {
+                            self.loader = false;
                             window.location.href = '/';
                         }, 4000);
                     }, function (error) {
+                        self.loader = false;
+
                         for (let key in error.response.data.errors) {
                             self.notification(key.toUpperCase(), error.response.data.errors[key][0]);
                         }

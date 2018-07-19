@@ -9,6 +9,7 @@ use App\Company;
 use App\Country;
 use App\CompanyAdmin;
 use App\BusinessSector;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -47,17 +48,20 @@ class Store
             $company->save();
 
             $companyAdmin->company()->associate($company);
-            $companyAdmin->save();
-
-            $planSlug = $this->card['chosenPlanName'] . '-business-' . $this->card['period'];
 
             if ($this->card['trial']) {
-                $planSlug = 'trial';
+                $companyAdmin->trial_ends_at = Carbon::now()->addDays(30);
+                $companyAdmin->save();
+
+                return;
             }
+
+            $companyAdmin->save();
 
             $this->validateCoupon($this->card);
             $this->validateCardInformation($this->card);
 
+            $planSlug = $this->card['chosenPlanName'] . '-business-' . $this->card['period'];
             $plan = Plan::where('slug', $planSlug)->firstOrFail();
 
             $companyAdmin->newSubscription($this->card['chosenPlanName'], $plan->braintree_plan)

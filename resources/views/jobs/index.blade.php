@@ -10,6 +10,12 @@
                 </div>
                 <div class="card-body">
 
+                    @if($jobs->count() === 0)
+                        <div class="col-md-12 text-right">
+                            <i class="material-icons animated-horizontal-arrow" style="font-size: 142px">arrow_right_alt</i>
+                        </div>
+                    @endif
+
                     @foreach($jobs as $job)
                         <a href="/jobs/{{ $job->id }}" class="col-md-3">
                             <div class="card card-profile open">
