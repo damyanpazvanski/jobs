@@ -33,7 +33,7 @@ class JobRequest extends FormRequest
             'country_id' => 'required|integer|exists:countries,id',
             'position' => 'required|string|min:2|max:150',
             'work_time_id' => 'required|integer|exists:work_times,id',
-            'city' => 'required|alpha|min:2|max:100'
+            'city' => 'required|string|min:2|max:100'
         ];
     }
 }
