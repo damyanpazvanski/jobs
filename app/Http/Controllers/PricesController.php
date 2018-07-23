@@ -21,8 +21,10 @@ class PricesController extends Controller
 //        }
 
 //        $invoice = $user->invoices()->keys()->last();
+        dd($user->invoicesIncludingPending());
 
-        return View::make('emails.invoice', compact('invoice'));
+
+//        return View::make('emails.invoice', compact('invoice'));
 
         return $user->downloadInvoice($user->invoices()->first()->id, [
             'vendor'  => 'Your Company',

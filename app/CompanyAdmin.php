@@ -32,7 +32,7 @@ class CompanyAdmin extends Authenticatable
         'trial',
         'card_brand',
         'card_last_four',
-        'trial_ends_at',
+        'trial_ends_at'
     ];
 
     /**

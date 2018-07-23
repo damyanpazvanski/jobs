@@ -66,7 +66,20 @@ class Store
 
             $companyAdmin->newSubscription($this->card['chosenPlanName'], $plan->braintree_plan)
                 ->withCoupon($this->card['coupon'])
-                ->create($this->card['paymentData']['nonce']);
+                ->create($this->card['paymentData']['nonce'], [
+                    'id' => $companyAdmin->id,
+                    'firstName' => $companyAdmin->first_name,
+                    'lastName' => $companyAdmin->last_name,
+                    'company' => $company->name,
+                    'email' => $companyAdmin->email,
+                    'phone' => $companyAdmin->phone,
+                    'website' => $company->website,
+                    'locality' => $company->city,
+                    'countryName' => $company->state->name,
+                    'customFields' => [
+                        'companyPhone' => $company->phone
+                    ]
+                ]);
         });
     }
 

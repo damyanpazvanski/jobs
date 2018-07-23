@@ -7,13 +7,13 @@
 </style>
 @section('content')
     <div class="container">
-        <div class="card alert">
-            <div class="row card-header">
-                <div class="col-md-6 text-left"><h3 class="mt-0 mb-0 pt-0 pb-0"><strong>Pazvany Corporation</strong></h3></div>
-                <div class="col-md-6 text-right"><h3 class="mt-0 mb-0 pt-0 pb-0"><strong>INVOICE</strong></h3></div>
+        <div class="card alert p-0">
+            <div class="row card-header mr-0 ml-0">
+                <div class="col-md-6 text-left"><h2 class="mt-0 mb-0 pt-1 pb-0"><strong>Pazvany Corporation</strong></h2></div>
+                <div class="col-md-6 text-right"><h1 class="mt-0 mb-0 pt-0 pb-0"><strong>INVOICE</strong></h1></div>
             </div>
             <div class="card-body">
-                <div class="col-md-12 mt-2">
+                <div class="col-md-12 mt-5">
                     <div class="col-md-5">
                         Bill To: John Doe
                     </div>
@@ -29,8 +29,8 @@
                     </div>
                 </div>
 
-                <div class="col-md-12 mt-3">
-                    <table class="table table-bordered pl-2 mr-2">
+                <div class="col-md-12 mt-5 mb-3">
+                    <table class="table table-bordered">
                         <thead>
                         <tr>
                             <th scope="col">#</th>
