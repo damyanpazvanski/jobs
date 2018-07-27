@@ -321,7 +321,7 @@
                         <label for="name" class="col-md-4 col-form-label text-right">Name</label>
 
                         <div class="col-md-6">
-                            
+
                         </div>
                     </div>
                 </div>
