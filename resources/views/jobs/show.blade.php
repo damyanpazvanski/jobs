@@ -197,6 +197,7 @@
                                                     <th>Phone</th>
                                                     <th>Status</th>
                                                     <th>IQ Result</th>
+                                                    <th>Actions</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -210,10 +211,15 @@
                                                         <td>
                                                             <span class="{{ $candidate->iqResult->status == 'complete' ?
                                                                 'status-success' : 'status-hold' }}">
-                                                                {{ $candidate->iqResult->status }}
+                                                                <strong>{{ $candidate->iqResult->status }}</strong>
                                                             </span>
                                                         </td>
                                                         <td class="text-info border">{{ $candidate->iqResult->result }} %</td>
+                                                        <td>
+                                                            <a href="{{ route('show-candidate', ['candidate' => $candidate->id]) }}">
+                                                                <i class="material-icons text-info">remove_red_eye</i>
+                                                            </a>
+                                                        </td>
                                                     </tr>
                                                 @endforeach
 

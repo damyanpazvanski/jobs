@@ -91,7 +91,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="#">My account</a>
+                                    <a href="/my-account">My account</a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="{{ route('company.admins.logout') }}"

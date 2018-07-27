@@ -308,4 +308,24 @@
             </div>
         </div>
     </div>
+
+    <div class="col-lg-7 col-md-8 col-sm-12">
+        <div class="justify-content-center">
+            <div class="card">
+                <div class="card-header font-weight-bold" data-background-color="blue">
+                    <h4 class="title text-center">Subscription</h4>
+                </div>
+
+                <div class="card-body col-md-12">
+                    <div class="form-group row form-info">
+                        <label for="name" class="col-md-4 col-form-label text-right">Name</label>
+
+                        <div class="col-md-6">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
