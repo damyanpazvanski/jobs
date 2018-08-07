@@ -2,9 +2,15 @@
 
 @section('content')
     <div class="col-md-12">
-        <div class="col-md-3 col-md-offset-9 text-right">
+        <div class="col-md-3 col-md-offset-6 text-right">
             <disable-job job-id="{{ $job->id }}"></disable-job>
         </div>
+        <div class="col-md-3 text-right">
+            <a href="">
+                <button class="btn btn-success btn-block">Download PDF</button>
+            </a>
+        </div>
+
         <div class="row justify-content-center">
             @if($job->candidates()->count())
                 <div class="col-md-12">
@@ -77,7 +83,7 @@
                 </div>
                 <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-lg-offset-1 text-right">
                     @if ($job->noMailedCandidatesCount())
-                        <div class="col-md-12 col-sm-12 col-xs-12 alert alert-danger" style="margin: 0; padding: 0">
+                        <div class="col-md-12 col-sm-12 col-xs-12 alert alert-danger" style="margin: 0; padding: 0; height: 60px">
                             <div class="col-md-7 col-sm-6 col-xs-6 pt-1 text-center">
                                 <h5>You have {{ $job->noMailedCandidatesCount() }} new candidate/s</h5>
                             </div>

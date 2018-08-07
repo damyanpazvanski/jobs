@@ -20,12 +20,12 @@
                 </select>
             </div>
             <div class="col-md-3">
-                <a :href="csvUrl + '&filters=' + filters + '&rows=' + rows">
+                <a :href="csvFinalUrl + '&filters=' + filters + '&rows=' + rows">
                     <button class="btn btn-secondary btn-lg btn-block">DOWNLOAD CSV</button>
                 </a>
             </div>
             <div class="col-md-3 mb-2 text-right">
-                <a :href="pdfUrl + '&filters=' + filters + '&rows=' + rows">
+                <a :href="pdfFinalUrl + '&filters=' + filters + '&rows=' + rows">
                     <button class="btn btn-success btn-lg btn-block">DOWNLOAD PDF</button>
                 </a>
             </div>
@@ -38,6 +38,8 @@
         data() {
             return {
                 loading: false,
+                csvFinalUrl: '',
+                pdfFinalUrl: '',
                 filters: 1,
                 rows: 10
             }
@@ -52,11 +54,11 @@
         },
         mounted() {
             if (this.csvUrl.indexOf('?') === -1) {
-                this.csvUrl += '?';
+                this.csvFinalUrl = this.csvUrl + '?';
             }
 
             if (this.pdfUrl.indexOf('?') === -1) {
-                this.csvUrl += '?';
+                this.pdfFinalUrl = this.pdfUrl + '?';
             }
         }
     }

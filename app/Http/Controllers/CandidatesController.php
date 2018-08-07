@@ -99,6 +99,16 @@ class CandidatesController extends Controller
         return $pdf->download('candidates.pdf');
     }
 
+    public function downloadTopCandidatesPdf()
+    {
+        $pdf = App::make('dompdf.wrapper');
+
+        $candidates = $this->getCandidates();
+//        $pdf->loadHTML(View::make('pdf.candidates.index', compact('candidates', 'workTimes')))->setPaper('a4', 'landscape');
+
+//        return $pdf->download('candidates.pdf');
+    }
+
     public function downloadCsv(AllCandidatesFilterRequest $request)
     {
         $candidates = $this->getCandidates();

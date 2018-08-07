@@ -60,6 +60,7 @@ Route::middleware(['auth:web,companyAdmin'])->group(function () {
         Route::put('/candidates/{candidate}', 'CandidatesController@update')->name('update.candidates');
         Route::get('/candidates/{candidate}/download/cv', 'CandidatesController@downloadCv')->name('download.cv.candidates');
         Route::get('/candidates/download/pdf', 'CandidatesController@downloadPdf')->name('download.pdf.candidates');
+        Route::get('/candidates/top/download/pdf', 'CandidatesController@downloadTopCandidatesPdf')->name('download.pdf.top.candidates');
         Route::get('/candidates/download/csv', 'CandidatesController@downloadCsv')->name('download.csv.candidates');
 
         Route::get('/my-account', 'AccountsController@edit');
