@@ -30,9 +30,11 @@
         props: ['jobId'],
         methods: {
             markEmails() {
+                let self = this;
+
                 axios.post(`/ajax/jobs/${this.jobId}/send-tests`, {})
                     .then(function (response) {
-                        window.location.href = `/jobs/${this.jobId}`;
+                        window.location.href = `/jobs/${self.jobId}`;
                     }, function (error) {
                         for (let key in error.response.data.errors) {
                             this.$notify({

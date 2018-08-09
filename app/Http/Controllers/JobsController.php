@@ -7,6 +7,8 @@ use App\Job;
 use App\Country;
 use App\WorkTime;
 use App\Http\Requests\JobRequest;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\View;
 
 class JobsController extends Controller
 {
@@ -56,4 +58,16 @@ class JobsController extends Controller
 
         return redirect('/jobs');
     }
+
+    public function downloadPdf(Job $job)
+    {
+        $pdf = App::make('dompdf.wrapper');
+
+        $candidates = $job->bestCandidates;
+
+        $pdf->loadHTML(View::make('pdf.job.candidates.index', compact('candidates', 'job')))->setPaper('a4', 'landscape');
+
+        return $pdf->download('candidates.pdf');
+    }
+
 }

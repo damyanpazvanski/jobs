@@ -115,7 +115,7 @@
             </div>
         </div>
         <div style="width: 5%; float: left"></div>
-        <div class="card text-center" style="width: 45%!important; float: left">
+        <div class="card text-center" style="width: 45%!important; float: left; margin-top: -80px">
             <div class="mt-5">
                 <div class="mt-5">
                     <div class="mt-3">

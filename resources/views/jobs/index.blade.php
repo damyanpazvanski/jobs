@@ -31,7 +31,8 @@
                                         <p>City: {{ $job->city }}</p></p>
                                         <p>Created at: {{ $job->created_at->format('m/d/Y') }}</p></p>
                                         <p class="category text-gray">Candidates: {{ $job->candidates()->count() }}</p>
-                                        <p class="category text-gray">Best Candidates: {{ $job->candidatesWithHighResult()->count() }}</p>
+                                        <p class="category text-gray">Completed Candidates: {{ $job->completedCandidatesCount() }}</p>
+                                        <p class="category text-gray">70% - 100% Candidates: {{ $job->candidatesWithHighResult()->count() }}</p>
                                     </div>
 
                                     <span class="btn btn-round btn-show-text" data-background-color="green">Open</span>

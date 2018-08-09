@@ -6,7 +6,7 @@
             <disable-job job-id="{{ $job->id }}"></disable-job>
         </div>
         <div class="col-md-3 text-right">
-            <a href="">
+            <a href="{{ route('jobs.candidates.pdf', ['job' => $job->id]) }}">
                 <button class="btn btn-success btn-block">Download PDF</button>
             </a>
         </div>
@@ -30,7 +30,7 @@
                                 <div class="card-footer">
                                     <div class="stats">
                                         <i class="material-icons text-danger">warning</i>
-                                        <span>You should send the emails</span>
+                                        <span>Send the emails if you are not</span>
                                     </div>
                                 </div>
                             </div>
@@ -81,8 +81,8 @@
                 <div class="col-md-3">
                     <add-candidates :job-id="{{ $job->id }}"></add-candidates>
                 </div>
-                <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-lg-offset-1 text-right">
-                    @if ($job->noMailedCandidatesCount())
+                @if ($job->noMailedCandidatesCount())
+                    <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 col-md-offset-0 col-lg-offset-1 text-right">
                         <div class="col-md-12 col-sm-12 col-xs-12 alert alert-danger" style="margin: 0; padding: 0; height: 60px">
                             <div class="col-md-7 col-sm-6 col-xs-6 pt-1 text-center">
                                 <h5>You have {{ $job->noMailedCandidatesCount() }} new candidate/s</h5>
@@ -94,11 +94,11 @@
                                 <i class="material-icons animated-vertical-arrow">arrow_downward</i>
                             </div>
                         </div>
-                    @endif
-                </div>
-                <div class="col-md-3 col-sm-12 col-xs-12">
-                    <send-emails :job-id="{{ $job->id }}"></send-emails>
-                </div>
+                    </div>
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <send-emails :job-id="{{ $job->id }}"></send-emails>
+                    </div>
+                @endif
             </div>
 
             <div class="col-md-12">

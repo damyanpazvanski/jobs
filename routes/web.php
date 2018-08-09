@@ -54,13 +54,13 @@ Route::middleware(['auth:web,companyAdmin'])->group(function () {
         Route::get('/jobs', 'JobsController@index')->name('jobs');
         Route::get('/jobs/disabled', 'JobsController@disabled')->name('disabled.jobs');
         Route::get('/jobs/{job}', 'JobsController@show')->name('show-job');
+        Route::get('/jobs/{job}/candidates/download', 'JobsController@downloadPdf')->name('jobs.candidates.pdf');
 
         Route::get('/candidates', 'CandidatesController@index')->name('index.candidates');
         Route::get('/candidates/{candidate}', 'CandidatesController@show')->name('show-candidate');
         Route::put('/candidates/{candidate}', 'CandidatesController@update')->name('update.candidates');
         Route::get('/candidates/{candidate}/download/cv', 'CandidatesController@downloadCv')->name('download.cv.candidates');
         Route::get('/candidates/download/pdf', 'CandidatesController@downloadPdf')->name('download.pdf.candidates');
-        Route::get('/candidates/top/download/pdf', 'CandidatesController@downloadTopCandidatesPdf')->name('download.pdf.top.candidates');
         Route::get('/candidates/download/csv', 'CandidatesController@downloadCsv')->name('download.csv.candidates');
 
         Route::get('/my-account', 'AccountsController@edit');
