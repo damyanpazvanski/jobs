@@ -86,7 +86,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="material-icons">person</i>
+                                <i class="material-icons pointer">person</i>
                                 <p class="hidden-lg hidden-md">Profile</p>
                             </a>
                             <ul class="dropdown-menu">

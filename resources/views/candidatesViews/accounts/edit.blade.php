@@ -13,7 +13,7 @@
             <div class="justify-content-center">
                 <div class="card">
                     <div class="card-header font-weight-bold" data-background-color="blue">
-                        <h4 class="title text-center">Company information</h4>
+                        <h4 class="title text-center">User information</h4>
                     </div>
                     <div class="card-body col-md-12">
                         <div class="form-group row form-info">

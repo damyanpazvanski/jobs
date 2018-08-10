@@ -48,6 +48,8 @@ Route::middleware(['auth:web,companyAdmin'])->group(function () {
         Route::get('/', 'HomeController@index')->name('home');
 
         Route::post('/subscribe', 'SubscriptionsController@store');
+        Route::get('/subscriptions', 'SubscriptionsController@index')->name('subscriptions.index');
+        Route::delete('/subscriptions', 'SubscriptionsController@destroy')->name('subscriptions.destroy');
 
         Route::get('/jobs/create', 'JobsController@create')->name('create.jobs');
         Route::post('/jobs', 'JobsController@store')->name('store.jobs');
@@ -63,7 +65,7 @@ Route::middleware(['auth:web,companyAdmin'])->group(function () {
         Route::get('/candidates/download/pdf', 'CandidatesController@downloadPdf')->name('download.pdf.candidates');
         Route::get('/candidates/download/csv', 'CandidatesController@downloadCsv')->name('download.csv.candidates');
 
-        Route::get('/my-account', 'AccountsController@edit');
+        Route::get('/my-account', 'AccountsController@edit')->name('my-account');
 
         Route::put('/company-admins/{companyAdmin}', 'CompanyAdminsController@update')->name('update.companyAdmins');
 
@@ -75,6 +77,8 @@ Route::middleware(['auth:web,companyAdmin'])->group(function () {
             Route::patch('/jobs/{job}/activate', 'JobsController@activate');
             Route::post('/jobs/{job}/candidates', 'CandidatesController@store');
             Route::post('/jobs/{job}/send-tests', 'EmailsController@mark');
+
+            Route::put('/subscriptions', 'SubscriptionsController@update')->name('subscriptions.update');
         });
     });
 });

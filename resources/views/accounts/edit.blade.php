@@ -1,6 +1,32 @@
 @extends('layouts.app')
 
 @section('content')
+    <!-- Modal Stop The Subscription-->
+    <div class="modal fade" id="stopTheSubscriptionModal" tabindex="-1" role="dialog" aria-labelledby="stopTheSubscriptionLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content text-left">
+                <div class="modal-header">
+                    <label>Dou you really want to cancel the subscription</label>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    You are going to cancel the subscription on the current company. You will not have access anymore!
+                </div>
+                <div class="modal-footer text-right">
+                    <form action="{{ route('subscriptions.destroy') }}" method="POST" style="display: inline">
+                        @method('DELETE')
+                        @csrf
+                        <input type="submit" value="Yes, I want to cancel" class="btn btn-danger" />
+                    </form>
+
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No, I don't want</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="card">
             <div class="card-header font-weight-bold text-center" data-background-color="blue">
@@ -316,15 +342,67 @@
                     <h4 class="title text-center">Subscription</h4>
                 </div>
 
-                <div class="card-body col-md-12">
+                <div class="card-body col-md-12 mt-2">
                     <div class="form-group row form-info">
                         <label for="name" class="col-md-4 col-form-label text-right">Name</label>
 
                         <div class="col-md-6">
+                            <p class="form-control">
+                                {{ $plan->name }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group row form-info">
+                        <label for="name" class="col-md-4 col-form-label text-right">Price</label>
 
+                        <div class="col-md-6">
+                            <p class="form-control">
+                                $ {{ $plan->cost }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group row form-info">
+                        <label for="name" class="col-md-4 col-form-label text-right">Description</label>
+
+                        <div class="col-md-6">
+                            <p class="form-control">
+                                {{ $plan->description }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group row form-info">
+                        <label for="name" class="col-md-4 col-form-label text-right">Started At</label>
+
+                        <div class="col-md-6">
+                            <p class="form-control">
+                                {{ $subscription->created_at }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group row form-info">
+                        <label for="name" class="col-md-4 col-form-label text-right">Ends At</label>
+
+                        <div class="col-md-6">
+                            <p class="form-control">
+                                {{ $subscription->ends_at ?: '-' }}
+                            </p>
                         </div>
                     </div>
                 </div>
+                @if(!$user->subscription($subscription->name)->cancelled())
+                    <div class="card-body col-md-12">
+                        <div class="form-group row form-info">
+                            <div class="col-md-6">
+                                <button class="btn btn-lg btn-block btn-danger" data-toggle="modal" data-target="#stopTheSubscriptionModal">Stop</button>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="">
+                                    <button class="btn btn-secondary btn-lg btn-block">Change</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

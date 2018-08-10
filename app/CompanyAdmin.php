@@ -3,6 +3,7 @@
 namespace App;
 
 use Laravel\Cashier\Billable;
+use Laravel\Cashier\Subscription;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -65,8 +66,14 @@ class CompanyAdmin extends Authenticatable
         return $this->first_name . ' ' . $this->last_name;
     }
 
-//    public function subscription()
-//    {
-//        return $this->hasOne(Subscription::class, 'company_admin_id', 'id');
-//    }
+    public function getSubscription()
+    {
+        return $this->hasMany(Subscription::class, 'company_admin_id', 'id')
+            ->orderBy('created_at', 'DESC')->limit(1)->first();
+    }
+
+    public function getPlan($subscriptionId)
+    {
+        return Plan::where('braintree_plan', Subscription::find($subscriptionId)->braintree_plan)->first();
+    }
 }

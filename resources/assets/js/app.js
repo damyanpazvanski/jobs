@@ -35,6 +35,8 @@ Vue.component('test', require('./components/Test/Test.vue'));
 
 Vue.component('download-candidates-report', require('./components/Candidates/DownloadReport'));
 
+Vue.component('subscriptions', require('./components/Subscriptions'));
+
 const app = new Vue({
     el: '#app'
 });

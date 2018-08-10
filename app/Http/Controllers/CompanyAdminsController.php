@@ -13,11 +13,13 @@ class CompanyAdminsController extends Controller
     public function edit()
     {
         $user = auth()->user();
+        $subscription = $user->getSubscription();
+        $plan = $user->getPlan($subscription->id);
         $company = $user->company;
         $businessSectors = BusinessSector::all();
         $countries = Country::all();
 
-        return view('accounts.edit', compact('user', 'company', 'countries', 'businessSectors'));
+        return view('accounts.edit', compact('user', 'subscription', 'plan', 'company', 'countries', 'businessSectors'));
     }
 
     public function update(CompanyAdmin $companyAdmin, CompanyAdminRequest $request)
