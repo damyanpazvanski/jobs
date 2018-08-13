@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Ajax;
 
+use App\Actions\Subscriptions\Update;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -10,10 +11,8 @@ class SubscriptionsController extends Controller
 
     public function update(Request $request)
     {
+        (new Update($request->get('card')))->handle();
 
-
-        $request->session()->flash('success', trans('messages.updated_successfully'));
-
-        return redirect('/');
+        return response()->json([]);
     }
 }

@@ -131,13 +131,15 @@
 </template>
 <script>
     import braintree from 'braintree-web';
+    import axios from 'axios';
 
     export default {
-        props: ['token', 'couponError'],
+        props: ['token'],
         data() {
             return {
                 chosenPlanIndex: 0,
                 chosenPlanName: '',
+                couponError: '',
                 period: '',
                 coupon: '',
                 paymentData: null,
@@ -157,17 +159,19 @@
                 self.loader = true;
 
                 axios.put('/ajax/subscriptions', {
-                    chosenPlanName: this.chosenPlanName,
-                    period: this.period,
-                    coupon: this.coupon,
-                    paymentData: this.paymentData
+                    card: {
+                        chosenPlanName: this.chosenPlanName,
+                        period: this.period,
+                        coupon: this.coupon,
+                        paymentData: this.paymentData
+                    }
                 })
                     .then(function (response) {
-                        self.notification('Message', 'Successfully created.', 'success');
+                        self.notification('Message', 'Successfully Updated.', 'success');
 
                         setTimeout(function () {
                             self.loader = false;
-                            window.location.href = '/companies/login';
+                            window.location.href = '/';
                         }, 4000);
                     }, function (error) {
                         self.loader = false;

@@ -64,7 +64,7 @@
 
                     <div class="form-group">
                         <div class="col-md-12">
-                            <input type="submit" value="Save" class="btn btn-info btn-lg btn-block" />
+                            <input type="submit" value="Save" class="btn btn-outline-info btn-lg btn-block" />
                         </div>
                     </div>
                 </div>
@@ -148,7 +148,7 @@
                     <div class="card-body col-md-12">
                         <div class="form-group row form-info">
                             <div class="col-md-12">
-                                <button class="btn btn-info btn-lg btn-block">Save</button>
+                                <button class="btn btn-outline-info btn-lg btn-block">Save</button>
                             </div>
                         </div>
                     </div>
@@ -326,7 +326,7 @@
                     <div class="card-body col-md-12">
                         <div class="form-group row form-info">
                             <div class="col-md-12">
-                                <input type="submit" value="Save" class="btn btn-info btn-lg btn-block"/>
+                                <input type="submit" value="Save" class="btn btn-outline-info btn-lg btn-block"/>
                             </div>
                         </div>
                     </div>
@@ -389,20 +389,20 @@
                         </div>
                     </div>
                 </div>
-                @if(!$user->subscription($subscription->name)->cancelled())
-                    <div class="card-body col-md-12">
-                        <div class="form-group row form-info">
-                            <div class="col-md-6">
+                <div class="card-body col-md-12">
+                    <div class="form-group row form-info">
+                        <div class="col-md-6">
+                            @if(!$user->subscription($subscription->name)->cancelled())
                                 <button class="btn btn-lg btn-block btn-danger" data-toggle="modal" data-target="#stopTheSubscriptionModal">Stop</button>
-                            </div>
-                            <div class="col-md-6">
-                                <a href="">
-                                    <button class="btn btn-secondary btn-lg btn-block">Change</button>
-                                </a>
-                            </div>
+                            @endif
+                        </div>
+                        <div class="col-md-6">
+                            <a href="{{ route('subscriptions.index') }}">
+                                <button class="btn btn-secondary btn-lg btn-block">Change</button>
+                            </a>
                         </div>
                     </div>
-                @endif
+                </div>
             </div>
         </div>
     </div>

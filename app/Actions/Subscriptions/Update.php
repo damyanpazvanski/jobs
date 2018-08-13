@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions\CompanyAdmins;
+namespace App\Actions\Subscriptions;
 
 use App\Discount;
 use App\Plan;
@@ -14,55 +14,29 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
-class Store
+class Update
 {
 
-    private $user;
-    private $company;
     private $card;
 
-    public function __construct($user, $company, $card)
+    public function __construct($card)
     {
-        $this->user = $user;
-        $this->company = $company;
         $this->card = $card;
     }
 
     public function handle()
     {
         DB::transaction(function() {
-            $companyAdmin = CompanyAdmin::firstOrNew(['email' => $this->user['email']], $this->user);
-            $companyAdmin->password = Hash::make($this->user['password']);
-
-            $companyAdmin->role()->associate(Role::where('name', 'company_admin')->first());
-
-            // TODO: save image
-            $this->company['image_id'] = null;
-            unset($this->company['image']);
-            unset($this->company['imageName']);
-
-            $company = Company::firstOrNew($this->company);
-
-            $company->businessSector()->associate(BusinessSector::find($this->company['business_sector_id']));
-            $company->country()->associate(Country::find($this->company['country_id']));
-            $company->save();
-
-            $companyAdmin->company()->associate($company);
-
-            if ($this->card['trial']) {
-                $companyAdmin->trial_ends_at = Carbon::now()->addDays(30);
-                $companyAdmin->save();
-
-                return;
-            }
-
-            $companyAdmin->save();
-
             $this->validateCoupon($this->card);
             $this->validateCardInformation($this->card);
 
             $planSlug = $this->card['chosenPlanName'] . '-business-' . $this->card['period'];
             $plan = Plan::where('slug', $planSlug)->firstOrFail();
+
+            $companyAdmin = auth()->user();
+            $company = $companyAdmin->company;
+
+            $companyAdmin->subscription($companyAdmin->getSubscription()->name)->cancelNow();
 
             $companyAdmin->newSubscription($this->card['chosenPlanName'], $plan->braintree_plan)
                 ->withCoupon($this->card['coupon'])
@@ -77,7 +51,7 @@ class Store
                     'locality' => $company->city,
                     'countryName' => $company->country->name,
                     'customFields' => [
-                        'companyPhone' => $company->phone
+                        'companyPhone' => $company->phone,
                     ]
                 ]);
         });

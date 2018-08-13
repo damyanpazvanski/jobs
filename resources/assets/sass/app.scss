@@ -339,12 +339,14 @@ textarea {
 .loader {
   display: inline-block;
   position: relative;
+  z-index: 1001;
   width: 64px;
   height: 64px;
 }
 .loader-wrapper {
   animation: opac 0.8s;
   position: fixed;
+  z-index: 1000;
   top: 0;
   left: 0;
   width: 100%;
