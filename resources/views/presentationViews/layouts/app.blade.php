@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', '') }}</title>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+</head>
+<body>
+<div id="app" class="wrapper" style="overflow: hidden">
+    <main class="py-4 ps-theme-default ps-active-y">
+        <nav class="navbar navbar-transparent navbar-absolute navbar-info">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    {{--<a class="navbar-brand" href="#">Job list</a>--}}
+                </div>
+                <div class="collapse navbar-collapse navbar-info-text">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="material-icons pointer">person</i>
+                                <p class="hidden-lg hidden-md">Profile</p>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="/my-account">My account</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('company.admins.logout') }}"
+                                       onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('company.admins.logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-right" role="search">
+                        <div class="form-group is-empty form-info">
+                            <input type="text" class="form-control" placeholder="Search">
+                            <span class="material-input"></span>
+                            <span class="material-input"></span>
+                        </div>
+                        <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                            <i class="material-icons ">search</i>
+                            <div class="ripple-container"></div>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <div class="content">
+            <div class="">
+                @if(Session::has('success'))
+                    <div class="alert alert-success text-center">{{ Session::get('success') }}</div>
+                @endif
+
+                @if(Session::has('error'))
+                    <div class="alert alert-danger text-center">{{ Session::get('error') }}</div>
+                @endif
+
+                @yield('content')
+            </div>
+            <footer class="footer col-md-12 col-sm-12 col-xs-12">
+                <div class="container-fluid">
+                    <p class="copyright text-center">
+                        &copy 2018<span class="btn-link"> Pazvany Corporation</span>, made with love for a better web
+                    </p>
+                </div>
+            </footer>
+        </div>
+    </main>
+    <div>
+        <notifications group="errors" position="top center" width="80%" classes="alert text-center error-alert"/>
+    </div>
+    <div>
+        <notifications group="success" position="top center" width="80%" classes="alert text-center success-alert"/>
+    </div>
+</div>
+
+<script src="{{ asset('js/jquery-3.2.1.min.js') }}" defer></script>
+<script src="{{ asset('js/bootstrap.min.js') }}" defer></script>
+<script src="{{ asset('js/material.min.js') }}" defer></script>
+<script src="{{ asset('js/chartist.min.js') }}" defer></script>
+<script src="{{ asset('js/arrive.min.js') }}" defer></script>
+<script src="{{ asset('js/bootstrap-notify.js') }}" defer></script>
+<script src="{{ asset('js/material-dashboard.js') }}" defer></script>
+
+<script src="{{ asset('js/app.js') }}" defer></script>
+
+</body>
+</html>

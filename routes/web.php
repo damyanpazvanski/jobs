@@ -98,3 +98,5 @@ Route::prefix('ajax')->namespace('Ajax')->group(function () {
 });
 
 Route::get('/test', 'TestsController@index');
+
+//Route::get('/', 'HomeController@index');

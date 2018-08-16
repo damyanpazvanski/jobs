@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Candidate;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -14,6 +15,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+//        if (!Auth::check()) {
+//            return App::make(self::class)->presentationIndex();
+//        } else
         if (auth()->user() instanceof Candidate) {
             return App::make(self::class)->candidatesIndex();
         }
@@ -24,5 +28,10 @@ class HomeController extends Controller
     public function candidatesIndex()
     {
         return view('candidatesViews.home');
+    }
+
+    public function presentationIndex()
+    {
+        return view('presentationViews.index');
     }
 }

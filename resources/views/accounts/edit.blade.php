@@ -398,7 +398,7 @@
                         </div>
                         <div class="col-md-6">
                             <a href="{{ route('subscriptions.index') }}">
-                                <button class="btn btn-secondary btn-lg btn-block">Change</button>
+                                <button class="btn btn-outline-info btn-lg btn-block">Change</button>
                             </a>
                         </div>
                     </div>
