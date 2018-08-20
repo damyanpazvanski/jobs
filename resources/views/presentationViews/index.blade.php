@@ -10,128 +10,249 @@
 
     <title>{{ config('app.name', '') }}</title>
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons" rel="stylesheet">
-
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/presentation.css') }}" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic" rel="stylesheet" type="text/css">
 </head>
 <body>
-<div id="app" class="wrapper" style="overflow: hidden">
-    <div class="sidebar" data-color="blue">
-        {{--<div class="logo text-center" style="font-weight: bold">Hello </div>--}}
-        <div class="sidebar-wrapper ps-container ps-theme-default">
-            <ul class="nav">
-                {{--<li class="{{ request()->is('/') ? 'active' : '' }}">--}}
-                    {{--<a href="/">--}}
-                        {{--<i class="material-icons">dashboard</i>--}}
-                        {{--<p>Dashboard</p>--}}
-                    {{--</a>--}}
-                {{--</li>--}}
-                {{--<li class="{{ request()->is('my-account') ? 'active' : '' }}">--}}
-                    {{--<a href="/my-account">--}}
-                        {{--<i class="material-icons">person</i>--}}
-                        {{--<p>User Profile</p>--}}
-                    {{--</a>--}}
-                {{--</li>--}}
-                {{--<li class="{{ request()->is('jobs') ? 'active' : '' }}">--}}
-                    {{--<a href="/jobs">--}}
-                        {{--<i class="material-icons">content_paste</i>--}}
-                        {{--<p>Jobs</p>--}}
-                    {{--</a>--}}
-                {{--</li>--}}
+<body id="page-top">
 
-                {{--<li class="{{ request()->is(route('disabled.jobs')) ? 'active' : '' }}">--}}
-                    {{--<a href="{{ route('disabled.jobs') }}">--}}
-                        {{--<i class="material-icons">content_paste</i>--}}
-                        {{--<p>Disabled Jobs</p>--}}
-                    {{--</a>--}}
-                {{--</li>--}}
-
-                {{--<li class="{{ request()->is('candidates') ? 'active' : '' }}">--}}
-                    {{--<a href="{{ route('index.candidates') }}">--}}
-                        {{--<i class="material-icons">view_list</i>--}}
-                        {{--<p>Candidates</p>--}}
-                    {{--</a>--}}
-                {{--</li>--}}
-
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-shrink" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger active" href="#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#services">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+                </li>
             </ul>
-            <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
-                <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>
-            </div>
-            <div class="ps-scrollbar-y-rail" style="top: 0px; right: 0px;">
-                <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div>
-            </div>
         </div>
-        <div class="sidebar-background"></div>
     </div>
-    <main class="py-4 main-panel ps-theme-default ps-active-y" style="overflow: scroll; bottom: -12px;">
-        <nav class="navbar navbar-transparent navbar-absolute navbar-info">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    {{--<a class="navbar-brand" href="#">Job list</a>--}}
-                </div>
-                <div class="collapse navbar-collapse navbar-info-text">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="material-icons pointer">person</i>
-                                <p class="hidden-lg hidden-md">Profile</p>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="/my-account">My account</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="{{ route('company.admins.logout') }}"
-                                       onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+</nav>
 
-                                    <form id="logout-form" action="{{ route('company.admins.logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <form class="navbar-form navbar-right" role="search">
-                        <div class="form-group is-empty form-info">
-                            <input type="text" class="form-control" placeholder="Search">
-                            <span class="material-input"></span>
-                            <span class="material-input"></span>
-                        </div>
-                        <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                            <i class="material-icons ">search</i>
-                            <div class="ripple-container"></div>
-                        </button>
-                    </form>
+<header class="masthead text-center text-white d-flex">
+    <div class="container my-auto">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <h1 class="text-uppercase">
+                    <strong>Your Favorite Source of Free Bootstrap Themes</strong>
+                </h1>
+                <hr>
+            </div>
+            <div class="col-lg-8 mx-auto">
+                <p class="text-faded mb-5">Start Bootstrap can help you build better websites using the Bootstrap CSS framework! Just download your template and start going, no strings attached!</p>
+                <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="bg-primary" id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="section-heading text-white">We've got what you need!</h2>
+                <hr class="light my-4">
+                <p class="text-faded mb-4">Start Bootstrap has everything you need to get your new website up and running in no time! All of the templates and themes on Start Bootstrap are open source, free to download, and easy to use. No strings attached!</p>
+                <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Get Started!</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">At Your Service</h2>
+                <hr class="my-4">
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="service-box mt-5 mx-auto">
+                    <i class="fa fa-4x fa-diamond text-primary mb-3 sr-icons" data-sr-id="2" style="; visibility: visible;  -webkit-transform: scale(1); opacity: 1;transform: scale(1); opacity: 1;-webkit-transition: -webkit-transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; transition: transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; "></i>
+                    <h3 class="mb-3">Sturdy Templates</h3>
+                    <p class="text-muted mb-0">Our templates are updated regularly so they don't break.</p>
                 </div>
             </div>
-        </nav>
-        <div class="content">
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="service-box mt-5 mx-auto">
+                    <i class="fa fa-4x fa-paper-plane text-primary mb-3 sr-icons" data-sr-id="3" style="; visibility: visible;  -webkit-transform: scale(1); opacity: 1;transform: scale(1); opacity: 1;-webkit-transition: -webkit-transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; transition: transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; "></i>
+                    <h3 class="mb-3">Ready to Ship</h3>
+                    <p class="text-muted mb-0">You can use this theme as is, or you can make changes!</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="service-box mt-5 mx-auto">
+                    <i class="fa fa-4x fa-newspaper-o text-primary mb-3 sr-icons" data-sr-id="4" style="; visibility: visible;  -webkit-transform: scale(1); opacity: 1;transform: scale(1); opacity: 1;-webkit-transition: -webkit-transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; transition: transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; "></i>
+                    <h3 class="mb-3">Up to Date</h3>
+                    <p class="text-muted mb-0">We update dependencies to keep things fresh.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="service-box mt-5 mx-auto">
+                    <i class="fa fa-4x fa-heart text-primary mb-3 sr-icons" data-sr-id="5" style="; visibility: visible;  -webkit-transform: scale(1); opacity: 1;transform: scale(1); opacity: 1;-webkit-transition: -webkit-transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; transition: transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; "></i>
+                    <h3 class="mb-3">Made with Love</h3>
+                    <p class="text-muted mb-0">You have to make your websites with love these days!</p>
+                </div>
+            </div>
         </div>
-    </main>
-</div>
+    </div>
+</section>
 
+<section class="p-0" id="portfolio">
+    <div class="container-fluid p-0">
+        <div class="row no-gutters popup-gallery">
+            <div class="col-lg-4 col-sm-6">
+                <a class="portfolio-box">
+                    <img class="img-fluid" src="images/sidebar.jpg" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Category
+                            </div>
+                            <div class="project-name">
+                                Project Name
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a class="portfolio-box">
+                    <img class="img-fluid" src="images/sidebar.jpg" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Category
+                            </div>
+                            <div class="project-name">
+                                Project Name
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a class="portfolio-box">
+                    <img class="img-fluid" src="images/sidebar.jpg" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Category
+                            </div>
+                            <div class="project-name">
+                                Project Name
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a class="portfolio-box">
+                    <img class="img-fluid" src="images/sidebar.jpg" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Category
+                            </div>
+                            <div class="project-name">
+                                Project Name
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a class="portfolio-box">
+                    <img class="img-fluid" src="images/sidebar.jpg" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Category
+                            </div>
+                            <div class="project-name">
+                                Project Name
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a class="portfolio-box">
+                    <img class="img-fluid" src="images/sidebar.jpg" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Category
+                            </div>
+                            <div class="project-name">
+                                Project Name
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
 
-<script src="{{ asset('js/jquery-3.2.1.min.js') }}" defer></script>
-<script src="{{ asset('js/bootstrap.min.js') }}" defer></script>
-<script src="{{ asset('js/material.min.js') }}" defer></script>
-<script src="{{ asset('js/chartist.min.js') }}" defer></script>
-<script src="{{ asset('js/arrive.min.js') }}" defer></script>
-<script src="{{ asset('js/bootstrap-notify.js') }}" defer></script>
-<script src="{{ asset('js/material-dashboard.js') }}" defer></script>
+<section class="bg-dark text-white">
+    <div class="container text-center">
+        <h2 class="mb-4">Free Download at Start Bootstrap!</h2>
+        <a class="btn btn-light btn-xl sr-button" href="http://startbootstrap.com/template-overviews/creative/" data-sr-id="6" style="; visibility: visible;  -webkit-transform: translateY(20px) scale(0.9); opacity: 0;transform: translateY(20px) scale(0.9); opacity: 0;">Download Now!</a>
+    </div>
+</section>
 
-<script src="{{ asset('js/app.js') }}" defer></script>
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="section-heading">Let's Get In Touch!</h2>
+                <hr class="my-4">
+                <p class="mb-5">Ready to start your next project with us? That's great! Give us a call or send us an email and we will get back to you as soon as possible!</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 ml-auto text-center">
+                <i class="fa fa-phone fa-3x mb-3 sr-contact" data-sr-id="8" style="; visibility: visible;  -webkit-transform: scale(0.3); opacity: 0;transform: scale(0.3); opacity: 0;"></i>
+                <p>123-456-6789</p>
+            </div>
+            <div class="col-lg-4 mr-auto text-center">
+                <i class="fa fa-envelope-o fa-3x mb-3 sr-contact" data-sr-id="9" style="; visibility: visible;  -webkit-transform: scale(0.3); opacity: 0;transform: scale(0.3); opacity: 0;"></i>
+                <p>
+                    <a href="mailto:your-email@your-domain.com">feedback@startbootstrap.com</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+<script src="/js/presentation/bootstrap.bundle.min.js"></script>
+<script src="/js/presentation/jquery.easing.min.js"></script>
+{{--<script src="/js/presentation/scrollreveal.min.js"></script>--}}
+<script src="/js/presentation/jquery.magnific-popup.min.js"></script>
+<script src="/js/presentation/creative.js"></script>
+
 </body>
 </html>
