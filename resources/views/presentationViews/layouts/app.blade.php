@@ -10,105 +10,83 @@
 
     <title>{{ config('app.name', '') }}</title>
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons" rel="stylesheet">
-
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/presentation.css') }}" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic" rel="stylesheet" type="text/css">
 </head>
-<body>
-<div id="app" class="wrapper" style="overflow: hidden">
-    <main class="py-4 ps-theme-default ps-active-y">
-        <nav class="navbar navbar-transparent navbar-absolute navbar-info">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    {{--<a class="navbar-brand" href="#">Job list</a>--}}
-                </div>
-                <div class="collapse navbar-collapse navbar-info-text">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="material-icons pointer">person</i>
-                                <p class="hidden-lg hidden-md">Profile</p>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="/my-account">My account</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="{{ route('company.admins.logout') }}"
-                                       onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+<body id="page-top">
 
-                                    <form id="logout-form" action="{{ route('company.admins.logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <form class="navbar-form navbar-right" role="search">
-                        <div class="form-group is-empty form-info">
-                            <input type="text" class="form-control" placeholder="Search">
-                            <span class="material-input"></span>
-                            <span class="material-input"></span>
-                        </div>
-                        <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                            <i class="material-icons ">search</i>
-                            <div class="ripple-container"></div>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </nav>
-        <div class="content">
-            <div class="">
-                @if(Session::has('success'))
-                    <div class="alert alert-success text-center">{{ Session::get('success') }}</div>
-                @endif
-
-                @if(Session::has('error'))
-                    <div class="alert alert-danger text-center">{{ Session::get('error') }}</div>
-                @endif
-
-                @yield('content')
-            </div>
-            <footer class="footer col-md-12 col-sm-12 col-xs-12">
-                <div class="container-fluid">
-                    <p class="copyright text-center">
-                        &copy 2018<span class="btn-link"> Pazvany Corporation</span>, made with love for a better web
-                    </p>
-                </div>
-            </footer>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-shrink" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Pazvany HR</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger active" href="#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#services">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+                </li>
+            </ul>
         </div>
-    </main>
-    <div>
-        <notifications group="errors" position="top center" width="80%" classes="alert text-center error-alert"/>
     </div>
-    <div>
-        <notifications group="success" position="top center" width="80%" classes="alert text-center success-alert"/>
+</nav>
+
+@if(Session::has('success'))
+    <div class="alert alert-success text-center">{{ Session::get('success') }}</div>
+@endif
+
+@if(Session::has('error'))
+    <div class="alert alert-danger text-center">{{ Session::get('error') }}</div>
+@endif
+
+@yield('content')
+
+
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="section-heading">Let's Get In Touch!</h2>
+                <hr class="my-4">
+                <p class="mb-5">Ready to start your next project with us? That's great! Give us a call or send us an email and we will get back to you as soon as possible!</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 ml-auto text-center">
+                <i class="fa fa-phone fa-3x mb-3 sr-contact" data-sr-id="8" style="; visibility: visible;  -webkit-transform: scale(0.3); opacity: 0;transform: scale(0.3); opacity: 0;"></i>
+                <p>123-456-6789</p>
+            </div>
+            <div class="col-lg-4 mr-auto text-center">
+                <i class="fa fa-envelope-o fa-3x mb-3 sr-contact" data-sr-id="9" style="; visibility: visible;  -webkit-transform: scale(0.3); opacity: 0;transform: scale(0.3); opacity: 0;"></i>
+                <p>
+                    <a href="mailto:your-email@your-domain.com">feedback@startbootstrap.com</a>
+                </p>
+            </div>
+        </div>
     </div>
-</div>
+</section>
 
-<script src="{{ asset('js/jquery-3.2.1.min.js') }}" defer></script>
-<script src="{{ asset('js/bootstrap.min.js') }}" defer></script>
-<script src="{{ asset('js/material.min.js') }}" defer></script>
-<script src="{{ asset('js/chartist.min.js') }}" defer></script>
-<script src="{{ asset('js/arrive.min.js') }}" defer></script>
-<script src="{{ asset('js/bootstrap-notify.js') }}" defer></script>
-<script src="{{ asset('js/material-dashboard.js') }}" defer></script>
-
-<script src="{{ asset('js/app.js') }}" defer></script>
+<script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+<script src="/js/presentation/bootstrap.bundle.min.js"></script>
+<script src="/js/presentation/jquery.easing.min.js"></script>
+{{--<script src="/js/presentation/scrollreveal.min.js"></script>--}}
+<script src="/js/presentation/jquery.magnific-popup.min.js"></script>
+<script src="/js/presentation/creative.js"></script>
 
 </body>
 </html>
