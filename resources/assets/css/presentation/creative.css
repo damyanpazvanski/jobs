@@ -169,7 +169,7 @@ img::-moz-selection {
 header.masthead {
   padding-top: 10rem;
   padding-bottom: calc(10rem - 56px);
-  background-image: url("https://instituteod.com/wp-content/uploads/2018/02/HRBP-online-certification-program.jpg");
+  background-image: url("/images/main_page_background.jpg");
   background-position: center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -310,3 +310,45 @@ header.masthead p {
 .btn-primary:active, .btn-primary:focus {
   box-shadow: 0 0 0 0.2rem rgba(240, 95, 64, 0.5) !important;
 }
+
+#mainNav.navbar-shrink .navbar-brand {
+  color: #c0c0c0!important;
+}
+
+#mainNav.navbar-shrink .navbar-brand:hover {
+  color: #9b9b9b !important;
+}
+
+#services i, .text-name-hr {
+  color: #f05f04 !important;
+}
+
+#services {
+  background: #fffebf2b;
+}
+
+#work {
+  background: #5c90a2!important;
+}
+
+#work p, #we-are p {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.main-page-images {
+  width: 400px;
+}
+
+#we-are {
+  background: #009481!important;
+}
+
+#steps {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+#contact {
+  background: #399eb3;
+  color: #ffffff;
+}
+

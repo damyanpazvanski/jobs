@@ -18,29 +18,50 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic" rel="stylesheet" type="text/css">
 </head>
-<body id="page-top">
+<body>
 
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-shrink" id="mainNav">
     <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Pazvany HR</a>
+        <a class="navbar-brand js-scroll-trigger site-name" href="#home">
+            Pazvany <span class="text-name-hr">HR</span>
+        </a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger active" href="#about">About</a>
+                    <a class="nav-link js-scroll-trigger" href="#home">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#services">Services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
+                    <a class="nav-link js-scroll-trigger" href="#we-are">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+                    <a class="nav-link js-scroll-trigger" href="#work">What we do</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#steps">How to use</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger btn-primary btn text-white pl-4 pr-4" href="#contact">Contact Us</a>
+                </li>
+                <div class="dropdown ml-2">
+                    <button class="btn btn-warning dropdown-toggle" type="button" id="loginDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Login <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu text-center" aria-labelledby="loginDropdown">
+                        <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger text-warning" href="{{ route('login') }}">Candidates</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger text-warning" href="{{ route('company.admins.login') }}">Companies</a>
+                        </li>
+                    </ul>
+                </div>
             </ul>
         </div>
     </div>
@@ -61,25 +82,35 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto text-center">
-                <h2 class="section-heading">Let's Get In Touch!</h2>
-                <hr class="my-4">
-                <p class="mb-5">Ready to start your next project with us? That's great! Give us a call or send us an email and we will get back to you as soon as possible!</p>
+                <h2 class="section-heading font-weight-bold">Let's Get In Touch!</h2>
+                <hr class="light my-4">
+                <p class="mb-5">Ready to start your next project with us? That's great! Send us an email and we will get back to you as soon as possible!</p>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-4 ml-auto text-center">
-                <i class="fa fa-phone fa-3x mb-3 sr-contact" data-sr-id="8" style="; visibility: visible;  -webkit-transform: scale(0.3); opacity: 0;transform: scale(0.3); opacity: 0;"></i>
-                <p>123-456-6789</p>
-            </div>
-            <div class="col-lg-4 mr-auto text-center">
-                <i class="fa fa-envelope-o fa-3x mb-3 sr-contact" data-sr-id="9" style="; visibility: visible;  -webkit-transform: scale(0.3); opacity: 0;transform: scale(0.3); opacity: 0;"></i>
-                <p>
-                    <a href="mailto:your-email@your-domain.com">feedback@startbootstrap.com</a>
-                </p>
+            <div class="col-lg-12 mr-auto text-center">
+
             </div>
         </div>
     </div>
 </section>
+
+<footer class="bg-dark text-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <br>
+                <h2 class="section-heading font-weight-bold">Our Support Team Is Hear For You!</h2>
+                <i class="fa fa-envelope"></i> support@pazvanihr.com
+                <hr class="light my-4">
+                <br>
+                <small>Copyright © {{ Carbon\Carbon::now()->format('Y') }} | PazvanyHR, Inc. All rights reserved.</small>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+</footer>
 
 <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
 <script src="/js/presentation/bootstrap.bundle.min.js"></script>
