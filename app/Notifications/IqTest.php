@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Candidate;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -11,12 +12,15 @@ class IqTest extends Notification implements ShouldQueue
 {
     use Queueable;
 
+    private $candidate;
+
     /**
      * IqTest constructor.
+     * @param Candidate $candidate
      */
-    public function __construct()
+    public function __construct(Candidate $candidate)
     {
-        //
+        $this->candidate = $candidate;
     }
 
     /**
@@ -38,10 +42,9 @@ class IqTest extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+        return (new MailMessage)->view('emails.invide', [
+            'user' => $this->candidate
+        ]);
     }
 
     /**

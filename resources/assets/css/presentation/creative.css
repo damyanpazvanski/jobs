@@ -5,7 +5,7 @@ html {
 }
 
 body {
-  font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
 hr {
@@ -350,5 +350,18 @@ header.masthead p {
 #contact {
   background: #399eb3;
   color: #ffffff;
+}
+
+#contact ::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+  opacity: 0.5;
+}
+
+#contact :-ms-input-placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+#contact ::-ms-input-placeholder {
+  color: rgba(0, 0, 0, 0.5);
 }
 

@@ -24,12 +24,23 @@
         <div class="logo text-center" style="font-weight: bold">Hello {{ auth()->user()->getFullName() }}</div>
         <div class="sidebar-wrapper ps-container ps-theme-default">
             <ul class="nav">
-                <li class="{{ request()->is('/') ? 'active' : '' }}">
-                    <a href="/">
-                        <i class="material-icons">dashboard</i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
+
+                @if(auth()->user() instanceof \App\CompanyAdmin)
+                    <li class="{{ request()->path() === ltrim(route('home',[],false), '/') ? 'active' : '' }}">
+                        <a href="{{ route('home') }}">
+                            <i class="material-icons">dashboard</i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                @else
+                    <li class="{{ request()->is('/') ? 'active' : '' }}">
+                        <a href="/">
+                            <i class="material-icons">dashboard</i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                @endif
+
                 <li class="{{ request()->is('my-account') ? 'active' : '' }}">
                     <a href="/my-account">
                         <i class="material-icons">person</i>
@@ -136,7 +147,7 @@
             <footer class="footer col-md-12 col-sm-12 col-xs-12">
                 <div class="container-fluid">
                     <p class="copyright text-center">
-                        &copy 2018<span class="btn-link"> Pazvany Corporation</span>, made with love for a better web
+                        &copy {{ date('Y') }}<span class="btn-link"> Pazvany Corporation</span>, made with love for a better web
                     </p>
                 </div>
             </footer>

@@ -16,7 +16,6 @@
     <!-- Fonts -->
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic" rel="stylesheet" type="text/css">
 </head>
 <body>
 
@@ -67,33 +66,7 @@
     </div>
 </nav>
 
-@if(Session::has('success'))
-    <div class="alert alert-success text-center">{{ Session::get('success') }}</div>
-@endif
-
-@if(Session::has('error'))
-    <div class="alert alert-danger text-center">{{ Session::get('error') }}</div>
-@endif
-
 @yield('content')
-
-
-<section id="contact">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 mx-auto text-center">
-                <h2 class="section-heading font-weight-bold">Let's Get In Touch!</h2>
-                <hr class="light my-4">
-                <p class="mb-5">Ready to start your next project with us? That's great! Send us an email and we will get back to you as soon as possible!</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12 mr-auto text-center">
-
-            </div>
-        </div>
-    </div>
-</section>
 
 <footer class="bg-dark text-white">
     <div class="container">
@@ -104,7 +77,7 @@
                 <i class="fa fa-envelope"></i> support@pazvanihr.com
                 <hr class="light my-4">
                 <br>
-                <small>Copyright © {{ Carbon\Carbon::now()->format('Y') }} | PazvanyHR, Inc. All rights reserved.</small>
+                <small>Copyright © {{ date('Y') }} | PazvanyHR, Inc. All rights reserved.</small>
                 <br>
                 <br>
             </div>

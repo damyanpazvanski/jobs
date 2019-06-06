@@ -42,7 +42,7 @@
 
                     <div class="col-md-6">
                         <input id="phone" @blur="check(user.phone, 'phone')"
-                               type="email" v-model="user.phone" class="form-control" name="email" required>
+                               type="email" v-model="user.phone" class="form-control" name="number" required>
 
                         <strong class="invalid">{{ errors['phone'] }}</strong>
                     </div>

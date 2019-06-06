@@ -27,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/dashboard';
 
     /**
      * LoginController constructor.
@@ -39,6 +39,10 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
+        if ($this->guard()->check()) {
+            return response()->redirectToRoute('home');
+        }
+
         return view('auth.companyAdmins.login');
     }
 

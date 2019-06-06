@@ -2,8 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Candidate;
-use App\CompanyAdmin;
 use App\Notifications\IqTest;
 use App\SentIqTest;
 use Carbon\Carbon;
@@ -34,7 +32,7 @@ class SendIqTests extends Command
     {
         parent::__construct();
 
-        $this->sendOn= Carbon::now()->addDays(1)->hour(9)->minute(0)->second(0);
+        $this->sendOn = Carbon::now()->addDays(1)->hour(0)->minute(0)->second(0);
 
         if ($this->sendOn->isWeekday()) {
             $this->sendOn->addDays(2);
@@ -58,14 +56,12 @@ class SendIqTests extends Command
         $sentIqTests->update([
             'send_on' => Carbon::now()
         ]);
-
-        $sentIqTests->save();
     }
 
     private function send($candidates)
     {
         foreach ($candidates as $candidate) {
-            $candidate->candidate->notify(new IqTest());
+            $candidate->candidate->notify(new IqTest($candidate));
         }
     }
 }

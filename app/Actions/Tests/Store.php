@@ -38,8 +38,7 @@ class Store
         $candidate->iqResult->update([
             'status' => 'complete',
             'result' => $this->calculateResult(),
-            'level' => $this->level,
-            'attempts' => DB::raw('attempts + 1')
+            'level' => $this->level
         ]);
 
         return $candidate->iqResult;

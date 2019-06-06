@@ -32,7 +32,7 @@ class CompanyRequest extends FormRequest
             'address' => 'required|string|min:2|max:255',
             'phone' => ['required', 'string', 'min:8', 'max:15', 'regex:/^([\+]{1}[0-9]{5}|[0-9]{3})+([\-])([0-9]{3})([\-])([0-9]{3,8})$/u'],
             'description' => 'nullable|string|min:2|max:2000',
-            'image' => 'nullable|image|mime:png,jpg,jpeg,gif|max:2048'
+            'image' => 'nullable|image|mimes:png,jpg,jpeg,gif|max:2048'
         ];
     }
 }

@@ -74,11 +74,11 @@ class Store
                     'email' => $companyAdmin->email,
                     'phone' => $companyAdmin->phone,
                     'website' => $company->website,
-                    'locality' => $company->city,
-                    'countryName' => $company->country->name,
-                    'customFields' => [
-                        'companyPhone' => $company->phone
-                    ]
+//                    'locality' => $company->city,
+//                    'countryName' => $company->country->name,
+//                    'customFields' => [
+//                        'companyPhone' => $company->phone
+//                    ]
                 ]);
         });
     }
@@ -90,7 +90,7 @@ class Store
             'period' => 'string|in:annually,monthly',
             'paymentData.details.cardType' => 'string|max:20',
             'paymentData.details.lastFour' => 'integer|digits:4',
-            'paymentData.details.lastTwo' => 'integer|max:30',
+            'paymentData.details.lastTwo' => 'integer|digits:2',
             'paymentData.nonce' => 'string',
             'paymentData.type' => 'string|max:30',
             'paymentData.coupon' => 'string|max:30'

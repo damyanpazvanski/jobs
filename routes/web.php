@@ -45,7 +45,7 @@ Route::middleware(['auth:web,companyAdmin'])->group(function () {
     Route::get('/pricing', 'PricesController@index')->name('pricing');
 
     Route::middleware(['subscribed'])->group(function () {
-        Route::get('/', 'HomeController@index')->name('home');
+        Route::get('/dashboard', 'HomeController@index')->name('home');
 
         Route::post('/subscribe', 'SubscriptionsController@store');
         Route::get('/subscriptions', 'SubscriptionsController@index')->name('subscriptions.index');
@@ -97,6 +97,7 @@ Route::prefix('ajax')->namespace('Ajax')->group(function () {
 
 });
 
-Route::get('/test', 'TestsController@index');
+Route::get('/test', 'TestsController@index')->name('test');
 
 Route::get('/', 'HomeController@index');
+Route::post('/contact', 'HomeController@contact')->name('main.contact');

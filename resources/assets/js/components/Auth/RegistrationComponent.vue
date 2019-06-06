@@ -60,12 +60,42 @@
         methods: {
             register(data) {
                 let self = this;
+                let postData = new FormData();
 
-                self.data['card'] = data;
+                console.log(data);
+
                 self.couponError = '';
                 self.loader = true;
 
-                axios.post('/ajax/register/store', this.data)
+                postData.append('user[first_name]', this.data.user.first_name);
+                postData.append('user[last_name]', this.data.user.last_name);
+                postData.append('user[email]', this.data.user.email);
+                postData.append('user[phone]', this.data.user.phone);
+                postData.append('user[password]', this.data.user.password);
+                postData.append('user[confirmPassword]', this.data.user.confirmPassword);
+
+                postData.append('company[name]', this.data.company.name);
+                postData.append('company[phone]', this.data.company.phone);
+                postData.append('company[website]', this.data.company.website);
+                postData.append('company[address]', this.data.company.address);
+                postData.append('company[business_sector_id]', this.data.company.business_sector_id);
+                postData.append('company[city]', this.data.company.city);
+                postData.append('company[country_id]', this.data.company.country_id);
+                postData.append('company[image]', this.data.company.image);
+                postData.append('company[imageName]', this.data.company.imageName);
+
+                postData.append('card[trial]', data.trial ? 1 : 0);
+                postData.append('card[chosenPlanName]', data.chosenPlanName);
+                postData.append('card[period]', data.period);
+                postData.append('card[coupon]', data.coupon);
+                postData.append('card[paymentData][nonce]', data.paymentData.nonce);
+                postData.append('card[paymentData][type]', data.paymentData.type);
+                postData.append('card[paymentData][details][bin]', data.paymentData.details.bin);
+                postData.append('card[paymentData][details][cardType]', data.paymentData.details.cardType);
+                postData.append('card[paymentData][details][lastFour]', data.paymentData.details.lastFour);
+                postData.append('card[paymentData][details][lastTwo]', data.paymentData.details.lastTwo);
+
+                axios.post('/ajax/register/store', postData)
                     .then(function (response) {
                         self.notification('Message', 'Successfully created.', 'success');
 

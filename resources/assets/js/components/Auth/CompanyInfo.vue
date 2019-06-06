@@ -3,7 +3,6 @@
         <div class="card">
             <div class="alert alert-default bold">Company Information</div>
 
-
             <div class="card-body">
 
                 <div class="form-group row form-info">
@@ -138,16 +137,24 @@
             }
         },
         methods: {
-            register() {
-
-            },
             backBtn() {
                 this.$emit('backBtn', this.company);
             },
             continueBtn() {
                 let self = this;
+                let data = new FormData();
 
-                axios.post('/ajax/register/company-information', this.company).then(
+                data.append('name', this.company.name);
+                data.append('phone', this.company.phone);
+                data.append('website', this.company.website);
+                data.append('address', this.company.address);
+                data.append('business_sector_id', this.company.business_sector_id);
+                data.append('city', this.company.city);
+                data.append('country_id', this.company.country_id);
+                data.append('image', this.company.image);
+                data.append('imageName', this.company.imageName);
+
+                axios.post('/ajax/register/company-information', data).then(
                     function (response) {
                         self.$emit('continueBtn', {company: self.company});
                     }, function (error) {

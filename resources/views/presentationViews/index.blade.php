@@ -148,4 +148,77 @@
     </div>
 </section>
 
+@if(Session::has('success'))
+    <div class="alert alert-success text-center" id="success-msg">{{ Session::get('success') }}</div>
+@endif
+
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="section-heading font-weight-bold">Let's Get In Touch!</h2>
+                <hr class="light my-4">
+                <p class="mb-5">Ready to start your next project with us? That's great! Send us an email and we will get back to you as soon as possible!</p>
+            </div>
+        </div>
+        <div class="row">
+            <form class="form-horizontal col-md-8 offset-md-2" action="{{ route('main.contact') }}" method="POST">
+                @csrf
+
+                @foreach ($errors->all() as $error)
+                    <div class="alert alert-danger">{{ $error }}</div>
+                @endforeach
+
+                <div class="form-group">
+                    <label>Name <span class="text-danger">*</span></label>
+                    <input type="text" name="name" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
+                           placeholder="Name" required value="{{ old('name') }}">
+                </div>
+                <div class="form-group">
+                    <label>Email <span class="text-danger">*</span></label>
+                    <input type="email" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
+                           placeholder="Email" required value="{{ old('email') }}">
+                </div>
+                <div class="form-group">
+                    <label>Phone Number <span class="text-danger">*</span></label>
+                    <input type="number" name="phone" class="form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}"
+                           placeholder="Phone Number" required value="{{ old('phone') }}">
+                </div>
+                <div class="form-group">
+                    <label>Company Name <span class="text-danger">*</span></label>
+                    <input type="text" name="company_name" class="form-control {{ $errors->has('company_name') ? 'is-invalid' : '' }}"
+                           placeholder="Company Name" required value="{{ old('company_name') }}">
+                </div>
+                <div class="form-group">
+                    <label>Company Type <span class="text-danger">*</span></label>
+                    <select name="type" class="form-control {{ $errors->has('type') ? 'is-invalid' : '' }}" required>
+                        <option selected disabled>Choose Company Type</option>
+                        <option value="Startup" @if(old('type') === 'Startup') selected @endif>Startup</option>
+                        <option value="Small or Medium-sized Business"
+                                @if(old('type') === 'Small or Medium-sized Business') selected @endif>Small or Medium-sized Business</option>
+                        <option value="Enterprise" @if(old('type') === 'Enterprise') selected @endif>Enterprise</option>
+                        <option value="Other" @if(old('type') === 'Other') selected @endif>Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea name="message" class="form-control {{ $errors->has('message') ? 'is-invalid' : '' }}" rows="3">{{ old('message') }}</textarea>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="gdpr" required @if(old('gdpr')) checked @endif>
+                            <span class="font-weight-bold">GDPR Agreement <span class="text-danger">*</span></span>
+                            I consent to having this website store my submitted information so they can respond to my inquiry.
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-warning btn-md btn-block">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
 @endsection

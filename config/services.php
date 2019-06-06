@@ -16,30 +16,30 @@ return [
 
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
-        'secret' => env('MAILGUN_SECRET'),
+        'secret' => env('MAILGUN_SECRET')
     ],
 
     'ses' => [
         'key' => env('SES_KEY'),
         'secret' => env('SES_SECRET'),
-        'region' => env('SES_REGION', 'us-east-1'),
+        'region' => env('SES_REGION', 'us-east-1')
     ],
 
     'sparkpost' => [
-        'secret' => env('SPARKPOST_SECRET'),
+        'secret' => env('SPARKPOST_SECRET')
     ],
 
     'stripe' => [
         'model' => App\CompanyAdmin::class,
         'key' => env('STRIPE_KEY'),
-        'secret' => env('STRIPE_SECRET'),
+        'secret' => env('STRIPE_SECRET')
     ],
     'braintree' => [
         'model'  => App\CompanyAdmin::class,
         'environment' => env('BRAINTREE_ENV'),
         'merchant_id' => env('BRAINTREE_MERCHANT_ID'),
         'public_key' => env('BRAINTREE_PUBLIC_KEY'),
-        'private_key' => env('BRAINTREE_PRIVATE_KEY'),
+        'private_key' => env('BRAINTREE_PRIVATE_KEY')
     ],
     'support' => [
         'email' => env('SUPPORT_EMAIL')
