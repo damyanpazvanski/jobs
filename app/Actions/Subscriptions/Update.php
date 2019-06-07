@@ -57,7 +57,7 @@ class Update
             'period' => 'string|in:annually,monthly',
             'paymentData.details.cardType' => 'string|max:20',
             'paymentData.details.lastFour' => 'integer|digits:4',
-            'paymentData.details.lastTwo' => 'integer|max:30',
+            'paymentData.details.lastTwo' => 'integer|digits:2',
             'paymentData.nonce' => 'string',
             'paymentData.type' => 'string|max:30',
             'paymentData.coupon' => 'string|max:30'

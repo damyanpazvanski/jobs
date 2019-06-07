@@ -120,7 +120,7 @@
                 <div class="mt-5">
                     <div class="mt-3">
                         @if(auth()->user()->company->image->name)
-                            <img src="storage/company_admins/{{ auth()->user()->id }}/images/{{ auth()->user()->company->image->name }}">
+                            <img style="max-height: 400px!important; max-width: 100%!important;" src="storage/company_admins/{{ auth()->user()->id }}/images/{{ auth()->user()->company->image->name }}">
                         @endif
                     </div>
                 </div>

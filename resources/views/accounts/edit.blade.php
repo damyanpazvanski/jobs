@@ -401,6 +401,11 @@
                                 <button class="btn btn-outline-info btn-lg btn-block">Change</button>
                             </a>
                         </div>
+                        <div class="col-md-12">
+                            <a href="{{ route('invoice') }}">
+                                <button class="btn btn-outline-info btn-lg btn-block">Download Invoice</button>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

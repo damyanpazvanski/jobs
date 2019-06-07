@@ -14,7 +14,7 @@ class SendIqTests extends Command
      *
      * @var string
      */
-    protected $signature = 'sent-iq-tests';
+    protected $signature = 'send-iq-tests';
 
     /**
      * The console command description.
@@ -58,10 +58,11 @@ class SendIqTests extends Command
         ]);
     }
 
-    private function send($candidates)
+    private function send($sentIqTests)
     {
-        foreach ($candidates as $candidate) {
-            $candidate->candidate->notify(new IqTest($candidate));
+        foreach ($sentIqTests as $sentIqTest) {
+            $candidate = $sentIqTest->candidate;
+            $candidate->notify(new IqTest($candidate));
         }
     }
 }

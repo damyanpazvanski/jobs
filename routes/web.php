@@ -42,10 +42,10 @@ Route::namespace('Auth\CompanyAdmins')->prefix('companies')->group(function () {
 });
 
 Route::middleware(['auth:web,companyAdmin'])->group(function () {
-    Route::get('/pricing', 'PricesController@index')->name('pricing');
 
     Route::middleware(['subscribed'])->group(function () {
         Route::get('/dashboard', 'HomeController@index')->name('home');
+        Route::get('/invoice', 'PricesController@index')->name('invoice');
 
         Route::post('/subscribe', 'SubscriptionsController@store');
         Route::get('/subscriptions', 'SubscriptionsController@index')->name('subscriptions.index');

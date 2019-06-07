@@ -2,35 +2,27 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Plan;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\View;
+
 
 class PricesController extends Controller
 {
     /**
-     *
+     * @return mixed
      */
     public function index()
     {
         $user = auth()->user();
+        $company = $user->company;
+        $invoice = optional($user->invoices()->all())[0];
+        $plan = Plan::where('braintree_plan', $invoice->planId)->first();
 
-//        if ($user->onTrial() || $user->subscribed('small') ||
-//            $user->subscribed('pro') || $user->subscribed('enterprise')) {
-//            return redirect('/');
-//        }
+        $pdf = App::make('dompdf.wrapper');
 
-//        $invoice = $user->invoices()->keys()->last();
-        dd($user->invoicesIncludingPending());
+        $pdf->loadHTML(View::make('pdf.invoice', compact('user', 'company', 'invoice', 'plan')))->setPaper('a4', 'landscape');
 
-
-//        return View::make('emails.invoice', compact('invoice'));
-
-        return $user->downloadInvoice($user->invoices()->first()->id, [
-            'vendor'  => 'Your Company',
-            'product' => 'Your Product',
-        ]);
-
-        return 'pricing';
+        return $pdf->download('Invoice.pdf');
     }
 }

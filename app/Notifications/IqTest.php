@@ -42,7 +42,7 @@ class IqTest extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)->view('emails.invide', [
+        return (new MailMessage)->view('emails.invite', [
             'user' => $this->candidate
         ]);
     }

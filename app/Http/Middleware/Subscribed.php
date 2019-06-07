@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Candidate;
+use Carbon\Carbon;
 use Closure;
 
 class Subscribed
@@ -20,9 +21,8 @@ class Subscribed
             return $next($request);
         }
 
-        if (!$request->user()->onTrial() && !$request->user()->subscribed('small') &&
-            !$request->user()->subscribed('pro') && !$request->user()->subscribed('enterprise')) {
-            return redirect('/pricing');
+        if (optional($request->user()->getSubscription()->ends_at)->isPast()) {
+            return redirect(route('subscriptions.index'));
         }
 
         return $next($request);

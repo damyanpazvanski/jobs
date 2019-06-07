@@ -171,7 +171,7 @@
 
                         setTimeout(function () {
                             self.loader = false;
-                            window.location.href = '/';
+                            window.location.href = '/dashboard';
                         }, 4000);
                     }, function (error) {
                         self.loader = false;

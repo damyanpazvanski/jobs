@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h2>Hello {{ $candidate->first_name }} {{ $candidate->last_name }},</h2>
+    <h2>Hello {{ $user->first_name }} {{ $user->last_name }},</h2>
     <br>
     <p>You receive this message because you are invited to complete a test for your new job. Click on the button to start it.</p>
     <br>

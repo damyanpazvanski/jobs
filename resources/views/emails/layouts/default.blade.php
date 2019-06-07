@@ -5,7 +5,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet" type="text/css">
-    {{--<link href="{{ mix('css/emails/default.css') }}" rel="stylesheet" type="text/css">--}}
 
     <style>
         <?php include resource_path('assets/sass/emails/default.scss') ?>

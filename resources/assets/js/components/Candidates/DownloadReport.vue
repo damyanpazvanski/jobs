@@ -53,13 +53,8 @@
             }
         },
         mounted() {
-            if (this.csvUrl.indexOf('?') === -1) {
-                this.csvFinalUrl = this.csvUrl + '?';
-            }
-
-            if (this.pdfUrl.indexOf('?') === -1) {
-                this.pdfFinalUrl = this.pdfUrl + '?';
-            }
+            this.csvFinalUrl = this.csvUrl + (this.csvUrl.indexOf('?') === -1 ? '?' : '');
+            this.pdfFinalUrl = this.pdfUrl + (this.pdfUrl.indexOf('?') === -1 ? '?' : '');
         }
     }
 </script>
