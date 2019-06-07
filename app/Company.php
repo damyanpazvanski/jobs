@@ -40,4 +40,9 @@ class Company extends Model
     {
         return $this->hasMany(Job::class);
     }
+
+    public function candidates()
+    {
+        return $this->hasManyThrough(Candidate::class, Job::class);
+    }
 }

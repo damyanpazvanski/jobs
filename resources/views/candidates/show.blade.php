@@ -65,7 +65,7 @@
                                 <h5 class="text-center">This candidate has no uploaded CV</h5>
                             </div>
                         @elseif(substr($candidate->cv->name, -3) === 'pdf')
-                            <iframe class="col-md-12" src="/storage/candidates/6/cvs/bfed1a110749712af7bbe86db71bc25f.pdf" frameborder="0" height="600"></iframe>
+                            <iframe class="col-md-12" src="/storage/candidates/{{ $candidate->id }}/cvs/{{ $candidate->cv->name }}" frameborder="0" height="600"></iframe>
                         @else
                             <div class="form-group">
                                 <h5 class="text-center">The file format is not pdf</h5>

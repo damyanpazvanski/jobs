@@ -27,8 +27,16 @@ class CandidatesController extends Controller
         return view('candidates.index', compact('workTimes', 'candidates'));
     }
 
+    /**
+     * @param Job $job
+     * @param Candidate $candidate
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function show(Job $job, Candidate $candidate)
     {
+        $this->authorize('show', $candidate);
+
         return view('candidates.show', compact('job', 'candidate'));
     }
 

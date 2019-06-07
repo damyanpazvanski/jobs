@@ -25,7 +25,11 @@ class HomeController extends Controller
             return App::make(self::class)->candidatesIndex();
         }
 
-        return view('home');
+        $candidates = (new \App\Services\Candidate())
+            ->getTopCandidatesByJobsIds(10, auth()->user()->company->jobs()->pluck('id'))
+            ->paginate(10);
+
+        return view('dashboard.admin', compact('candidates'));
     }
 
     public function candidatesIndex()

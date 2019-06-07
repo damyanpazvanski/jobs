@@ -2,15 +2,10 @@
 
 namespace App;
 
-use Laravel\Cashier\Billable;
 use Laravel\Cashier\Subscription;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class CompanyAdmin extends Authenticatable
+class CompanyAdmin extends User
 {
-    use Billable;
-    use Notifiable;
 
     /**
      * subscriptions:
@@ -75,5 +70,10 @@ class CompanyAdmin extends Authenticatable
     public function getPlan($subscriptionId)
     {
         return Plan::where('braintree_plan', Subscription::find($subscriptionId)->braintree_plan)->first();
+    }
+
+    public function checkForCandidate()
+    {
+//        return Candidate::
     }
 }
