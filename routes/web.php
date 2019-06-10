@@ -84,7 +84,6 @@ Route::middleware(['auth:web,companyAdmin'])->group(function () {
 });
 
 Route::prefix('ajax')->namespace('Ajax')->group(function () {
-
     Route::post('/register/user-information', 'RegisterController@userInformation');
     Route::post('/register/company-information', 'RegisterController@companyInformation');
     Route::post('/register/send-message', 'RegisterController@sendMessage');
@@ -95,6 +94,7 @@ Route::prefix('ajax')->namespace('Ajax')->group(function () {
     Route::post('/test/attempt', 'TestsController@attempt');
     Route::post('/test', 'TestsController@store');
 
+    Route::post('/support/ticket', 'SupportController@sendTicket')->name('support.ticket.send');
 });
 
 Route::get('/test', 'TestsController@index')->name('test');
