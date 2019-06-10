@@ -17,6 +17,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- Additional Custom Styles -->
+    @yield('css')
+
 </head>
 <body>
 <div id="app" class="wrapper" style="overflow: hidden">

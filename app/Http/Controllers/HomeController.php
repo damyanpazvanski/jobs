@@ -13,11 +13,10 @@ use Illuminate\Support\Facades\Validator;
 class HomeController extends Controller
 {
     /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
+     * @param \App\Services\Candidate $candidateService
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(\App\Services\Candidate $candidateService)
     {
         if (!Auth::check()) {
             return App::make(self::class)->presentationIndex();
@@ -25,11 +24,25 @@ class HomeController extends Controller
             return App::make(self::class)->candidatesIndex();
         }
 
-        $candidates = (new \App\Services\Candidate())
-            ->getTopCandidatesByJobsIds(10, auth()->user()->company->jobs()->pluck('id'))
+        $jobsIds = auth()->user()->company->jobs()->pluck('id');
+
+        $candidates = $candidateService
+            ->getTopCandidatesByJobsIds(10, $jobsIds)
             ->paginate(10);
 
-        return view('dashboard.admin', compact('candidates'));
+        $candidatesCount = $candidateService->candidatesRelatedTo($jobsIds)->count();
+
+        $percentTestedCandidates = $candidateService->candidatesRelatedTo($jobsIds)
+            ->AddIqResults()
+            ->whereStatusIsComplete()
+            ->count() * (100 / $candidatesCount);
+
+        $percentBestCandidates = $candidateService->candidatesRelatedTo($jobsIds)
+            ->AddIqResults()
+            ->where('result', '>', 69)
+            ->count() * (100 / $candidatesCount);
+
+        return view('dashboard.admin', compact('candidates', 'percentTestedCandidates', 'percentBestCandidates'));
     }
 
     public function candidatesIndex()

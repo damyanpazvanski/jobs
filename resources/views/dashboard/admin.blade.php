@@ -1,6 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
+
+    <div class="card card-nav-tabs">
+        <div class="col-md-12 charts">
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <charts-circle :values="{{ json_encode(
+                    [
+                        ['percent' => $percentTestedCandidates, 'title' => 'Candidates who took the test.'],
+                        ['percent' => 100 - $percentTestedCandidates, 'title' => 'Candidates who are on pending.']
+                    ]
+                ) }}"></charts-circle>
+            </div>
+
+            <div class="col-md-6  col-sm-12  col-xs-12">
+                <charts-circle :values="{{ json_encode(
+                    [
+                        ['percent' => $percentBestCandidates, 'title' => 'Candidates with more than 70% success.'],
+                        ['percent' => 100 - $percentBestCandidates, 'title' => 'Candidates with less than 70% success.']
+                    ]
+                ) }}"></charts-circle>
+            </div>
+        </div>
+    </div>
+
     <div class="card card-nav-tabs">
         <div class="card-header" data-background-color="blue">
             <div class="nav-tabs-navigation">

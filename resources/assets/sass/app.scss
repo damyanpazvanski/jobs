@@ -11,14 +11,17 @@
 @import "../css/bootstrap.min.css";
 @import "../css/demo.css";
 @import "../css/material-dashboard.css";
+@import "/charts";
 
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
+
 .fade:not(.show) {
   opacity: 1!important;
 }
+
 .fade.in {
   background: rgba(0, 0, 0, 0.5)!important;
 }

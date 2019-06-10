@@ -20,4 +20,22 @@ class Candidate extends \App\Candidate
             ->orderBy('result', 'DESC')
             ->take($records);
     }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeWhereStatusIsComplete($query)
+    {
+        return $query->where('iq_results.status', 'complete');
+    }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeWhereTopResult($query)
+    {
+        return $query->where('result', '>', 69);
+    }
 }

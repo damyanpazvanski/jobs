@@ -37,6 +37,8 @@ Vue.component('download-candidates-report', require('./components/Candidates/Dow
 
 Vue.component('subscriptions', require('./components/Subscriptions'));
 
+Vue.component('charts-circle', require('./components/CircleChartComponent'));
+
 const app = new Vue({
     el: '#app'
 });
