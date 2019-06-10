@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Notifications\ResetPassword;
 use Illuminate\Notifications\Notifiable;
 
 class Candidate extends User
@@ -29,6 +30,11 @@ class Candidate extends User
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPassword(url(config('app.url').route('candidates.password.reset', $token, false)), $token));
+    }
 
     public function iqResult()
     {

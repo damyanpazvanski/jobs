@@ -3,42 +3,51 @@
 @section('content')
 <div class="container" style="margin-top: 50px">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
+
+        <div class="col-md-8 col-md-offset-2">
             <div class="card">
-                <div class="card-header" data-background-color="blue">{{ __('Reset Password') }}</div>
+                <div class="alert alert-default bold">{{ __('Reset Password') }}</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                    <div class="col-md-12">
+                        <form method="POST" action="{{ route('company.admins.password.email') }}">
+                            @csrf
 
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
+                            <div class="form-group mt-5 mb-5">
+                                <label for="email"
+                                       class="col-md-4 col-form-label text-right">{{ __('E-Mail Address') }}</label>
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                <div class="col-md-6 col-xs-12">
+                                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
+                                           name="email" value="{{ old('email') }}" required>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback">
+                                    @if ($errors->has('email'))
+                                        <span class="invalid-feedback">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
-                                @endif
+                                    @endif
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-block btn-lg" data-background-color="blue">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
+                            <div class="form-group mb-0">
+                                <div class="col-md-8 col-md-offset-2 text-center">
+                                    <button type="submit" class="btn btn-block btn-lg alert">
+                                        {{ __('Send Password Reset Link') }}
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+
+                            <div class="col-md-12 text-center more-attempts mb-1">
+                                Go to the company admins <a href="{{ route('company.admins.login') }}" class="text-info btn-link">Login</a>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

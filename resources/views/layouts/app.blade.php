@@ -89,20 +89,18 @@
         <nav class="navbar navbar-transparent navbar-absolute navbar-info">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse">
-                        <span class="sr-only">Toggle navigation</span>
+                    <button type="button" class="navbar-toggle btn-burger-menu" data-toggle="collapse">
+                        <span class="sr-only"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    {{--<a class="navbar-brand" href="#">Job list</a>--}}
                 </div>
                 <div class="collapse navbar-collapse navbar-info-text">
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown">
+                            <a class="dropdown-toggle user-menu" data-toggle="dropdown">
                                 <i class="material-icons pointer">person</i>
-                                <p class="hidden-lg hidden-md">Profile</p>
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
@@ -122,17 +120,17 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="navbar-form navbar-right" role="search">
-                        <div class="form-group is-empty form-info">
-                            <input type="text" class="form-control" placeholder="Search">
-                            <span class="material-input"></span>
-                            <span class="material-input"></span>
-                        </div>
-                        <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                            <i class="material-icons ">search</i>
-                            <div class="ripple-container"></div>
-                        </button>
-                    </form>
+                    {{--<form class="navbar-form navbar-right" role="search">--}}
+                        {{--<div class="form-group is-empty form-info">--}}
+                            {{--<input type="text" class="form-control" placeholder="Search">--}}
+                            {{--<span class="material-input"></span>--}}
+                            {{--<span class="material-input"></span>--}}
+                        {{--</div>--}}
+                        {{--<button type="submit" class="btn btn-white btn-round btn-just-icon">--}}
+                            {{--<i class="material-icons ">search</i>--}}
+                            {{--<div class="ripple-container"></div>--}}
+                        {{--</button>--}}
+                    {{--</form>--}}
                 </div>
             </div>
         </nav>

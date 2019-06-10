@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Notifications\ResetPassword;
 use Laravel\Cashier\Subscription;
 
 class CompanyAdmin extends User
@@ -46,6 +47,11 @@ class CompanyAdmin extends User
         'created_at',
     ];
 
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPassword(url(config('app.url').route('company.admins.password.reset', $token, false)), $token));
+    }
+
     public function company()
     {
         return $this->belongsTo(Company::class, 'company_id');
@@ -70,10 +76,5 @@ class CompanyAdmin extends User
     public function getPlan($subscriptionId)
     {
         return Plan::where('braintree_plan', Subscription::find($subscriptionId)->braintree_plan)->first();
-    }
-
-    public function checkForCandidate()
-    {
-//        return Candidate::
     }
 }
