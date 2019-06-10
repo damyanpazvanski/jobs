@@ -246,7 +246,7 @@
         }
     }
 </script>
-<style>
+<style scoped>
     .result-title {
         font-weight: bold;
         color: #00bcd4;

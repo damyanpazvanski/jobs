@@ -204,7 +204,7 @@
         }
     }
 </script>
-<style>
+<style scoped>
     .chosen {
         border: 2px solid #01ff00;
     }

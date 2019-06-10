@@ -60,7 +60,7 @@
         }
     }
 </script>
-<style>
+<style scoped>
     textarea {
         max-width: 100%;
         min-width: 100%;

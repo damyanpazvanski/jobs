@@ -169,7 +169,7 @@
         }
     }
 </script>
-<style>
+<style scoped>
     .visible {
         display: block !important;
     }

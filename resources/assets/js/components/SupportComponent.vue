@@ -114,7 +114,7 @@
         }
     }
 </script>
-<style>
+<style scoped>
     #chat-wrapper {
         position: fixed;
         z-index: 9999;
