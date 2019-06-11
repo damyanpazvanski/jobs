@@ -89,6 +89,6 @@ class HomeController extends Controller
 
         $request->session()->flash('success', 'Successfully sent.');
 
-        return response()->redirectTo(route('home') . '#success-msg');
+        return response()->redirectTo('/#success-msg');
     }
 }
