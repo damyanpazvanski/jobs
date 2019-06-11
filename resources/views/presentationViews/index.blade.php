@@ -149,7 +149,7 @@
 </section>
 
 @if(Session::has('success'))
-    <div class="alert alert-success text-center" id="success-msg">{{ Session::get('success') }}</div>
+    <div class="alert alert-success text-center mt-5" id="success-msg">{{ Session::get('success') }}</div>
 @endif
 
 <section id="contact">
