@@ -78,9 +78,9 @@
                                         <li>Help center access</li>
                                     </ul>
                                     <button type="button" class="mt-3 btn btn-block" v-on:click="select(1, 'small', 'annually')"
-                                            v-bind:class="{ 'chosenBtn': chosenPlanIndex === 1 && period === 'annually' }">$300/Monthly - Pay Annually ($3,600)</button>
+                                            v-bind:class="{ 'chosenBtn': chosenPlanIndex === 1 && period === 'annually' }">$40/Monthly - Pay Annually ($480)</button>
                                     <button type="button" class="mb-0 btn btn-block btn-outline-secondary" v-on:click="select(1, 'small', 'monthly')"
-                                            v-bind:class="{ 'chosenBtn': chosenPlanIndex === 1 && period === 'monthly' }">$400/Monthly - Cancel any time</button>
+                                            v-bind:class="{ 'chosenBtn': chosenPlanIndex === 1 && period === 'monthly' }">$50/Monthly - Cancel any time</button>
                                 </div>
                             </div>
                         </div>
@@ -99,9 +99,9 @@
                                         <li>Help center access</li>
                                     </ul>
                                     <button type="button" class="btn btn-block btn-success" v-on:click="select(2, 'pro', 'annually')"
-                                            v-bind:class="{ 'chosenBtn': chosenPlanIndex === 2 && period === 'annually' }">$450/Monthly - Pay Annually ($5,400)</button>
+                                            v-bind:class="{ 'chosenBtn': chosenPlanIndex === 2 && period === 'annually' }">$100/Monthly - Pay Annually ($1200)</button>
                                     <button type="button" class="mb-0 btn btn-block btn-outline-success" v-on:click="select(2, 'pro', 'monthly')"
-                                            v-bind:class="{ 'chosenBtn': chosenPlanIndex === 2 && period === 'monthly' }">$600/Monthly - Cancel any time</button>
+                                            v-bind:class="{ 'chosenBtn': chosenPlanIndex === 2 && period === 'monthly' }">$125/Monthly - Cancel any time</button>
                                 </div>
                             </div>
                         </div>
@@ -122,9 +122,9 @@
                                         <li>Help center access</li>
                                     </ul>
                                     <button type="button" class="btn btn-block btn-warning" v-on:click="select(3, 'enterprise', 'annually')"
-                                            v-bind:class="{ 'chosenBtn': chosenPlanIndex === 3 && period === 'annually' }">$650/Monthly - Pay Annually ($7,800)</button>
+                                            v-bind:class="{ 'chosenBtn': chosenPlanIndex === 3 && period === 'annually' }">$175/Monthly - Pay Annually ($2100)</button>
                                     <button type="button" class="mb-0 btn btn-block btn-outline-warning" v-on:click="select(3, 'enterprise', 'monthly')"
-                                            v-bind:class="{ 'chosenBtn': chosenPlanIndex === 3 && period === 'monthly' }">$800/Monthly - Cancel any time</button>
+                                            v-bind:class="{ 'chosenBtn': chosenPlanIndex === 3 && period === 'monthly' }">$200/Monthly - Cancel any time</button>
                                 </div>
                             </div>
                         </div>
