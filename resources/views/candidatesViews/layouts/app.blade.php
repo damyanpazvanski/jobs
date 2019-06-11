@@ -102,7 +102,7 @@
             <footer class="footer col-md-12 col-sm-12 col-xs-12">
                 <div class="container-fluid">
                     <p class="copyright text-center">
-                        &copy {{ date('Y') }}<span class="btn-link"> Pazvany Corporation</span>, made with love for a better web
+                        <small>Copyright © {{ date('Y') }} | <span class="btn-link">CleverHires</span>. All rights reserved.</small>
                     </p>
                 </div>
             </footer>

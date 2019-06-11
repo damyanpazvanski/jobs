@@ -22,8 +22,8 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-shrink" id="mainNav">
     <div class="container">
-        <a class="navbar-brand js-scroll-trigger site-name" href="#home">
-            Pazvany <span class="text-name-hr">HR</span>
+        <a class="navbar-brand js-scroll-trigger site-name" href="/">
+            Clever<span class="brand-name-second">Hires</span>
         </a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -74,10 +74,10 @@
             <div class="col-lg-8 mx-auto text-center">
                 <br>
                 <h2 class="section-heading font-weight-bold">Our Support Team Is Hear For You!</h2>
-                <i class="fa fa-envelope"></i> support@pazvanihr.com
+                <i class="fa fa-envelope"></i> support@cleverhires.com
                 <hr class="light my-4">
                 <br>
-                <small>Copyright © {{ date('Y') }} | PazvanyHR, Inc. All rights reserved.</small>
+                <small>Copyright © {{ date('Y') }} | <span class="btn-link">CleverHires</span>. All rights reserved.</small>
                 <br>
                 <br>
             </div>

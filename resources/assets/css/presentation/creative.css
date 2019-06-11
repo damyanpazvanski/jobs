@@ -319,8 +319,14 @@ header.masthead p {
   color: #9b9b9b !important;
 }
 
-#services i, .text-name-hr {
-  color: #f05f04 !important;
+.site-name {
+  border: 2px solid #007afa!important;
+  color: #d3d3d3!important;
+  padding: 0 5px;
+}
+
+#services i, .brand-name-second {
+  color: #007afa!important;
 }
 
 #services {
