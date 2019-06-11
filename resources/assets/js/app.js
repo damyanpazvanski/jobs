@@ -17,7 +17,7 @@ Vue.use(Notifications);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+// Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
 Vue.component('registration-user-info', require('./components/Auth/UserInfo.vue'));
 Vue.component('registration-company-info', require('./components/Auth/CompanyInfo.vue'));
