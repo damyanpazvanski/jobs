@@ -4,20 +4,24 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <meta property="og:locale" content="en_US">
     <meta property="og:type" content="website">
     <meta property="og:title" content="{{ config('app.name', '') }} - hire smart">
     <meta property="og:description" content="CleverHires is your place if you want to hire only smart candidates who will not have any problems in the future">
     <meta property="og:url" content="https://cleverhires.com/">
     <meta property="og:site_name" content="CleverHires">
+
     <meta property="og:image" content="https://cleverhires.com/images/logo_large.png">
-    <meta property="og:image:secure_url" content="https://cleverhires.com/images/logo_large.png">
+    <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1640">
     <meta property="og:image:height" content="377">
+
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:description" content="CleverHires is your place if you want to hire only smart candidates who will not have any problems in the future">
     <meta name="twitter:title" content="{{ config('app.name', '') }} - hire smart">
     <meta name="twitter:image" content="https://cleverhires.com/images/logo_large.png">
+
     <meta name="keywords" content="clever candidates, smart candidates, hire smart, hr cosultation, hiring, iq test, take iq test">
     <meta name="description" content="CleverHires is your place if you want to hire only smart candidates who will not have any problems in the future">
     <meta name="copyright" content="CleverHires Inc.">
