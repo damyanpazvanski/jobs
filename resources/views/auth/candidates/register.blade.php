@@ -12,7 +12,7 @@
                     <form action="{{ route('candidates.register') }}" method="POST">
                         @csrf
 
-                        <div class="form-group form-info mt-3">
+                        <div class="form-group form-info mt-3 row">
                             <label for="first_name" class="col-md-4 col-form-label text-right">First name</label>
 
                             <div class="col-md-6">
@@ -26,7 +26,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group form-info">
+                        <div class="form-group form-info row">
                             <label for="last_name" class="col-md-4 col-form-label text-right">Last name</label>
 
                             <div class="col-md-6">
@@ -40,7 +40,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group form-info">
+                        <div class="form-group form-info row">
                             <label for="email" class="col-md-4 col-form-label text-right">E-Mail Address'</label>
 
                             <div class="col-md-6">
@@ -54,7 +54,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group form-info">
+                        <div class="form-group form-info row">
                             <label for="password" class="col-md-4 col-form-label text-right">Password</label>
 
                             <div class="col-md-6">
@@ -75,7 +75,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group form-info">
+                        <div class="form-group form-info row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-right">Confirm Password</label>
 
                             <div class="col-md-6">
@@ -89,7 +89,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group mb-1 mt-4">
+                        <div class="form-group mb-1 mt-4 row">
                             <div class="col-md-6 col-md-offset-3 text-center">
                                 <input type="submit" value="Register" class="btn btn-lg btn-block bold" data-background-color="blue" />
                             </div>

@@ -9,7 +9,7 @@
                     <form method="POST" action="{{ route('company.admins.login') }}">
                         @csrf
 
-                        <div class="form-group mt-5">
+                        <div class="form-group mt-5 row">
                             <label for="password"
                                    class="col-md-4 col-form-label text-right">{{ __('E-Mail Address') }}</label>
 
@@ -26,7 +26,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
@@ -51,7 +51,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group mb-0">
+                        <div class="form-group mb-0 row">
                             <div class="col-md-12 text-center">
                                 <button type="submit" class="btn btn-lg btn-block alert">
                                     {{ __('Login') }}

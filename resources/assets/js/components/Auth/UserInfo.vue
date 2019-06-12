@@ -5,7 +5,7 @@
 
             <div class="card-body">
                 <div class="col-md-12">
-                    <div class="form-group form-info">
+                    <div class="form-group form-info row">
                         <label for="first_name" class="col-md-4 col-form-label text-right">First name <span class="required-field-star">*</span></label>
 
                         <div class="col-md-6">
@@ -16,7 +16,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group form-info">
+                    <div class="form-group form-info row">
                         <label for="last_name" class="col-md-4 col-form-label text-right">Last name <span class="required-field-star">*</span></label>
 
                         <div class="col-md-6">
@@ -27,7 +27,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group form-info">
+                    <div class="form-group form-info row">
                         <label for="email" class="col-md-4 col-form-label text-right">E-Mail Address <span class="required-field-star">*</span></label>
 
                         <div class="col-md-6">
@@ -38,7 +38,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group form-info">
+                    <div class="form-group form-info row">
                         <label for="phone" class="col-md-4 col-form-label text-right">Phone <span class="required-field-star">*</span></label>
 
                         <div class="col-md-6">
@@ -49,7 +49,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group form-info">
+                    <div class="form-group form-info row">
                         <label for="password" class="col-md-4 col-form-label text-right">Password <span class="required-field-star">*</span></label>
 
                         <div class="col-md-6">
@@ -67,7 +67,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group form-info">
+                    <div class="form-group form-info row">
                         <label for="password-confirm" class="col-md-4 col-form-label text-right">Confirm Password <span class="required-field-star">*</span></label>
 
                         <div class="col-md-6">
@@ -78,7 +78,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group mb-0">
+                    <div class="form-group mb-0 row">
                         <div class="col-md-6 col-md-offset-3 text-center">
                             <button class="btn btn-lg btn-block" data-background-color="blue" v-on:click="continueBtn">
                                 Continue

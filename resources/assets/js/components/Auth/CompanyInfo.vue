@@ -5,7 +5,7 @@
 
             <div class="card-body">
                 <div class="col-md-12">
-                    <div class="form-group form-info">
+                    <div class="form-group form-info row">
                         <label for="image" class="col-md-4 col-form-label text-right">Company Logo</label>
 
                         <div class="col-md-6">
@@ -20,7 +20,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group form-info">
+                    <div class="form-group form-info row">
                         <label for="name" class="col-md-4 col-form-label text-right">Company name <span class="required-field-star">*</span></label>
 
                         <div class="col-md-6">
@@ -30,7 +30,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group form-info">
+                    <div class="form-group form-info row">
                         <label for="website" class="col-md-4 col-form-label text-right">Website</label>
 
                         <div class="col-md-6">
@@ -40,7 +40,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group form-info">
+                    <div class="form-group form-info row">
                         <label for="business_sector_id" class="col-md-4 col-form-label text-right">Business Sector <span class="required-field-star">*</span></label>
 
                         <div class="col-md-6">
@@ -53,7 +53,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group form-info">
+                    <div class="form-group form-info row">
                         <label for="country_id" class="col-md-4 col-form-label text-right">Country <span class="required-field-star">*</span></label>
 
                         <div class="col-md-6">
@@ -66,7 +66,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group form-info">
+                    <div class="form-group form-info row">
                         <label for="city" class="col-md-4 col-form-label text-right">City <span class="required-field-star">*</span></label>
 
                         <div class="col-md-6">
@@ -76,7 +76,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group form-info">
+                    <div class="form-group form-info row">
                         <label for="address" class="col-md-4 col-form-label text-right">Company Address <span class="required-field-star">*</span></label>
 
                         <div class="col-md-6">
@@ -86,7 +86,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group form-info">
+                    <div class="form-group form-info row">
                         <label class="col-md-4 col-form-label text-right">Company Phone</label>
 
                         <div class="col-md-6">
@@ -96,7 +96,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group mb-0">
+                    <div class="form-group mb-0 row">
                         <div class="col-md-6">
                             <button class="btn btn-lg btn-block btn-outline-secondary border-secondary" v-on:click="backBtn">
                                 Back
