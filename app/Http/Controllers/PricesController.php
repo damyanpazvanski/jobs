@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Plan;
+use App\User;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\View;
 
@@ -16,6 +17,9 @@ class PricesController extends Controller
     {
         $user = auth()->user();
         $company = $user->company;
+
+        dd($user->invoices());
+        
         $invoice = optional($user->invoices()->all())[0];
         $plan = Plan::where('braintree_plan', $invoice->planId)->first();
 
