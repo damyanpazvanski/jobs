@@ -18,9 +18,7 @@ class PricesController extends Controller
         $user = auth()->user();
         $company = $user->company;
 
-        dd($user->invoicesIncludingPending());
-
-        $invoice = optional($user->invoices()->all())[0];
+        $invoice = $user->invoicesIncludingPending()->all()[0];
         $plan = Plan::where('braintree_plan', $invoice->planId)->first();
 
         $pdf = App::make('dompdf.wrapper');
