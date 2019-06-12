@@ -11,7 +11,7 @@
 |
 */
 
-Route::post('braintree/webhook', 'WebhookController@handleWebhook');
+Route::post('braintree/webhook', '\Laravel\Cashier\Http\Controllers\WebhookController@handleWebhook');
 
 Route::namespace('Auth\Candidates')->group(function () {
     Route::get('login', 'LoginController@showLoginForm')->name('login');

@@ -32,15 +32,15 @@ class HomeController extends Controller
 
         $candidatesCount = $candidateService->candidatesRelatedTo($jobsIds)->count();
 
-        $percentTestedCandidates = $candidateService->candidatesRelatedTo($jobsIds)
+        $percentTestedCandidates = $candidatesCount ? $candidateService->candidatesRelatedTo($jobsIds)
             ->AddIqResults()
             ->whereStatusIsComplete()
-            ->count() * (100 / $candidatesCount);
+            ->count() * (100 / $candidatesCount) : 0;
 
-        $percentBestCandidates = $candidateService->candidatesRelatedTo($jobsIds)
+        $percentBestCandidates = $candidatesCount ? $candidateService->candidatesRelatedTo($jobsIds)
             ->AddIqResults()
             ->where('result', '>', 69)
-            ->count() * (100 / $candidatesCount);
+            ->count() * (100 / $candidatesCount) : 0;
 
         return view('dashboard.admin', compact('candidates', 'percentTestedCandidates', 'percentBestCandidates'));
     }
