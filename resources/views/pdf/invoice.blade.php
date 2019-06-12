@@ -54,34 +54,34 @@
                         <thead>
                         <tr>
                             <th scope="col">Bill To: {{ $user->first_name }} {{ $user->last_name }}</th>
-                            <th scope="col">Paid To: {Company Name}</th>
-                            <th scope="col" class="text-right">Invoice Number: {{ $invoice->id }}</th>
+                            <th scope="col">Paid To: Innocative Future Ltd.</th>
+                            <th scope="col" class="text-right">Invoice Id: {{ $invoice->id }}</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
                             <td>Email: {{ $user->email }}</td>
-                            <td>Email: {Company Email}</td>
-                            <td class="text-right">Invoice Date: {{ $invoice->subscriptionDetails->billingPeriodStartDate->format('m/d/Y') }}</td>
+                            <td>Email: support@cleverhires.com</td>
+                            <th scope="col" class="text-right">Invoice Id: 2</th>
                         </tr>
                         <tr>
                             <td>Address: {{ $company->address }}</td>
-                            <td>Address: {Company Address}</td>
-                            <td class="text-right">Subscription End Date: {{ $invoice->subscriptionDetails->billingPeriodEndDate->format('m/d/Y') }}</td>
+                            <td>Address: Petko D. Petkov Str. 38</td>
+                            <td class="text-right">Invoice Date: {{ $invoice->subscriptionDetails->billingPeriodStartDate->format('m/d/Y') }}</td>
                         </tr>
                         <tr>
                             <td>{{ $company->city }}, {{ optional($company->country)->name }}</td>
-                            <td>US TAX: {US TAX}</td>
-                            <td></td>
+                            <td>Registration number: 205235680</td>
+                            <td class="text-right">Subscription End Date: {{ $invoice->subscriptionDetails->billingPeriodEndDate->format('m/d/Y') }}</td>
                         </tr>
                         <tr>
                             <td>Company: {{ $company->name }}</td>
-                            <td>EU TAX: {EU TAX}</td>
+                            <td>VAT ID/TAX ID: BG205235680</td>
                             <td></td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td>Phone: {Phone Number}</td>
+                            <td>Phone: (+359)87-880-7922</td>
                             <td></td>
                         </tr>
                         </tbody>

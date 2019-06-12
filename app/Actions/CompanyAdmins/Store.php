@@ -2,7 +2,7 @@
 
 namespace App\Actions\CompanyAdmins;
 
-use App\Discount;
+use App\Image;
 use App\Plan;
 use App\Role;
 use App\Company;
@@ -20,12 +20,14 @@ class Store
     private $user;
     private $company;
     private $card;
+    private $request;
 
-    public function __construct($user, $company, $card)
+    public function __construct($user, $company, $card, $request)
     {
         $this->user = $user;
         $this->company = $company;
         $this->card = $card;
+        $this->request = $request;
     }
 
     public function handle()
@@ -35,9 +37,10 @@ class Store
             $companyAdmin->password = Hash::make($this->user['password']);
 
             $companyAdmin->role()->associate(Role::where('name', 'company_admin')->first());
+            $companyAdmin->save();
 
-            // TODO: save image
             $this->company['image_id'] = null;
+
             unset($this->company['image']);
             unset($this->company['imageName']);
 
@@ -45,6 +48,24 @@ class Store
 
             $company->businessSector()->associate(BusinessSector::find($this->company['business_sector_id']));
             $company->country()->associate(Country::find($this->company['country_id']));
+
+            if ($this->request->hasFile('company.image')) {
+                $image = new Image();
+
+                $imageFile = $this->request->file('company.image');
+                $name = md5(date("Y-m-d H:i:s")) . '.' . $imageFile->getClientOriginalExtension();
+
+                //:TODO DISK
+
+                $destinationPath = public_path('/storage/company_admins/' . auth()->user()->id . '/images/');
+                $imageFile->move($destinationPath, $name);
+
+                $image->name = $name;
+                $image->save();
+
+                $company->image()->associate($image);
+            }
+
             $company->save();
 
             $companyAdmin->company()->associate($company);

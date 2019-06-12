@@ -15,7 +15,7 @@ class RegisterController extends Controller
 
     public function store(RegistrationRequest $request)
     {
-        (new Store($request->get('user'), $request->get('company'), $request->get('card')))->handle();
+        (new Store($request->get('user'), $request->get('company'), $request->get('card'), $request))->handle();
 
         return response()->json([]);
     }
