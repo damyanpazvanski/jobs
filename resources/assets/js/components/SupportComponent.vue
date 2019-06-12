@@ -5,7 +5,7 @@
             <h5 class="bold" v-if="isExpanded">Close</h5>
         </div>
         <div class="col-md-12 form" :class="{'fade': isExpanded}">
-            <div class="card">
+            <div class="card mb-1">
                 <div class="card-body">
                     <div class="col-md-12">
                         <div class="form-group">
@@ -44,7 +44,7 @@
                         <div class="form-group">
                             <label for="support-message" class="col-md-12 col-form-label text-center">Message</label>
                             <div class="col-md-12">
-                                <textarea name="support-message" v-model="fields.message" id="support-message" rows="3" class="form-control"></textarea>
+                                <textarea name="support-message" v-model="fields.message" id="support-message" class="form-control support-message"></textarea>
 
                                 <span v-if="errors.message" class="invalid">
                                     <strong>{{ errors.message }}</strong>
@@ -61,6 +61,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div v-on:click="toggleSupport">
+                <i class="material-icons hide-chat-arrow">keyboard_arrow_down</i>
             </div>
         </div>
     </div>
@@ -115,6 +118,15 @@
     }
 </script>
 <style scoped>
+    .hide-chat-arrow {
+        color: #FFFFFF;
+        padding: 5px;
+        background: #00a6f1;
+        cursor: pointer;
+    }
+    .support-message {
+        height: 80px!important;
+    }
     #chat-wrapper {
         position: fixed;
         z-index: 9999;
