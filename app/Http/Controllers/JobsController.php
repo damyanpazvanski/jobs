@@ -54,6 +54,9 @@ class JobsController extends Controller
         $job->country()->associate($request->get('country_id'));
         $job->workTime()->associate($request->get('work_time_id'));
 
+
+        dd($job, $job->save());
+        
         $job->save();
 
         return redirect('/jobs');
