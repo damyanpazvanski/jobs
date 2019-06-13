@@ -54,17 +54,17 @@
         <div class="mt-5">
             <div class="mt-5">
                 <div class="mt-3">
-                    @if(auth()->user()->company->image->name)
-                        <img src="storage/company_admins/{{ auth()->user()->id }}/images/{{ auth()->user()->company->image->name }}">
+                    @if(optional($company->image)->name)
+                        <img src="storage/company_admins/{{ auth()->user()->id }}/images/{{ $company->image->name }}">
                     @endif
                 </div>
             </div>
         </div>
-        <div class="mt-1 text-center">
-            <h1>Company name: {{ auth()->user()->company->name }}</h1>
+        <div class="mt-4 text-center">
+            <h1>Company name: {{ $company->name }}</h1>
 
-            @if(auth()->user()->company->website)
-                <h1>Website: {{ auth()->user()->company->website }}</h1>
+            @if($company->website)
+                <h1>Website: {{ $company->website }}</h1>
             @endif
 
             <h1>Company admin: {{ auth()->user()->getFullName() }}</h1>
@@ -121,7 +121,7 @@
                                 </tbody>
                             </table>
                         @else
-                            <h5 class="text-center">The are no candidates, please add some.</h5>
+                            <h5 class="text-center">The are no candidates, please add some. Or they have not completed the test.</h5>
                         @endif
                     </div>
                 </div>

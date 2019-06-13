@@ -21,10 +21,10 @@ class Subscribed
             return $next($request);
         }
 
-        if (optional($request->user()->getSubscription()->ends_at)->isPast()) {
-            return redirect(route('subscriptions.index'));
+        if ($request->user()->onTrial() || optional(optional($request->user()->getSubscription())->ends_at)->isFuture()) {
+            return $next($request);
         }
 
-        return $next($request);
+        return redirect(route('subscriptions.index'));
     }
 }

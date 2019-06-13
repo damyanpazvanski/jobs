@@ -335,81 +335,85 @@
         </div>
     </div>
 
-    <div class="col-lg-7 col-md-8 col-sm-12">
-        <div class="justify-content-center">
-            <div class="card">
-                <div class="card-header font-weight-bold" data-background-color="blue">
-                    <h4 class="title text-center">Subscription</h4>
-                </div>
+    @if(isset($plan) && isset($subscription))
+        <div class="col-lg-7 col-md-8 col-sm-12">
+            <div class="justify-content-center">
+                <div class="card">
+                    <div class="card-header font-weight-bold" data-background-color="blue">
+                        <h4 class="title text-center">Subscription</h4>
+                    </div>
+                    <div class="card-body col-md-12 mt-2">
 
-                <div class="card-body col-md-12 mt-2">
-                    <div class="form-group row form-info">
-                        <label for="name" class="col-md-4 col-form-label text-right">Name</label>
+                        <div class="form-group row form-info">
+                            <label for="name" class="col-md-4 col-form-label text-right">Name</label>
 
-                        <div class="col-md-6">
-                            <p class="form-control">
-                                {{ $plan->name }}
-                            </p>
+                            <div class="col-md-6">
+                                <p class="form-control">
+                                    {{ $plan->name }}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group row form-info">
+                            <label for="name" class="col-md-4 col-form-label text-right">Price</label>
+
+                            <div class="col-md-6">
+                                <p class="form-control">
+                                    $ {{ $plan->cost }}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group row form-info">
+                            <label for="name" class="col-md-4 col-form-label text-right">Description</label>
+
+                            <div class="col-md-6">
+                                <p class="form-control">
+                                    {{ $plan->description }}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="form-group row form-info">
+                            <label for="name" class="col-md-4 col-form-label text-right">Started At</label>
+
+                            <div class="col-md-6">
+                                <p class="form-control">
+                                    {{ $subscription->created_at }}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group row form-info">
+                            <label for="name" class="col-md-4 col-form-label text-right">Ends At</label>
+
+                            <div class="col-md-6">
+                                <p class="form-control">
+                                    {{ $subscription->ends_at ?: '-' }}
+                                </p>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group row form-info">
-                        <label for="name" class="col-md-4 col-form-label text-right">Price</label>
 
-                        <div class="col-md-6">
-                            <p class="form-control">
-                                $ {{ $plan->cost }}
-                            </p>
-                        </div>
-                    </div>
-                    <div class="form-group row form-info">
-                        <label for="name" class="col-md-4 col-form-label text-right">Description</label>
-
-                        <div class="col-md-6">
-                            <p class="form-control">
-                                {{ $plan->description }}
-                            </p>
-                        </div>
-                    </div>
-                    <div class="form-group row form-info">
-                        <label for="name" class="col-md-4 col-form-label text-right">Started At</label>
-
-                        <div class="col-md-6">
-                            <p class="form-control">
-                                {{ $subscription->created_at }}
-                            </p>
-                        </div>
-                    </div>
-                    <div class="form-group row form-info">
-                        <label for="name" class="col-md-4 col-form-label text-right">Ends At</label>
-
-                        <div class="col-md-6">
-                            <p class="form-control">
-                                {{ $subscription->ends_at ?: '-' }}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body col-md-12">
-                    <div class="form-group row form-info">
-                        <div class="col-md-6">
+                    <div class="card-body col-md-12">
+                        <div class="form-group row form-info">
+                            <div class="col-md-6">
                             @if(!$user->subscription($subscription->name)->cancelled())
                                 <button class="btn btn-lg btn-block btn-danger" data-toggle="modal" data-target="#stopTheSubscriptionModal">Stop</button>
-                            @endif
-                        </div>
-                        <div class="col-md-6">
-                            <a href="{{ route('subscriptions.index') }}">
-                                <button class="btn btn-outline-info btn-lg btn-block">Change</button>
-                            </a>
-                        </div>
-                        <div class="col-md-12">
-                            <a href="{{ route('invoice') }}">
-                                <button class="btn btn-outline-info btn-lg btn-block">Download Invoice</button>
-                            </a>
-                            <span>Click and wait several seconds. We are going to prepare the invoice for you.</span>
+                                @endif
+                            </div>
+                            <div class="col-md-6">
+                                <a href="{{ route('subscriptions.index') }}">
+                                    <button class="btn btn-outline-info btn-lg btn-block">Change</button>
+                                </a>
+                            </div>
+                            <div class="col-md-12">
+                                <a href="{{ route('invoice') }}">
+                                    <button class="btn btn-outline-info btn-lg btn-block">Download Invoice</button>
+                                </a>
+                                <span>Click and wait several seconds. We are going to prepare the invoice for you.</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 @endsection

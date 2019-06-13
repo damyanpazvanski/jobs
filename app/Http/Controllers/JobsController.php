@@ -63,9 +63,10 @@ class JobsController extends Controller
     {
         $pdf = App::make('dompdf.wrapper');
 
+        $company = auth()->user()->company;
         $candidates = $job->bestCandidates;
 
-        $pdf->loadHTML(View::make('pdf.job.candidates.index', compact('candidates', 'job')))->setPaper('a4', 'landscape');
+        $pdf->loadHTML(View::make('pdf.job.candidates.index', compact('company', 'candidates', 'job')))->setPaper('a4', 'landscape');
 
         return $pdf->download('candidates.pdf');
     }
