@@ -90,7 +90,7 @@
                         <label class="col-md-4 col-form-label text-right">Company Phone <span class="required-field-star">*</span></label>
 
                         <div class="col-md-6">
-                            <input v-model="company.phone" type="text" class="form-control" required placeholder="Enter the company phone">
+                            <input v-model="company.phone" type="text" class="form-control" required placeholder="XXX-XXX-XXXX or +XXXXX-XXX-XXXX">
 
                             <strong class="invalid" v-if="errors['phone']">The format is: XXX-XXX-XXXX or +XXXXX-XXX-XXXX</strong>
                         </div>

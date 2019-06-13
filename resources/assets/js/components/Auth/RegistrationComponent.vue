@@ -62,8 +62,6 @@
                 let self = this;
                 let postData = new FormData();
 
-                console.log(data);
-
                 self.couponError = '';
                 self.loader = true;
 
@@ -84,16 +82,20 @@
                 postData.append('company[image]', this.data.company.image);
                 postData.append('company[imageName]', this.data.company.imageName);
 
-                postData.append('card[trial]', data.trial ? 1 : 0);
+                postData.append('card[trial]', 1);
                 postData.append('card[chosenPlanName]', data.chosenPlanName);
                 postData.append('card[period]', data.period);
                 postData.append('card[coupon]', data.coupon);
-                postData.append('card[paymentData][nonce]', data.paymentData.nonce);
-                postData.append('card[paymentData][type]', data.paymentData.type);
-                postData.append('card[paymentData][details][bin]', data.paymentData.details.bin);
-                postData.append('card[paymentData][details][cardType]', data.paymentData.details.cardType);
-                postData.append('card[paymentData][details][lastFour]', data.paymentData.details.lastFour);
-                postData.append('card[paymentData][details][lastTwo]', data.paymentData.details.lastTwo);
+
+                if (!data.trial) {
+                    postData.append('card[trial]', 0);
+                    postData.append('card[paymentData][nonce]', data.paymentData.nonce);
+                    postData.append('card[paymentData][type]', data.paymentData.type);
+                    postData.append('card[paymentData][details][bin]', data.paymentData.details.bin);
+                    postData.append('card[paymentData][details][cardType]', data.paymentData.details.cardType);
+                    postData.append('card[paymentData][details][lastFour]', data.paymentData.details.lastFour);
+                    postData.append('card[paymentData][details][lastTwo]', data.paymentData.details.lastTwo);
+                }
 
                 axios.post('/ajax/register/store', postData)
                     .then(function (response) {

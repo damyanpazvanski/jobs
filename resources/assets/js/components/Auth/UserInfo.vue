@@ -43,7 +43,7 @@
 
                         <div class="col-md-6">
                             <input id="phone" @blur="check(user.phone, 'phone')"
-                                   type="text" v-model="user.phone" class="form-control" name="number" placeholder="888-888-8888" required>
+                                   type="text" v-model="user.phone" class="form-control" name="number" placeholder="XXX-XXX-XXXX or +XXXXX-XXX-XXXX" required>
 
                             <strong class="invalid" v-if="errors['phone']">The format is: XXX-XXX-XXXX or +XXXXX-XXX-XXXX</strong>
                         </div>

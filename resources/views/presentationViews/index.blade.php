@@ -13,7 +13,7 @@
                 <p class="text-faded mb-5">
                     We are going to help you to reduce the CVs for review
                 </p>
-                <a class="btn btn-primary btn-xl js-scroll-trigger" href="#services">Find Out More</a>
+                <a class="btn btn-primary btn-xl js-scroll-trigger mb-1" href="#services">Find Out More</a>
                 <a class="btn btn-primary btn-xl js-scroll-trigger" href="{{ route('company.admins.register') }}">Try us for free</a>
             </div>
         </div>
