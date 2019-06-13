@@ -43,9 +43,9 @@
 
                         <div class="col-md-6">
                             <input id="phone" @blur="check(user.phone, 'phone')"
-                                   type="text" v-model="user.phone" class="form-control" name="number" required>
+                                   type="text" v-model="user.phone" class="form-control" name="number" placeholder="888-888-8888" required>
 
-                            <strong class="invalid">{{ errors['phone'] }}</strong>
+                            <strong class="invalid" v-if="errors['phone']">The format is: XXX-XXX-XXXX or +XXXXX-XXX-XXXX</strong>
                         </div>
                     </div>
 

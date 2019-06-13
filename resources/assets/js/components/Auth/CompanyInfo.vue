@@ -92,7 +92,7 @@
                         <div class="col-md-6">
                             <input v-model="company.phone" type="text" class="form-control" required placeholder="Enter the company phone">
 
-                            <strong class="invalid" v-if="errors['phone']">The format is: XXX-XXX-XXXX or +XXXX-XXX-XXXX</strong>
+                            <strong class="invalid" v-if="errors['phone']">The format is: XXX-XXX-XXXX or +XXXXX-XXX-XXXX</strong>
                         </div>
                     </div>
 
