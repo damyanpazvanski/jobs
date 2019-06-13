@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Candidates</title>
     <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="css/pdf/candidates.css">
 
     <style>
         .page-break {
@@ -55,7 +54,8 @@
             <div class="mt-5">
                 <div class="mt-3">
                     @if(optional($company->image)->name)
-                        <img src="storage/company_admins/{{ auth()->user()->id }}/images/{{ $company->image->name }}">
+                        <img style="max-height: 400px!important; max-width: 100%!important;"
+                             src="storage/company_admins/{{ auth()->user()->id }}/images/{{ $company->image->name }}">
                     @endif
                 </div>
             </div>
