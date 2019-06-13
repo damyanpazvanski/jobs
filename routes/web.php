@@ -52,7 +52,7 @@ Route::middleware(['auth:web,companyAdmin'])->group(function () {
         Route::delete('/subscriptions', 'SubscriptionsController@destroy')->name('subscriptions.destroy');
 
         Route::get('/jobs/create', 'JobsController@create')->name('create.jobs');
-        Route::post('/jobs/store', 'JobsController@store')->name('store.jobs');
+        Route::post('/jobs', 'JobsController@store')->name('store.jobs');
         Route::get('/jobs', 'JobsController@index')->name('jobs');
         Route::get('/jobs/disabled', 'JobsController@disabled')->name('disabled.jobs');
         Route::get('/jobs/{job}', 'JobsController@show')->name('show-job');

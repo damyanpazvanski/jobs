@@ -52,17 +52,11 @@ class JobsController extends Controller
      */
     public function store(\Illuminate\Http\Request $request)
     {
-        dd(1, $request->all());
-        die;
-
         $job = new Job($request->all());
 
         $job->company()->associate(auth()->user()->company);
         $job->country()->associate($request->get('country_id'));
         $job->workTime()->associate($request->get('work_time_id'));
-
-
-        dd($job, $job->save());
 
         $job->save();
 
