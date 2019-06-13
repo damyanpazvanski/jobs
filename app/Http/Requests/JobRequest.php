@@ -23,11 +23,15 @@ class JobRequest extends FormRequest
      */
     public function rules()
     {
+        dd(3);
+
         if ($this->route()->getActionMethod() === 'activate') {
             return [
                 'job_id' => 'required|integer|exists:jobs,id'
             ];
         }
+
+        dd(2);
 
         return [
             'country_id' => 'required|integer|exists:countries,id',

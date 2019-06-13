@@ -48,6 +48,8 @@ class JobsController extends Controller
 
     public function store(JobRequest $request)
     {
+        dd(1, $request->all());
+
         $job = new Job($request->all());
 
         $job->company()->associate(auth()->user()->company);
@@ -56,7 +58,7 @@ class JobsController extends Controller
 
 
         dd($job, $job->save());
-        
+
         $job->save();
 
         return redirect('/jobs');
