@@ -49,7 +49,8 @@ class JobsController extends Controller
     public function store(JobRequest $request)
     {
         dd(1, $request->all());
-
+        die;
+        
         $job = new Job($request->all());
 
         $job->company()->associate(auth()->user()->company);
