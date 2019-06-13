@@ -60,7 +60,7 @@
                 </div>
             </div>
         </div>
-        <div class="mt-4 text-center">
+        <div class="text-center @if(!$company->image) mt-5 @endif">
             <h1>Company name: {{ $company->name }}</h1>
 
             @if($company->website)
