@@ -5,6 +5,7 @@
         <div class="row justify-content-center">
             <form method="POST" action="{{ route('store.jobs') }}">
                 @csrf
+
                 <div class="card">
                     <div class="card-header font-weight-bold" data-background-color="blue">
                         <h4 class="title">New Job</h4>
