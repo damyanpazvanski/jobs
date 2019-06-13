@@ -61,7 +61,7 @@ class JobsController extends Controller
 
         $job->save();
 
-        return redirect('/jobs');
+        return back();
     }
 
     public function downloadPdf(Job $job)
