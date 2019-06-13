@@ -25,6 +25,7 @@ class CompanyAdmin extends User
         'last_name',
         'email',
         'phone',
+        'invoice_number',
         'password',
         'trial',
         'card_brand',
@@ -55,6 +56,11 @@ class CompanyAdmin extends User
     public function company()
     {
         return $this->belongsTo(Company::class, 'company_id');
+    }
+
+    public function invoice()
+    {
+        return $this->belongsTo(Invoice::class, 'invoice_id');
     }
 
     public function role()

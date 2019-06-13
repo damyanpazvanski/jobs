@@ -62,7 +62,7 @@
                         <tr>
                             <td>Email: {{ $user->email }}</td>
                             <td>Email: support@cleverhires.com</td>
-                            <th scope="col" class="text-right">Invoice Id: 2</th>
+                            <th scope="col" class="text-right">Invoice Number: {{ $user->invoice->number }}</th>
                         </tr>
                         <tr>
                             <td>Address: {{ $company->address }}</td>

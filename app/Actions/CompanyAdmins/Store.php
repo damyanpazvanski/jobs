@@ -3,6 +3,7 @@
 namespace App\Actions\CompanyAdmins;
 
 use App\Image;
+use App\Invoice;
 use App\Plan;
 use App\Role;
 use App\Company;
@@ -74,6 +75,10 @@ class Store
                 return;
             }
 
+            $lastInvoice = Invoice::query()->orderByDesc('id')->take(1)->first();
+            $invoice = Invoice::create(['number' => ($lastInvoice->number ?: 9) + 1]);
+
+            $companyAdmin->invoice()->associate($invoice);
             $companyAdmin->save();
 
             $this->validateCoupon($this->card);

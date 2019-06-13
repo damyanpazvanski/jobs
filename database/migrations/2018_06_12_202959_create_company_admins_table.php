@@ -20,6 +20,7 @@ class CreateCompanyAdminsTable extends Migration
             $table->string('last_name');
             $table->string('email')->unique();
             $table->unsignedInteger('role_id')->nullable();
+            $table->unsignedInteger('invoice_id')->nullable();
             $table->string('phone');
             $table->string('braintree_id')->nullable();
             $table->string('paypal_email')->nullable();
@@ -39,6 +40,9 @@ class CreateCompanyAdminsTable extends Migration
                 ->references('id')->on('roles')
                 ->onDelete('SET NULL');
 
+            $table->foreign('invoice_id')
+                ->references('id')->on('invoices')
+                ->onDelete('cascade');
         });
     }
 
