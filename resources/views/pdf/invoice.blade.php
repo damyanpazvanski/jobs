@@ -71,17 +71,22 @@
                         </tr>
                         <tr>
                             <td>{{ $company->city }}, {{ optional($company->country)->name }}</td>
-                            <td>Registration number: 205235680</td>
+                            <td>City: Plovdiv, Bulgaria</td>
                             <td class="text-right">Subscription End Date: {{ $invoice->subscriptionDetails->billingPeriodEndDate->format('m/d/Y') }}</td>
                         </tr>
                         <tr>
                             <td>Company: {{ $company->name }}</td>
+                            <td>Registration number: 205235680</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
                             <td>VAT ID/TAX ID: BG205235680</td>
                             <td></td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td>Phone: (+359)87-880-7922</td>
+                            <td>Phone: (+359)89-458-7337</td>
                             <td></td>
                         </tr>
                         </tbody>

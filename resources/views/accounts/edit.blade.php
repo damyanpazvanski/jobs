@@ -405,6 +405,7 @@
                             <a href="{{ route('invoice') }}">
                                 <button class="btn btn-outline-info btn-lg btn-block">Download Invoice</button>
                             </a>
+                            <span>Click and wait several seconds. We are going to prepare the invoice for you.</span>
                         </div>
                     </div>
                 </div>

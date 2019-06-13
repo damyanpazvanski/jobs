@@ -87,7 +87,7 @@
                     </div>
 
                     <div class="form-group form-info row">
-                        <label class="col-md-4 col-form-label text-right">Company Phone</label>
+                        <label class="col-md-4 col-form-label text-right">Company Phone <span class="required-field-star">*</span></label>
 
                         <div class="col-md-6">
                             <input v-model="company.phone" type="text" class="form-control" required placeholder="Enter the company phone">

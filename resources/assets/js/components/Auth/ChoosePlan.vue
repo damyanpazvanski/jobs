@@ -73,7 +73,7 @@
                                     <ul class="list-unstyled mt-2 mb-4">
                                         <li>Limit up to 10 jobs</li>
                                         <hr>
-                                        <li>Limit up to 200 candidates</li>
+                                        <li>Limit up to 100 candidates</li>
                                         <hr>
                                         <li>Help center access</li>
                                     </ul>
@@ -94,7 +94,7 @@
                                     <ul class="list-unstyled mt-2 mb-4">
                                         <li>No limit on jobs</li>
                                         <hr>
-                                        <li>Limit up to 2000 candidates</li>
+                                        <li>Limit up to 300 candidates</li>
                                         <hr>
                                         <li>Help center access</li>
                                     </ul>
@@ -115,7 +115,7 @@
                                     <ul class="list-unstyled mt-2 mb-3">
                                         <li>No limit on jobs</li>
                                         <hr>
-                                        <li>Limit up to 5000 candidates</li>
+                                        <li>Limit up to 800 candidates</li>
                                         <hr>
                                         <li>Phone and email support</li>
                                         <hr>
@@ -150,22 +150,23 @@
                     </div>
 
                     <div class="col-md-12" v-show="chosenPlanIndex">
-                        <div class="col-md-3">
-                            <div class="col-md-12 col-sm-12 col-xs-12 alert alert-info pt-0 pb-0 pl-0 pr-0 text-right">
-                                <div class="col-sm-3 col-xs-3 hidden-md hidden-lg" style="height: 50px">
-                                    <i class="material-icons animated-vertical-arrow">arrow_downward</i>
-                                </div>
-                                <div class="col-md-7 col-sm-9 col-xs-9 pt-0 pb-0 pl-0 pr-0 text-center">
-                                    <h5>If you want to pay with PayPal click here!</h5>
-                                </div>
-                                <div class="col-md-5 hidden-xs hidden-sm">
-                                    <i class="material-icons animated-horizontal-arrow">arrow_right_alt</i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-9">
+                        <!--<div class="col-md-3">-->
+                            <!--<div class="col-md-12 col-sm-12 col-xs-12 alert alert-info pt-0 pb-0 pl-0 pr-0 text-right">-->
+                                <!--<div class="col-sm-3 col-xs-3 hidden-md hidden-lg" style="height: 50px">-->
+                                    <!--<i class="material-icons animated-vertical-arrow">arrow_downward</i>-->
+                                <!--</div>-->
+                                <!--<div class="col-md-7 col-sm-9 col-xs-9 pt-0 pb-0 pl-0 pr-0 text-center">-->
+                                    <!--<h5>If you want to pay with PayPal click here!</h5>-->
+                                <!--</div>-->
+                                <!--<div class="col-md-5 hidden-xs hidden-sm">-->
+                                    <!--<i class="material-icons animated-horizontal-arrow">arrow_right_alt</i>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="col-md-6 col-md-offset-3">
                             <form method="post">
-                                <div class="col-md-8">
+                                <!--<div class="col-md-8">-->
+                                    <button id="payment-button" class="btn btn-info" type="submit" v-if="!paymentData">Check The Card</button>
                                     <div id="dropin-container"></div>
                                     <div class="mt-1 form-group form-info">
                                         <label class="col-md-2 col-form-label text-right">Coupon: </label>
@@ -174,10 +175,10 @@
                                         </div>
                                     </div>
                                     <div class="text-center invalid">{{ couponError }}</div>
-                                </div>
-                                <div class="col-md-4 pt-0">
-                                    <button id="payment-button" class="btn btn-info" type="submit" v-if="!paymentData">Check The Card</button>
-                                </div>
+                                <!--</div>-->
+                                <!--<div class="col-md-4 pt-0">-->
+                                    <!--&lt;!&ndash;<button id="payment-button" class="btn btn-info" type="submit" v-if="!paymentData">Check The Card</button>&ndash;&gt;-->
+                                <!--</div>-->
                             </form>
                         </div>
                     </div>
@@ -241,6 +242,7 @@
         },
         mounted() {
             let self = this;
+
             braintree.setup(this.token, 'dropin', {
                 container: 'dropin-container',
                 onPaymentMethodReceived: function (paymentMethod) {

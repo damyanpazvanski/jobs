@@ -12,6 +12,7 @@ use App\BusinessSector;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class Store
@@ -21,6 +22,7 @@ class Store
     private $company;
     private $card;
     private $request;
+    private $storage;
 
     public function __construct($user, $company, $card, $request)
     {
@@ -52,15 +54,10 @@ class Store
             if ($this->request->hasFile('company.image')) {
                 $image = new Image();
 
-                $imageFile = $this->request->file('company.image');
-                $name = md5(date("Y-m-d H:i:s")) . '.' . $imageFile->getClientOriginalExtension();
+                $image->name = $this->request->file('company.image')->getClientOriginalName();
 
-                //:TODO DISK
+                $this->request->file('company.image')->storeAs('company_admins/' . $companyAdmin->id . '/images', $image->name);
 
-                $destinationPath = public_path('/storage/company_admins/' . auth()->user()->id . '/images/');
-                $imageFile->move($destinationPath, $name);
-
-                $image->name = $name;
                 $image->save();
 
                 $company->image()->associate($image);

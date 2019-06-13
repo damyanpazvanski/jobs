@@ -9,6 +9,7 @@ use App\BusinessSector;
 use App\Http\Requests\CompanyRequest;
 use App\Http\Requests\ImageRequest;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class CompaniesController extends Controller
 {
@@ -34,14 +35,14 @@ class CompaniesController extends Controller
 
         if (is_null($image)) {
             $image = new Image();
+        } else {
+            Storage::disk()->delete('company_admins/' . auth()->user()->id . '/images/' . $image->name);
         }
 
-        $imageFile = $request->file('image');
-        $name = md5(date("Y-m-d H:i:s")) . '.' . $imageFile->getClientOriginalExtension();
-        $destinationPath = public_path('/storage/company_admins/' . auth()->user()->id . '/images/');
-        $imageFile->move($destinationPath, $name);
+        $image->name = $request->file('image')->getClientOriginalName();
 
-        $image->name = $name;
+        $request->file('image')->storeAs('company_admins/' . auth()->user()->id . '/images', $image->name);
+
         $image->save();
 
         $company->image()->associate($image);
