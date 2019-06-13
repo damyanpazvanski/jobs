@@ -46,11 +46,15 @@ class JobsController extends Controller
         return view('jobs.create', compact('workTimes', 'countries'));
     }
 
-    public function store(JobRequest $request)
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(\Illuminate\Http\Request $request)
     {
         dd(1, $request->all());
         die;
-        
+
         $job = new Job($request->all());
 
         $job->company()->associate(auth()->user()->company);
