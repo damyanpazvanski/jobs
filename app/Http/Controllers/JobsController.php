@@ -51,8 +51,8 @@ class JobsController extends Controller
         $job = new Job($request->all());
 
         $job->company()->associate(auth()->user()->company);
-        $job->country()->associate(Country::find($request->get('country_id')));
-        $job->workTime()->associate(WorkTime::find($request->get('work_time_id')));
+        $job->country()->associate($request->get('country_id'));
+        $job->workTime()->associate($request->get('work_time_id'));
 
         $job->save();
 
